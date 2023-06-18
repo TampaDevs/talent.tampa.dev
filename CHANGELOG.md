@@ -198,4 +198,4 @@
 * January 3 - Added CTA for paywalled content - #206 and #193 @jacobdaddario
 * January 1 - Added `/notifications` - #182 @jayeclark
 
-> Changes before January 1, 2022 can be found by reading through [merged PRs](https://github.com/joemasilotti/railsdevs.com/pulls?q=is%3Apr+is%3Amerged).
+> Changes before January 1, 2022 can be found by reading through [merged PRs](https://github.com/tampadevs/talent.tampa.dev/pulls?q=is%3Apr+is%3Amerged).
