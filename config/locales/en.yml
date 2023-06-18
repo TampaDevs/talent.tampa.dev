@@ -2,11 +2,11 @@
 en:
   about:
     show:
-      caption: founder of RailsDevs
-      description: I'm Joe Masilotti. I'm building RailsDevs to make it easier for Ruby on Rails developers to find their next gig.
+      caption: founder of Tampa Devs Talent
+      description: We're Tampa Devs, Tampa Bay's Develper Community. We're building Tampa Devs Talent to make it easier for Tampa Bay's developers to find their next gig while supporting our charitable mission.
       readtime: 1 minute read
       title: About
-      title_og: About RailsDevs
+      title_og: About Tampa Devs Talent
   activerecord:
     attributes:
       business:
@@ -217,16 +217,16 @@ en:
   affiliates:
     registrations:
       create:
-        notice: Your request will be approved shortly. Look out for an email from Joe soon.
+        notice: Your request will be approved shortly. Look out for an email from our team soon.
       index:
-        description: Earn 10% recurring commissions for every referral to RailsDevs. Join the affiliate program today and start earning money while promoting the only open source hiring platform for Ruby on Rails developers.
-        title: Earn money promoting RailsDevs
+        description: Earn 5% recurring commissions for every referral to Tampa Devs Talent. Join the affiliate program today and start earning money while promoting the only nonprofit hiring platform that supports developer communities in Tampa Bay.
+        title: Earn money promoting Tampa Devs Talent
       new:
         agreement: I agree to these rules
         submit: Register
         submitting: Registering...
         subtitle: Program rules
-        title: RailsDevs affiliate program registration
+        title: Tampa Devs Talent affiliate program registration
   blocks:
     create:
       notice: "%{other_recipient} was blocked."
@@ -237,11 +237,11 @@ en:
       title: Block sender
   business_mailer:
     cancel_subscription:
-      subject: RailsDevs cancellation confirmation
+      subject: Tampa Devs Talent cancellation confirmation
     subscribed:
-      subject: "Your RailsDevs subscription is live! 🎉 Let's find your perfect match."
+      subject: "Your Tampa Devs Talent subscription is live! 🎉 Let's find your perfect match."
     welcome:
-      subject: "Welcome to RailsDevs 👋"
+      subject: "Welcome to Tampa Devs Talent 👋"
   businesses:
     admin_component:
       conversations: Conversations
@@ -262,7 +262,7 @@ en:
       change_avatar: Upload
       creating: Creating...
       developer_notifications:
-        help_text: Receive daily or weekly email notifications when new developers add their profile to RailsDevs.
+        help_text: Receive daily or weekly email notifications when new developers add their profile to Tampa Devs Talent.
         legend: Developer notifications
         values:
           daily: Daily
@@ -272,11 +272,11 @@ en:
       notifications:
         title: Email notifications
       personal:
-        help: Information about you, the contact point for your business on RailsDevs.
+        help: Information about you, the contact point for your business on Tampa Devs Talent.
         title: Personal details
       something_went_wrong: Something went wrong uploading your image, please try again.
       survey_request_notifications:
-        help_text: Help RailsDevs by receiving short, infrequent surveys about how you use the platform.
+        help_text: Help Tampa Devs Talent by receiving short, infrequent surveys about how you use the platform.
         legend: Survey requests
       updating: Updating...
       your_business_profile: Your business profile
@@ -285,16 +285,16 @@ en:
       title: Have you hired %{developer}?
     hiring_invoice_requests:
       create:
-        success: Thank you! Joe will reach out to you soon.
+        success: Thank you! Our team will reach out to you soon.
       new:
         billing_address: Billing address
         description: Congrats on your new hire!
         developer_name: Developer's name
         feedback: Feedback (optional)
-        feedback_help: Please let us know how we can improve RailsDevs or anything you'd like to share.
+        feedback_help: Please let us know how we can improve Tampa Devs Talent or anything you'd like to share.
         requesting: Requesting...
         submit: Submit
-        title: Did you hire through RailsDevs?
+        title: Did you hire through Tampa Devs Talent?
     primary_action_component:
       edit: Edit
     scheduling_link_component:
@@ -352,9 +352,9 @@ en:
     celebration_promotion:
       subject: How's your conversation going with %{contact} at %{company}?
     first_message:
-      subject: Tips on responding to your first message on RailsDevs
+      subject: Tips on responding to your first message on Tampa Devs Talent
     welcome:
-      subject: "Welcome to RailsDevs 👋"
+      subject: "Welcome to Tampa Devs Talent 👋"
   developers:
     admin_component:
       conversations: Conversations
@@ -371,17 +371,17 @@ en:
       source_contributor: Source contributor
     celebration_package_requests:
       create:
-        success: Thank you! Joe will reach out to you soon.
+        success: Thank you! Our team will reach out to you soon.
       new:
         company_name: Company name
-        description: Congrats on your new job! Tell us about it and we'll send you a custom RailsDevs celebration package free.
+        description: Congrats on your new job! Tell us about it and we'll send you a custom Tampa Devs Talent celebration package free.
         feedback: Feedback (optional)
-        feedback_help: Please let us know how we can improve RailsDevs or anything you'd like to share.
+        feedback_help: Please let us know how we can improve Tampa Devs Talent or anything you'd like to share.
         mailing_address: Mailing address
         mailing_address_help: Where can we send your celebration package?
         request_package: Request package
         requesting: Requesting...
-        title: Did you find a job through RailsDevs?
+        title: Did you find a job through Tampa Devs Talent?
     count_component:
       cta: Reset filters
       title_html: Showing <span class='font-bold'>%{count}</span> of <span class='font-bold'>%{total}</span>+ developers.
@@ -463,16 +463,16 @@ en:
       empty_state:
         body: Try changing or clearing your filters.
         title: No developers found
-      title: Ruby on Rails developers
+      title: Tampa Bay developers
     invisible_banner_component:
       cta: Edit my profile
       title: Your developer profile is invisible – only you can see it.
     meta:
-      description: "%{count}+ Ruby on Rails developers looking for their next gig. Juniors to seniors and everyone in between, you'll find them all here."
+      description: "%{count}+ local developers looking for their next gig. For any stacks, levels, and working arrangements, you'll find them all here."
       freelance: freelance
       hire: Hire
       in_country: in %{country}
-      ruby_on_rails_developers: Ruby on Rails developers
+      ruby_on_rails_developers: developers in Tampa Bay
     new_field_component:
       new: New!
     new_fields_component:
@@ -547,8 +547,8 @@ en:
     unauthorized: You don't have access to that.
   hired:
     show:
-      description: RailsDevs offers a celebration package to congratulate you on joining a company through the platform.
-      image_alt: RailsDevs celebration package
+      description: Tampa Devs Talent offers a celebration package to congratulate you on joining a company through the platform.
+      image_alt: Tampa Devs Talent celebration package
       title: Congrats on your new job!
   hiring_agreements:
     signatures:
@@ -559,9 +559,9 @@ en:
         accepting: Accepting...
         agreement: By checking this box I confirm understanding and acceptance of the outlined terms. I acknowledge that this constitutes a legally binding agreement under applicable laws.
         description: Last updated %{last_updated}
-        questions_html: Questions? Email the founder – that's me, Joe! – at <a href="mailto:joe@railsdevs.com" class="font-medium no-underline hover:underline">joe@railsdevs.com</a>.
+        questions_html: Questions? Email the Tampa Devs Talent team at <a href="mailto:jobs@tampadevs.com" class="font-medium no-underline hover:underline">jobs@tampadevs.com</a>.
         sign_below: Sign agreement below
-        title: RailsDevs hiring agreement
+        title: Tampa Devs Talent hiring agreement
     terms:
       show:
         download: Download signed PDF
@@ -569,18 +569,18 @@ en:
         signed_on: Signed on %{date}
   home:
     show:
-      description_og: RailsDevs empowers independent developers available for their next gig. Stop scouring job boards and sit back as companies reach out to you first.
-      developers_heading: New Rails developers on RailsDevs
+      description_og: Tampa Devs Talent empowers local developers and supports social good. Stop scouring job boards and sit back as companies reach out to you first.
+      developers_heading: New awesome loval developers on Tampa Devs Talent
       get_started: Get started
       learn_more: Learn more
       more: See more developers
-      subtitle_1: RailsDevs
-      subtitle_2: empowers independent developers available for their next gig.
+      subtitle_1: Tampa Devs Talent
+      subtitle_2: empowers local developers and supports social good.
       subtitle_3: Stop scouring job boards and sit back as companies reach out to you first.
       title_1: The reverse job board for
-      title_2: Rails developers
-      title_og: The reverse job board for Ruby on Rails developers
-      turbo_native_title: RailsDevs
+      title_2: Tampa Bay's Developer Community
+      title_og: The reverse job board for Tampa Bay's Developer Community
+      turbo_native_title: Tampa Devs Talent
   impersonating_banner_component:
     cta: Sign out
     title: Signed in as %{email}
@@ -589,7 +589,7 @@ en:
   messages:
     form:
       help: Add your message
-      hiring_fee_agreement: I agree to pay RailsDevs the 10% hiring fee if I hire this developer for a full-time role.
+      hiring_fee_agreement: I agree to pay Tampa Devs Talent the 5% hiring fee if I hire this developer for a full-time role.
       hiring_fee_cta: Questions?
       sending: Sending...
       submit: Send
@@ -655,15 +655,15 @@ en:
         title: "%{developer} may have been hired"
     businesses:
       invisiblize_notification:
-        title: Your profile on RailsDevs was flagged
+        title: Your profile on Tampa Devs Talent was flagged
     developers:
       invisiblize_notification:
-        title: Your profile on RailsDevs was flagged
+        title: Your profile on Tampa Devs Talent was flagged
       product_announcement_notification:
-        email_subject: "[RailsDevs] New feature alert: Developer specialties 🚨"
+        email_subject: "[Tampa Devs Talent] New feature alert: Developer specialties 🚨"
         title: 'New feature alert: Developer specialties'
       profile_reminder_notification:
-        email_subject: Is your RailsDevs profile up to date?
+        email_subject: Is your Tampa Devs Talent profile up to date?
         title: Is your developer profile up to date?
     index:
       cta: View history
@@ -673,7 +673,7 @@ en:
       mark_all_as_read: Mark all as read
       title: New notifications
     new_message_notification:
-      email_subject: "%{sender} sent you a message on RailsDevs"
+      email_subject: "%{sender} sent you a message on Tampa Devs Talent"
       title: "%{sender} sent you a message"
     show:
       notice: Notification marked as read.
@@ -683,18 +683,18 @@ en:
         amount: Amount
         contributions: Contributions
         date: Date
-        description: RailsDevs contributes 10% of profits to women-focused communities and 2% of revenue to CO₂ removal.
+        description: Tampa Devs Talent directly supports Tampa Devs, a nonprofit software development community dedicated to accelerate access to training and career opportunities in Tampa’s software industry. For free, and for everyone.
         external_link: Open in new tab
         open_startup: Open startup
         recipient: Recipient
-        title: RailsDevs contributions
+        title: Tampa Devs Talent contributions
         to_co2_removal: to CO₂ removal
         to_communities: to communities
     dashboard:
       show:
         contributions: Contributions
         date: Date
-        description: RailsDevs is an open startup with public metrics.
+        description: Tampa Devs Talent is an open startup with public metrics.
         expenses: Expenses
         external_link: Open in new tab
         mrr: MRR
@@ -706,23 +706,23 @@ en:
       index:
         amount: Amount
         date: Date
-        description: All monetary transactions associated with RailsDevs, like hosting, fees, and purchases.
+        description: All monetary transactions associated with Tampa Devs Talent, like hosting, fees, and purchases.
         expenses: Expenses
         open_startup: Open startup
         source: Source
-        title: RailsDevs expenses
+        title: Tampa Devs Talent expenses
     revenue:
       index:
         amount: Amount
         date: Date
-        description: All revenue RailsDevs has generated since launching in November, 2021.
+        description: All revenue Tampa Devs Talent has generated since launching in November, 2021.
         open_startup: Open startup
         revenue: Revenue
         source: Source
-        title: RailsDevs revenue
+        title: Tampa Devs Talent revenue
   pay_mailer:
     subscription_renewing:
-      subject: Your RailsDevs subscription renews soon. Have you made a hire?
+      subject: Your Tampa Devs Talent subscription renews soon. Have you made a hire?
   policies:
     privacy:
       show:
@@ -733,53 +733,53 @@ en:
   pricing:
     cta:
       cta: Get started today
-      subtitle: Find your next Rails developer today.
-      title: Ready to start hiring?
+      subtitle: Find your next great hire today.
+      title: Ready to get started?
     faq:
       annual:
-        a_html: Yes. Email Joe to set up discounted annual billing at <a href='mailto:joe@railsdevs.com' class='underline'>joe@railsdevs.com</a>.
+        a_html: Yes. Email the Tampa Devs Talent team to set up discounted annual billing at <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: Can I pay annually or yearly?
       cancellation:
         a_html: Yes. You can cancel your subscription from the Billing link in the user drop-down. You will lose access to all paid features at the end of your billing period.
         q: Can I cancel my subscription at any time?
       developers:
-        a: No. RailsDevs is free for developers.
-        q: Does RailsDevs cost anything for developers?
+        a: No. Tampa Devs Talent is free for developers.
+        q: Does Tampa Devs Talent cost anything for developers?
       fee:
-        a_html: If you hire a full-time employee through RailsDevs you agree to pay a placement fee equal to 10% of their salary.
-        q: How does the 10% hiring fee work?
+        a_html: If you hire a full-time employee through Tampa Devs Talent you agree to pay a placement fee equal to 5% of their salary.
+        q: How does the 5% hiring fee work?
       support:
-        a_html: Email the founder – that's me, Joe! – with any questions. You can reach me at <a href='mailto:joe@railsdevs.com' class='underline'>joe@railsdevs.com</a>.
+        a_html: Email the Tampa Devs Talent team with any questions. You can reach us at <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: Who can I contact for more specific questions?
       title: Frequently asked questions
     hero:
-      description: Directly connect with hundreds of Ruby on Rails developers looking for their next job.
-      title: Hire Ruby on Rails developers
+      description: Directly connect with hundreds of local developers in Tampa Bay looking for their next job.
+      title: Hire developers in Tampa Bay
     plan:
-      description: Skip the formal job postings and middlemen – hire directly from a candidate pool of Ruby on Rails developers, from juniors to C-level.
+      description: Skip the formal job postings and middlemen – hire directly from a candidate pool of local developers in Tampa Bay, from juniors to C-level.
       features:
         email_updates: Email updates of new candidates
-        hand_selected_matches: Hand-selected matches every month
+        hand_selected_matches: Find easy matches every month
         message: Message directly with developers
-        oss: Support independent developers and OSS
-        rails: Exclusively Ruby on Rails developers
-        support: Email and video support from the founder
-        title: RailsDevs exclusives
-      hiring_fee: "+ 10% first year salary"
+        oss: 100% nonprofit. Supports educational and community programs at Tampa Devs, Tampa's fastest-growing nonprofit developer community
+        rails: Exclusively local candidates
+        support: Email and video support from the Talent Team at Tampa Devs
+        title: Tampa Devs Talent exclusives
+      hiring_fee: "+ 5% first year salary"
       per_month: "/month"
       title_html: For your 1<sup>st</sup> hire and beyond
     purchase_button:
       title: Get started today
     show:
-      description: Subscribe to RailsDevs and directly connect with hundreds of Ruby on Rails developers who are looking for freelance, contract, and full-time work.
+      description: Subscribe to Tampa Devs Talent and directly connect with hundreds of local developers in Tampa who are looking for freelance, contract, and full-time work.
       title_og: Pricing
-      turbo_native_title: Hire Rails developers
+      turbo_native_title: Hire local developers in Tampa Bay
     stats:
       description: Organic, genuine conversations with higher response rates than LinkedIn or cold email.
       new_devs: New devs a month
-      rails_developers: Rails developers
+      rails_developers: Developers in Tampa Bay
       response_rate: Response rate
-      title: The Rails-only hiring platform
+      title: Built By and For Tampa's Developers
   public_profiles:
     new:
       cancel: Cancel
@@ -807,10 +807,10 @@ en:
   roles:
     new:
       hiring_developers: I'm hiring developers
-      hiring_developers_help_text: You're a business looking to hire a freelance, part-time, or full-time Ruby on Rails developer.
+      hiring_developers_help_text: You're a business looking to hire a freelance, part-time, or full-time developers in Tampa Bay.
       looking_for_work: I'm looking for work
-      looking_for_work_help_text: You're a Ruby on Rails developer looking for your next gig.
-      what_brings_you_here: What brings you to RailsDevs?
+      looking_for_work_help_text: You're a developer in Tampa Bay looking for your next gig.
+      what_brings_you_here: What brings you to Tampa Devs Talent?
   sessions:
     sign_in: Sign in
     sign_in_hero: Sign in to your account
@@ -824,7 +824,7 @@ en:
       email: Email
       github: GitHub
       language_name_of_locale: English
-      masilotti_com: Masilotti.com
+      tampadevs_com: Tampa Devs
       open_source: Open source
       open_startup: Open startup
       privacy_policy: Privacy policy
@@ -841,7 +841,7 @@ en:
     saving: Saving...
   subscription_cta_component:
     cta: Start hiring
-    description: Gain access to %{developers}+ Ruby on Rails developers.
+    description: Gain access to %{developers}+ developers in the Tampa Bay area.
     title: Sign up now to see more profiles.
   users:
     paywalled:
@@ -852,8 +852,8 @@ en:
       title: Private information
     suspended:
       show:
-        cta: Email Joe
-        description: Failure to comply with the hiring agreement has forced RailsDevs to suspend your account. Contact Joe to pay your obligated hiring fees and resume your account.
+        cta: Email the Tampa Devs Talent team
+        description: Failure to comply with the hiring agreement has forced Tampa Devs Talent to suspend your account. Contact the Tampa Devs Talent team to pay your obligated hiring fees and resume your account.
         learn_more: Learn more
         title: Your account has been suspended.
   utc_offsets:

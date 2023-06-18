@@ -409,7 +409,7 @@ fr:
         accepting: Acceptation...
         agreement: J'accepte ces conditions
         description: Dernière mise à jour %{last_updated}
-        questions_html: Vous avez des questions ? Envoyez un e-mail au fondateur - c'est moi, Joe ! à <a href="mailto:joe@railsdevs.com" class="font-medium no-underline hover:underline">joe@railsdevs.com</a>.
+        questions_html: Vous avez des questions ? Envoyez un e-mail au fondateur - c'est moi, Joe ! à <a href="mailto:jobs@tampadevs.com" class="font-medium no-underline hover:underline">jobs@tampadevs.com</a>.
         title: Contrat de recrutement - RailsDevs
     terms:
       show:
@@ -567,7 +567,7 @@ fr:
       title: Prêt à embaucher ?
     faq:
       annual:
-        a_html: Oui. Envoyez un e-mail à Joe pour mettre en place une facturation annuelle à prix réduit à l'adresse suivante <a href='mailto:joe@railsdevs.com' class='underline'>joe@railsdevs.com</a>.
+        a_html: Oui. Envoyez un e-mail à Joe pour mettre en place une facturation annuelle à prix réduit à l'adresse suivante <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: Puis-je payer annuellement ?
       cancellation:
         a_html: Oui. Vous pouvez annuler votre abonnement à partir du lien "Facturation" dans la liste déroulante de votre profil en haut à droite. Vous perdrez l'accès à toutes les fonctionnalités payantes à la fin de votre période de facturation.
@@ -576,10 +576,10 @@ fr:
         a: Non. RailsDevs est gratuit pour les développeurs.
         q: RailsDevs coûte-t-il quelque chose aux développeurs ?
       fee:
-        a_html: Vous êtes tenu de payer des frais de recrutement correspondant à 10 % du salaire de la première année d'un développeur si vous le trouvez par l'intermédiaire de RailsDevs. Cela ne s'applique qu'à l'embauche d'employés à temps plein et non de prestataires ou de freelances. Envoyez un e-mail à Joe pour coordonner le paiement à <a href='mailto:joe@railsdevs.com' class='underline'>joe@railsdevs.com</a>.
+        a_html: Vous êtes tenu de payer des frais de recrutement correspondant à 10 % du salaire de la première année d'un développeur si vous le trouvez par l'intermédiaire de RailsDevs. Cela ne s'applique qu'à l'embauche d'employés à temps plein et non de prestataires ou de freelances. Envoyez un e-mail à Joe pour coordonner le paiement à <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: Comment fonctionne la commission d'embauche de 10 % ?
       support:
-        a_html: EEnvoyez un e-mail au fondateur - c'est moi, Joe ! - pour toute question. Vous pouvez me joindre à <a href='mailto:joe@railsdevs.com' class='underline'>joe@railsdevs.com</a>.
+        a_html: EEnvoyez un e-mail au fondateur - c'est moi, Joe ! - pour toute question. Vous pouvez me joindre à <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: Qui puis-je contacter pour des questions plus spécifiques ?
       title: Questions fréquemment posées
     hero:

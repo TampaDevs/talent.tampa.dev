@@ -325,7 +325,7 @@ zh-CN:
       title: 准备好开始招聘了吗？
     faq:
       annual:
-        a_html: 可以的。发邮件给 Joe 以获取打折后的账单 <a href='mailto:joe@railsdevs.com' class='underline'>joe@railsdevs.com</a>.
+        a_html: 可以的。发邮件给 Joe 以获取打折后的账单 <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: 我可以按季度或者按年付费吗？
       cancellation:
         a_html: 是的。您可以从用户下拉菜单中的账单链接取消订阅。在结算期结束时，您将无法使用所有付费功能。
@@ -334,10 +334,10 @@ zh-CN:
         a: RailsDevs 对开发者是免费的。
         q: RailsDevs 对开发者收费吗？
       fee:
-        a_html: 如果您通过 RailsDevs 找到开发人员，您需要支付开发人员第一年工资的 10% 的招聘费。这仅适用于雇用全职员工，不适用于承包商或自由职业者。发送电子邮件给 Joe 以协调付款事宜，电子邮件地址为 joe@railsdevs.com。
+        a_html: 如果您通过 RailsDevs 找到开发人员，您需要支付开发人员第一年工资的 10% 的招聘费。这仅适用于雇用全职员工，不适用于承包商或自由职业者。发送电子邮件给 Joe 以协调付款事宜，电子邮件地址为 jobs@tampadevs.com。
         q: 10% 的招聘费是什么？
       support:
-        a_html: 联系创建者 – 那就是我, Joe! – 任何问题都可以. 我的邮件是 <a href='mailto:joe@railsdevs.com' class='underline'>joe@railsdevs.com</a>.
+        a_html: 联系创建者 – 那就是我, Joe! – 任何问题都可以. 我的邮件是 <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: 还有其他问题，我可以联系谁？
       title: 常见问题
     hero:
