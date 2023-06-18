@@ -8,12 +8,12 @@ class CollapseControlComponentTest < ViewComponent::TestCase
   test "renders text-xs for title if is a subcomponent" do
     render_inline CollapseControlComponent.new(@title, subcomponent: true)
 
-    assert_selector 'span[class="font-medium text-gray-900 text-xs"]'
+    assert_selector 'span[class="font-medium text-blue-900 text-xs"]'
   end
 
   test "does not render text-xs for title if is not a subcomponent" do
     render_inline CollapseControlComponent.new(@title)
 
-    assert_no_selector 'span[class="font-medium text-gray-900 text-xs"]'
+    assert_no_selector 'span[class="font-medium text-blue-900 text-xs"]'
   end
 end
