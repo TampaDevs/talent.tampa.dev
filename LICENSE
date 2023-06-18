@@ -1,21 +1,35 @@
-MIT License
+# LICENSE
 
-Copyright (c) 2021-2022 Joe Masilotti
+## Original Code
+The original code of this project is licensed under the MIT License. See the original LICENSE file from the upstream repository for details: https://github.com/joemasilotti/railsdevs.com/blob/main/LICENSE.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## Modifications and Additions
+All modifications and additions made within the scope of this repository (https://github.com/tampadevs/talent.tampa.dev) by members, employees, or agents of Tampa Devs, or any individuals or organizations who have contributed modifications or features to this repository, are licensed under the Business Source License (BSL) 1.1.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+### Business Source License 1.1
+This Business Source License (the "License") applies to all modifications and additions made to the "Railsdevs" project ("the Software", also known as "Tampa Devs Talent") within the scope of this repository.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Usage of the modified or additional Software is subject to the following terms:
+
+1. License Grant
+   Licensor hereby grants you a non-exclusive, non-transferable, non-sublicensable license to use the modified or additional Software subject to the conditions below.
+
+2. Effective Date
+   The Effective Date is June 18, 2023.
+
+3. Conditions
+   a. You may use the modified or additional Software for free until the Effective Date.
+   b. After the Effective Date, usage of the modified or additional Software will continue to be governed by the Business Source License (BSL) 1.1.
+
+4. Termination
+   This License will terminate automatically, and you must cease using the modified or additional Software if you violate any of its terms.
+
+5. Disclaimer of Warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+By using the modified or additional Software, you agree to be bound by the terms of this License.
+
+For the complete text of the BSL, see https://mariadb.com/bsl11/.
+
+## Git History
+To see the specific changes and their respective licenses, refer to the Git history of this repository. All changes made after June 18, 2023, are licensed under the BSL.
