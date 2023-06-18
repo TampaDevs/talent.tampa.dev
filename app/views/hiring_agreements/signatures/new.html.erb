@@ -3,8 +3,8 @@
 <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 mt-8 sm:mt-16">
   <div class="bg-white sm:shadow sm:rounded-lg">
     <div class="px-4 py-5 sm:px-6">
-      <h3 class="text-lg leading-6 font-medium text-gray-900"><%= t(".title") %></h3>
-      <p class="mt-1 text-sm text-gray-500"><%= t(".description", last_updated: @signature.term.created_at.to_formatted_s(:calendar)) %></p>
+      <h3 class="text-lg leading-6 font-medium text-blue-900"><%= t(".title") %></h3>
+      <p class="mt-1 text-sm text-blue-950"><%= t(".description", last_updated: @signature.term.created_at.to_formatted_s(:calendar)) %></p>
     </div>
 
     <div class="border-t border-gray-200" data-controller="pdf">
@@ -20,15 +20,15 @@
       <%= form_with(model: @signature, url: [:hiring_agreement, :signature]) do |form| %>
         <div class="space-y-6">
           <div>
-            <%= form.label :full_name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <%= form.label :full_name, class: "block text-sm font-medium leading-6 text-blue-900" %>
             <div class="mt-1">
-              <%= form.text_field :full_name, autocomplete: "name", class: "block w-full max-w-xs rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
+              <%= form.text_field :full_name, autocomplete: "name", class: "block w-full max-w-xs rounded-md border-0 py-1.5 text-blue-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-blue-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" %>
             </div>
           </div>
 
           <div class="flex items-center space-x-2 max-w-prose">
-            <%= form.check_box :agreement, class: "focus:ring-gray-500 h-4 w-4 text-gray-600 border-gray-300 rounded" %>
-            <span class="text-sm text-gray-600">
+            <%= form.check_box :agreement, class: "focus:ring-blue-500 h-4 w-4 text-blue-950 border-gray-300 rounded" %>
+            <span class="text-sm text-blue-950">
               <%= form.label :agreement, t(".agreement"), required: true %>
             </span>
           </div>

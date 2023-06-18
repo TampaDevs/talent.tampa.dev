@@ -7,8 +7,8 @@
             <!-- Logo -->
             <div class="flex-shrink-0">
               <%= link_to root_path, class: "shrink-0 flex items-center text-white fill-current" do %>
-                <span class="sr-only">RailsDevs</span>
-                <%= inline_svg_tag "logo.svg", class: "h-10 w-auto", alt: "RailsDevs logo", title: "RailsDevs logo" %>
+                <span class="sr-only">Tampa Devs Talent</span>
+                <%= inline_svg_tag "logo.svg", class: "h-10 w-auto", alt: "Tampa Devs Talent logo", title: "Tampa Devs Talent logo" %>
               <% end %>
             </div>
 
@@ -16,7 +16,7 @@
             <div class="hidden md:block">
               <div class="ml-16 flex items-baseline space-x-12">
                 <% links.each do |link| %>
-                  <%= helpers.link_to_active link.title, link.path, active_class: "border-salmon", class: "text-gray-300 border-b border-transparent py-1 hover:border-salmon hover:text-white" %>
+                  <%= helpers.link_to_active link.title, link.path, active_class: "border-salmon", class: "text-blue-300 border-b border-transparent py-1 hover:border-salmon hover:text-white" %>
                 <% end %>
               </div>
             </div>
@@ -25,7 +25,7 @@
           <!-- Desktop nav bar -->
           <div class="hidden md:block">
             <div class="ml-4 flex items-center md:ml-6 space-x-12">
-              <%= link_to t(".sign_in"), new_user_session_path, class: "text-gray-300 border-b border-transparent py-1 hover:border-salmon hover:text-white" %>
+              <%= link_to t(".sign_in"), new_user_session_path, class: "text-blue-300 border-b border-transparent py-1 hover:border-salmon hover:text-white" %>
 
               <%= link_to t(".register"), new_user_registration_path, class: "relative inline-flex items-center px-8 py-3 text-typography bg-green rounded-full font-semibold hover:bg-green-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-navy focus:ring-white" %>
             </div>
@@ -54,7 +54,7 @@
       <!-- Navigation links -->
       <div class="px-2 pt-2 pb-3 space-y-2 sm:px-3">
         <% links.each do |link| %>
-          <%= helpers.link_to_active link.title, link.path, "data-turbo-action": "replace", active_class: "border-salmon", class: "text-gray-300 border-b border-transparent block w-max mx-3 py-2 text-base font-medium hover:border-salmon hover:text-white" %>
+          <%= helpers.link_to_active link.title, link.path, "data-turbo-action": "replace", active_class: "border-salmon", class: "text-blue-300 border-b border-transparent block w-max mx-3 py-2 text-base font-medium hover:border-salmon hover:text-white" %>
         <% end %>
 
         <div class="pt-2">

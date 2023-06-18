@@ -1,10 +1,10 @@
-<li class="relative bg-white group hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-600">
+<li class="relative bg-white group hover:bg-blue-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-600">
   <%= tag.div class: "border-l-4 py-5 px-6 #{conversation.unread_messages_for?(current_user) ? "border-blue-400" : "border-white group-hover:border-gray-50"}" do %>
     <div class="flex justify-between space-x-3">
       <div class="min-w-0 flex-1">
         <%= link_to conversation_path(conversation), class: "block focus:outline-none" do %>
           <span class="absolute inset-0" aria-hidden="true"></span>
-          <h2 class="text-sm font-medium text-gray-900 truncate">
+          <h2 class="text-sm font-medium text-blue-900 truncate">
             <% if conversation.deleted_business_or_developer? %>
               <%= t("deleted_account") %>
             <% else %>
@@ -13,12 +13,12 @@
           </h2>
         <% end %>
       </div>
-      <span class="shrink-0 whitespace-nowrap text-sm text-gray-500">
+      <span class="shrink-0 whitespace-nowrap text-sm text-blue-950">
         <%= render TimeComponent.new(conversation.messages.last.updated_at) %>
       </span>
     </div>
     <div class="mt-1">
-      <p class="line-clamp-2 text-sm text-gray-600"><%= conversation.messages.last.body %></p>
+      <p class="line-clamp-2 text-sm text-blue-950"><%= conversation.messages.last.body %></p>
     </div>
   <% end %>
 </li>

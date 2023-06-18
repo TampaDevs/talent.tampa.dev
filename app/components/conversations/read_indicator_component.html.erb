@@ -2,9 +2,9 @@
   <div class="flex items-center justify-center space-x-2 text-sm">
     <% if show_read? %>
       <%= inline_svg_tag "icons/solid/check.svg", class: "h-5 w-5 text-green-600", aria_hidden: true %>
-      <p class="text-gray-500"><%= t(".read") %></p>
+      <p class="text-blue-950"><%= t(".read") %></p>
     <% else %>
-      <p class="text-gray-500"><%= t(".unread") %></p>
+      <p class="text-blue-950"><%= t(".unread") %></p>
     <% end %>
   </div>
 </div>

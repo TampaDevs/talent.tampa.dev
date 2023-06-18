@@ -12,7 +12,7 @@
         </div>
         <div>
           <%= render Businesses::WebsiteLinkComponent.new(@business) %>
-          <p class="text-gray-500 mt-1"><%= [@business.contact_name, @business.contact_role].map(&:presence).compact.join(", ") %></p>
+          <p class="text-blue-950 mt-1"><%= [@business.contact_name, @business.contact_role].map(&:presence).compact.join(", ") %></p>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
         <section>
           <div class="max-w-prose mx-auto">
             <span class="sr-only"><%= t(".bio") %></span>
-            <div class="mt-1 text-gray-700 space-y-3"><%= simple_format @business.bio %></div>
+            <div class="mt-1 text-blue-950 space-y-3"><%= simple_format @business.bio %></div>
           </div>
         </section>
         <section>

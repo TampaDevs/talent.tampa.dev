@@ -15,7 +15,7 @@ class AvatarComponent < ViewComponent::Base
       (@classes || "h-24 w-24 sm:h-32 sm:w-32 ring-4 ring-white"),
       "object-cover rounded-full",
       "bg-navy": Feature.enabled?(:redesign),
-      "bg-gray-300": !Feature.enabled?(:redesign)
+      "bg-blue-300": !Feature.enabled?(:redesign)
     ]
   end
 

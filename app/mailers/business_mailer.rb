@@ -36,7 +36,7 @@ class BusinessMailer < ApplicationMailer
   def developer_profiles
     @business = params[:business]
     @developers = params[:developers]
-    subject = "#{pluralize(@developers.count, "new developer profile")} added to RailsDevs"
+    subject = "#{pluralize(@developers.count, "new developer profile")} added to Tampa Devs Talent"
 
     mail(to: @business.user.email, subject:)
   end
@@ -44,7 +44,7 @@ class BusinessMailer < ApplicationMailer
   def new_terms
     @business = params[:business]
     from = Rails.configuration.emails.support_mailbox!
-    subject = "Updated RailsDevs terms of use and hiring agreement"
+    subject = "Updated Tampa Devs Talent terms of use and hiring agreement"
 
     mail(to: @business.user.email, from:, subject:)
   end
@@ -52,7 +52,7 @@ class BusinessMailer < ApplicationMailer
   def survey
     @business = params[:business]
     from = Rails.configuration.emails.support_mailbox!
-    subject = "Why do you use RailsDevs to hire? 1 question survey + swag"
+    subject = "Why do you use Tampa Devs Talent to hire? 1 question survey + swag"
 
     mail(to: @business.user.email, subject:, from:, message_stream: :broadcast)
   end

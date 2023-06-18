@@ -4,14 +4,14 @@
   <div class="pt-12 px-4 sm:px-6 mb-4">
     <div class="md:flex md:space-x-8 justify-between items-center">
       <% unless turbo_native_app? %>
-        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900"><%= @meta.title %></h1>
+        <h1 class="text-3xl font-extrabold tracking-tight text-blue-900"><%= @meta.title %></h1>
       <% end %>
       <%= render Developers::ProfileActionComponent.new(current_user) %>
     </div>
 
     <!-- Sort and mobile filter button -->
     <div class="md:flex justify-between items-center">
-      <p class="mt-4 pb-4 max-w-xl text-sm text-gray-700"><%= @meta.description %></p>
+      <p class="mt-4 pb-4 max-w-xl text-sm text-blue-950"><%= @meta.description %></p>
 
       <div class="hidden md:block">
         <%= render Developers::QuerySortButtonComponent.new(query: @query, user: current_user, form_id: "developer-filters-desktop") %>
@@ -19,7 +19,7 @@
 
       <div class="flex justify-end items-center md:hidden">
         <%= render Developers::QuerySortButtonComponent.new(query: @query, user: current_user, form_id: "developer-filters-mobile", scope: "developer-filters-mobile") %>
-        <button type="button" data-action="toggle#toggle" class="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500" aria-expanded="false">
+        <button type="button" data-action="toggle#toggle" class="p-2 -m-2 ml-4 sm:ml-6 text-blue-400 hover:text-blue-950" aria-expanded="false">
           <%= inline_svg_tag "icons/solid/filter.svg", class: "h-5 w-5", aria_hidden: true %>
           <span class="sr-only"><%= t("developers.query_component.filters") %></span>
         </button>

@@ -14,9 +14,9 @@ class OpenGraphTagsComponent < ApplicationComponent
     elsif @title.present? && helpers.turbo_native_app?
       @title
     elsif @title.present?
-      "#{@title} · RailsDevs"
+      "#{@title} · Tampa Devs Talent"
     else
-      "RailsDevs"
+      "Tampa Devs Talent"
     end
   end
 
