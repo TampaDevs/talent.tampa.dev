@@ -7,7 +7,7 @@ Developers::CelebrationPackageRequest.find_or_create_by!(developer:) do |form|
   form.position = "Rails Developer"
   form.start_date = Date.today
   form.employment_type = :full_time_employment
-  form.feedback = "Keep up the great work with RailsDevs!"
+  form.feedback = "Keep up the great work with Tampa Devs Talent!"
   form.save_and_notify
 end
 
@@ -23,6 +23,6 @@ Businesses::HiringInvoiceRequest.find_or_create_by!(business:) do |form|
 end
 
 HiringAgreements::Term.first_or_create! do |term|
-  term.body = "Example hiring terms for RailsDevs. Make sure to follow them!"
+  term.body = "Example hiring terms for Tampa Devs Talent. Make sure to follow them!"
   term.active = true
 end
