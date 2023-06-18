@@ -43,7 +43,6 @@ vendor/
 
 # Local Docker Development
 .dockerdev/*
-docker-compose.yml
 dip.yml
 
 # Ignore RubyMine settings files
