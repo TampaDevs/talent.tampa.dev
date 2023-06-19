@@ -42,3 +42,21 @@
   font-named-instance: "Regular";
   src: url("SourceCodePro-Regular.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: "Nunito";
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: "Regular";
+  src: url("Nunito-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: "Regular";
+  src: url("Nunito-sans.woff2") format("woff2");
+}
