@@ -1,6 +1,6 @@
 <footer>
   <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-    <nav class="mb-6 -mx-5 -mt-2 flex flex-wrap justify-center" aria-label="Language links">
+    <!--<nav class="mb-6 -mx-5 -mt-2 flex flex-wrap justify-center" aria-label="Language links">
       <% I18n.available_locales.each do |locale| %>
         <div class="px-5 py-2">
           <%= link_to request.params.merge(locale: resolve_locale(locale)), class: "text-base text-blue-950 hover:text-blue-900", "aria-label": t(".language_name_of_locale", locale: locale) do %>
@@ -8,7 +8,7 @@
           <% end %>
         </div>
       <% end %>
-    </nav>
+    </nav>-->
 
     <nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
       <div class="px-5 py-2">
@@ -27,9 +27,9 @@
         <%= link_to t(".open_startup"), open_startup_root_path, class: "text-base text-blue-950 hover:text-blue-900" %>
       </div>
 
-      <div class="px-5 py-2">
-        <%= link_to t(".analytics"), "<!-- TODO: Update analytics -->", target: "_blank", class: "text-base text-blue-950 hover:text-blue-900" %>
-      </div>
+      <!-- TODO: Update analytics <div class="px-5 py-2">
+        <%= link_to t(".analytics"), "analytics", target: "_blank", class: "text-base text-blue-950 hover:text-blue-900" %>
+      </div> -->
     </nav>
 
     <nav class="-mx-5 mt-6 flex flex-wrap justify-center" aria-label="Footer">
@@ -43,12 +43,12 @@
     </nav>
 
     <div class="mt-8 flex justify-center space-x-6">
-      <%= link_to "https://twitter.com/joemasilotti", target: "_blank", class: "text-blue-400 hover:text-blue-950" do %>
+      <%= link_to "https://twitter.com/tampadevs", target: "_blank", class: "text-blue-400 hover:text-blue-950" do %>
         <span class="sr-only"><%= t(".twitter") %></span>
         <%= inline_svg_tag "icons/brands/twitter.svg", class: "h-6 w-6", aria_hidden: true %>
       <% end %>
 
-      <%= link_to "https://github.com/joemasilotti", target: "_blank", class: "text-blue-400 hover:text-blue-950" do %>
+      <%= link_to "https://github.com/tampadevs", target: "_blank", class: "text-blue-400 hover:text-blue-950" do %>
         <span class="sr-only"><%= t(".github") %></span>
         <%= inline_svg_tag "icons/brands/github.svg", class: "h-6 w-6", aria_hidden: true %>
       <% end %>

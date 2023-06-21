@@ -45,47 +45,47 @@ class UrlAttributeTest < ActiveSupport::TestCase
 
   test "normalizes www website" do
     values = %w[
-      www.example.com/joemasilotti
-      http://www.example.com/joemasilotti
-      https://www.example.com/joemasilotti
+      www.example.com/tampadevs
+      http://www.example.com/tampadevs
+      https://www.example.com/tampadevs
     ]
 
     values.each do |value|
       @model.website = value
-      assert_equal "www.example.com/joemasilotti", @model.website
+      assert_equal "www.example.com/tampadevs", @model.website
     end
   end
 
   test "normalizes non-www website" do
     values = %w[
-      example.com/joemasilotti
-      http://example.com/joemasilotti
-      https://example.com/joemasilotti
+      example.com/tampadevs
+      http://example.com/tampadevs
+      https://example.com/tampadevs
     ]
 
     values.each do |value|
       @model.website = value
-      assert_equal "example.com/joemasilotti", @model.website
+      assert_equal "example.com/tampadevs", @model.website
     end
   end
 
   test "normalizes website with prefix" do
     values = %w[
-      joemasilotti
-      http://example.com/joemasilotti
-      https://example.com/joemasilotti
-      http://www.example.com/joemasilotti
-      https://www.example.com/joemasilotti
+      tampadevs
+      http://example.com/tampadevs
+      https://example.com/tampadevs
+      http://www.example.com/tampadevs
+      https://www.example.com/tampadevs
     ]
 
     values.each do |value|
       @model.prefixed_website = value
-      assert_equal "joemasilotti", @model.prefixed_website
+      assert_equal "tampadevs", @model.prefixed_website
     end
   end
 
   test "postprocesses website" do
-    @model.postprocessed_website = "https://example.com/joemasilotti"
-    assert_equal "joemasilotti-postprocessed", @model.postprocessed_website
+    @model.postprocessed_website = "https://example.com/tampadevs"
+    assert_equal "tampadevs-postprocessed", @model.postprocessed_website
   end
 end

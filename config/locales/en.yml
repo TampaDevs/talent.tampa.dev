@@ -2,7 +2,7 @@
 en:
   about:
     show:
-      caption: founder of Tampa Devs Talent
+      caption: Vincent & Charlton, founders of 
       description: We're Tampa Devs, Tampa Bay's Develper Community. We're building Tampa Devs Talent to make it easier for Tampa Bay's developers to find their next gig while supporting our charitable mission.
       readtime: 1 minute read
       title: About
@@ -547,7 +547,7 @@ en:
     unauthorized: You don't have access to that.
   hired:
     show:
-      description: Tampa Devs Talent offers a celebration package to congratulate you on joining a company through the platform.
+      description: Tampa Devs Talent offers a celebration package to congratulate you on getting hired.
       image_alt: Tampa Devs Talent celebration package
       title: Congrats on your new job!
   hiring_agreements:
@@ -557,7 +557,7 @@ en:
       new:
         accept: Accept agreement
         accepting: Accepting...
-        agreement: By checking this box I confirm understanding and acceptance of the outlined terms. I acknowledge that this constitutes a legally binding agreement under applicable laws.
+        agreement: By checking this box I confirm my full understanding and acceptance of the site terms. I acknowledge that this constitutes a legally binding agreement under applicable laws.
         description: Last updated %{last_updated}
         questions_html: Questions? Email the Tampa Devs Talent team at <a href="mailto:jobs@tampadevs.com" class="font-medium no-underline hover:underline">jobs@tampadevs.com</a>.
         sign_below: Sign agreement below
@@ -569,14 +569,14 @@ en:
         signed_on: Signed on %{date}
   home:
     show:
-      description_og: Tampa Devs Talent empowers local developers and supports social good. Stop scouring job boards and sit back as companies reach out to you first.
+      description_og: Tampa Devs Talent empowers local developers and supports social good. Stop combing through job listings and kick back while companies reach out to you!
       developers_heading: New awesome loval developers on Tampa Devs Talent
       get_started: Get started
       learn_more: Learn more
       more: See more developers
       subtitle_1: Tampa Devs Talent
       subtitle_2: empowers local developers and supports social good.
-      subtitle_3: Stop scouring job boards and sit back as companies reach out to you first.
+      subtitle_3: Stop combing through job listings and kick back while companies reach out to you!
       title_1: The reverse job board for
       title_2: Tampa Bay's Developer Community
       title_og: The reverse job board for Tampa Bay's Developer Community
@@ -685,7 +685,7 @@ en:
         date: Date
         description: Tampa Devs Talent directly supports Tampa Devs, a nonprofit software development community dedicated to accelerate access to training and career opportunities in Tampa’s software industry. For free, and for everyone.
         external_link: Open in new tab
-        open_startup: Open startup
+        open_startup: Open finances
         recipient: Recipient
         title: Tampa Devs Talent contributions
         to_co2_removal: to CO₂ removal
@@ -700,7 +700,7 @@ en:
         mrr: MRR
         profit: Profit
         revenue: Revenue
-        title: Open startup
+        title: Open finances
         visitors: Visitors (last 30 days)
     expenses:
       index:
@@ -708,7 +708,7 @@ en:
         date: Date
         description: All monetary transactions associated with Tampa Devs Talent, like hosting, fees, and purchases.
         expenses: Expenses
-        open_startup: Open startup
+        open_startup: Open finances
         source: Source
         title: Tampa Devs Talent expenses
     revenue:
@@ -716,7 +716,7 @@ en:
         amount: Amount
         date: Date
         description: All revenue Tampa Devs Talent has generated since launching in November, 2021.
-        open_startup: Open startup
+        open_startup: Open finances
         revenue: Revenue
         source: Source
         title: Tampa Devs Talent revenue
@@ -756,7 +756,7 @@ en:
       description: Directly connect with hundreds of local developers in Tampa Bay looking for their next job.
       title: Hire developers in Tampa Bay
     plan:
-      description: Skip the formal job postings and middlemen – hire directly from a candidate pool of local developers in Tampa Bay, from juniors to C-level.
+      description: Hire directly from a pool of local developers in Tampa Bay, at all levels of experience.
       features:
         email_updates: Email updates of new candidates
         hand_selected_matches: Find easy matches every month
@@ -775,7 +775,7 @@ en:
       title_og: Pricing
       turbo_native_title: Hire local developers in Tampa Bay
     stats:
-      description: Organic, genuine conversations with higher response rates than LinkedIn or cold email.
+      description: Organic, genuine conversations. Higher response rates than LinkedIn or cold emails.
       new_devs: New devs a month
       rails_developers: Developers in Tampa Bay
       response_rate: Response rate
@@ -826,7 +826,7 @@ en:
       language_name_of_locale: English
       tampadevs_com: Tampa Devs
       open_source: Open source
-      open_startup: Open startup
+      open_startup: Open finances
       privacy_policy: Privacy policy
       support: Support
       terms_and_conditions: Terms and conditions

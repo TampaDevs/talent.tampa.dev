@@ -21,7 +21,7 @@
 
                 <% if hired? %>
                   <%= link_to hired_path, class: "text-blue-300 hidden md:block border-b border-transparent py-1 hover:border-salmon hover:text-white" do %>
-                    <span class="absolute -mt-2.5 -ml-6 z-10 uppercase text-indigo-400 tracking-tight font-bold text-xs -rotate-12"><%= t(".new") %></span>
+                    <span class="absolute -mt-2.5 -ml-6 z-10 uppercase text-red-400 tracking-tight font-bold text-xs -rotate-12"><%= t(".new") %></span>
                     <span><%= t(".found_a_job") %></span>
                   <% end %>
                 <% end %>
@@ -129,7 +129,7 @@
         <% if hired? %>
           <%= link_to hired_path, class: "text-blue-300 border-b border-transparent block w-max mx-3 py-2 text-base font-medium hover:border-salmon hover:text-white" do %>
             <span><%= t(".found_a_job") %></span>
-            <span class="absolute -mt-2.5 z-10 uppercase text-indigo-400 tracking-tight font-bold text-xs rotate-12"><%= t(".new") %></span>
+            <span class="absolute -mt-2.5 z-10 uppercase text-red-400 tracking-tight font-bold text-xs rotate-12"><%= t(".new") %></span>
           <% end %>
         <% end %>
       </div>

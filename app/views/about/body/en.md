@@ -1,24 +1,28 @@
-### Empowering the developer
+### Empowering Developers
 
-I've been an independent developer for the past two years. And leads are rarely consistent. Sometimes I can't keep up with the work and other times I struggle to find my next gig.
+This board is run by [Tampa Devs](https://www.tampadevs.com/), the fastest-growing nonprofit software development community in Tampa Bay. Learn more about us at [tampadevs.com](https://www.tampadevs.com).
 
-And job boards are rarely helpful for freelance and contract work. They're focused on full-time roles.
+Job hunting is hard work, and our mission is to make it as easy as possible (at least in Tampa!). That's why we've brought you this awesome platform, built by developers, for developers, to find software development jobs around Tampa Bay.
 
-RailsDevs strives to give power back to the independent developer. Instead of companies posting their jobs, developers post their profiles. That way, the power dynamic is reversed as companies have to reach out to developers first.
+Subscribe to job updates on your favorite platforms to get fresh opportunities wherever and whenever you want them:
 
-### Doing everything in public
+* Follow [@tampadevs](https://go.tampa.dev/twitter) on Twitter.
+* Subscribe to email updates on [our homepage](https://www.tampadevs.com/#newsletter).
+* [Join our Slack](https://go.tampa.dev/slack) and [#job-listings channel](https://tampa-devs.slack.com/archives/C02F3C0405A).
 
-RailsDevs is an Open Startup *and* open source. It operates fully transparent and shares its metrics, like revenue and traffic.
+
+### Transparency and the Power of Open Source
+
+Tampa Devs is a 501(c)3 nonprofit organization. This propels us closer to the objectives outlined in our mission statement and values: **accelerating access to high-quality training and career opportunities in Tampa’s software industry. For free, and for everyone.**
+
+We also make a variety of information about our operation of Tampa Devs talent publicly availble: 
 
 * [Source code](https://github.com/tampadevs/talent.tampa.dev/)
-* [Public analytics](https://app.usefathom.com/share/cacnfaan/railsdevs.com)
 * [Revenue and expenses](/open)
-* [Bug reports](https://app.honeybadger.io/project/EKRGgkQdR0)
+* [Bug reports](https://github.com/tampadevs/talent.tampa.dev/issues/)
 
-On top of that, I'm making all my decisions in public. I'm posting questions and ideas when I'm looking for feedback on [GitHub Discussions](https://github.com/tampadevs/talent.tampa.dev/discussions). And I'm tweeting about work in progress (and sneak previews) [on Twitter](https://twitter.com/joemasilotti).
+### Fostering a Welcoming and Diverse Space
 
-### Creating a safe, inclusive environment
+Our platform is readily accessible to every developer, irrespective of their race, ethnicity, nationality, religious beliefs, gender, age, disability status, or proficiency level, provided they adhere to our [code of conduct](/conduct).
 
-The site is open to all developers, regardless of race, color, national origin, religion, gender, age, disability, or skill level that follow the [code of conduct](/conduct).
-
-If something doesn't feel right, or you ever feel uncomfortable, please [send me an email](mailto:jobs@tampadevs.com) right away.
+Should you ever experience discomfort or encounter anything that appears inappropriate, we encourage you to [email us](mailto:jobs@tampadevs.com) right away.

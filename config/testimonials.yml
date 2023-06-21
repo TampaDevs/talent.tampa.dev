@@ -1,10 +1,10 @@
 shared:
-  -
-    image: tate.jpg
-    name: Tate Johnson
-    testimonial: It's like the convenience of working with a recruiter but half the placement fee.
-    title: CTO, The Lookout Way
-    url: https://testimonial.to/share/railsdevs-hiring/t/5nDZ3xmVezbr8NEkzy2qpdWj9
+#  -
+#    image: tate.jpg
+#    name: Tate Johnson
+#    testimonial: It's like the convenience of working with a recruiter but half the placement fee.
+#    title: CTO, The Lookout Way
+#    url: https://testimonial.to/share/railsdevs-hiring/t/5nDZ3xmVezbr8NEkzy2qpdWj9
 #  -
 #    image: aatash.jpg
 #    name: Aatash Parikh

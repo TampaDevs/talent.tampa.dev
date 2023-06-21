@@ -15,7 +15,7 @@ RailsDevs é um Startup Aberta *e* de código livre. Ela opera de forma totalmen
 * [Receitas e despesas](/open)
 * [Relatório de bugs](https://app.honeybadger.io/project/EKRGgkQdR0)
 
-Além disso, estou tomando todas as minhas decisões em público. Estou postando perguntas e ideias quando procuro feedback no [GitHub Discussions](https://github.com/tampadevs/talent.tampa.dev/discussions). E estou twittando sobre o progresso (e prévias) [no Twitter](https://twitter.com/joemasilotti).
+Além disso, estou tomando todas as minhas decisões em público. Estou postando perguntas e ideias quando procuro feedback no [GitHub Discussions](https://github.com/tampadevs/talent.tampa.dev/discussions). E estou twittando sobre o progresso (e prévias) [no Twitter](https://twitter.com/tampadevs).
 
 ### Criar um ambiente seguro e inclusivo
 

@@ -2,7 +2,7 @@
 
 <div class="bg-white px-6 py-8 md:py-16 lg:px-8">
   <div class="mx-auto max-w-3xl text-base leading-7 text-blue-950">
-    <p class="text-base font-semibold leading-7 text-indigo-600">Announcing</p>
+    <p class="text-base font-semibold leading-7 text-red-600">Announcing</p>
     <h1 class="mt-2 text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl">Higher quality search results on Tampa Devs Talent</h1>
     <p class="mt-6 text-xl leading-8">It's now easier than ever to hire a Rails developer on Tampa Devs Talent. A new approach to search results promises to bring higher quality profiles to the top. Read on for how it works and how developers can improve their search rank.</p>
 
@@ -12,23 +12,23 @@
 
       <ul role="list" class="mt-8 space-y-6 text-blue-950">
         <li class="flex gap-x-3">
-          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-indigo-600", aria_hidden: true %>
+          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-red-600", aria_hidden: true %>
           <span><strong class="font-semibold text-blue-900">Responsiveness.</strong> How frequently a developer responds to conversations.</span>
         </li>
         <li class="flex gap-x-3">
-          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-indigo-600", aria_hidden: true %>
+          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-red-600", aria_hidden: true %>
           <span><strong class="font-semibold text-blue-900">Frequency.</strong> How often a developer’s profile is updated.</span>
         </li>
         <li class="flex gap-x-3">
-          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-indigo-600", aria_hidden: true %>
+          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-red-600", aria_hidden: true %>
           <span><strong class="font-semibold text-blue-900">Completeness.</strong> How much of a developer’s profile is filled out.</span>
         </li>
         <li class="flex gap-x-3">
-          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-indigo-600", aria_hidden: true %>
+          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-red-600", aria_hidden: true %>
           <span><strong class="font-semibold text-blue-900">Contributors.</strong> Developers contributing to the <%= link_to "source code", "https://github.com/tampadevs/talent.tampa.dev", class: "font-semibold underline text-blue-800" %> of Tampa Devs Talent.</span>
         </li>
         <li class="flex gap-x-3">
-          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-indigo-600", aria_hidden: true %>
+          <%= inline_svg_tag "icons/solid/check_circle.svg", class: "mt-1 h-5 w-5 flex-none text-red-600", aria_hidden: true %>
           <span>And more (see below for a complete breakdown).</span>
         </li>
       </ul>
@@ -86,7 +86,7 @@
 
     <div class="mt-16 max-w-2xl">
       <h2 class="mt-16 text-2xl font-bold tracking-tight text-blue-900">Feedback</h2>
-      <p class="mt-8">Note that this new system is still in beta! And we’d love to hear your feedback. Please <%= link_to "send me an email", "mailto:#{Rails.application.config.emails.support!}", class: "font-semibold underline text-blue-800" %> if you have ideas on how it could be improved or something looks weird.</p>
+      <p class="mt-8">Note that this new system is still in beta! And we’d love to hear your feedback. Please <%= link_to "send us an email", "mailto:#{Rails.application.config.emails.support!}", class: "font-semibold underline text-blue-800" %> if you have ideas on how it could be improved or something looks weird.</p>
       <p class="mt-6">For transparency, the code powering the system is <%= link_to "available on GitHub", "https://github.com/tampadevs/talent.tampa.dev/blob/main/app/models/concerns/developers/search_score.rb", class: "font-semibold underline text-blue-800" %>.</p>
     </div>
   </div>

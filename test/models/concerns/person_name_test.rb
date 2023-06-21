@@ -2,8 +2,8 @@ require "test_helper"
 
 class PersonNameTest < ActiveSupport::TestCase
   test "first name is everything before the first space, removing whitespace" do
-    developer = Developer.new(name: " Joseph  Anthony     Masilotti")
-    assert_equal "Joseph", developer.first_name
+    developer = Developer.new(name: " Charlton Trezevant")
+    assert_equal "Charlton", developer.first_name
   end
 
   test "first name edge cases" do
@@ -12,6 +12,6 @@ class PersonNameTest < ActiveSupport::TestCase
   end
 
   test "businesses, too" do
-    assert_equal "Duke", Business.new(name: "Duke Masilotti").first_name
+    assert_equal "Tampa", Business.new(name: "Tampa Devs").first_name
   end
 end

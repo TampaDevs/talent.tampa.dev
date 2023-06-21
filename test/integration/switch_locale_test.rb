@@ -17,7 +17,7 @@ class SwitchLocaleTest < ActionDispatch::IntegrationTest
   end
 
   test "Links to all available locales will show" do
-    [:en, :"zh-TW"].each do |locale|
+    [:en].each do |locale|
       I18n.with_locale(locale) do
         get root_path
 

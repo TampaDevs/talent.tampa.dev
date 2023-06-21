@@ -21,14 +21,14 @@
 
                 <% if developer? %>
                   <%= link_to hired_path, class: "hidden md:block text-blue-300 hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" do %>
-                    <span class="absolute -mt-2.5 -ml-6 z-10 uppercase text-indigo-400 tracking-tight font-bold text-xs -rotate-12"><%= t(".new") %></span>
+                    <span class="absolute -mt-2.5 -ml-6 z-10 uppercase text-red-400 tracking-tight font-bold text-xs -rotate-12"><%= t(".new") %></span>
                     <span><%= t(".found_a_job") %></span>
                   <% end %>
                 <% end %>
                 <%# For businesses with developer profiles %>
                 <% if business? %>
                   <%= link_to new_businesses_hiring_invoice_request_path, class: "hidden md:block text-blue-300 hover:bg-blue-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" do %>
-                    <span class="absolute -mt-2.5 -ml-6 z-10 uppercase text-indigo-400 tracking-tight font-bold text-xs -rotate-12"><%= t(".new") %></span>
+                    <span class="absolute -mt-2.5 -ml-6 z-10 uppercase text-red-400 tracking-tight font-bold text-xs -rotate-12"><%= t(".new") %></span>
                     <span><%= t(".hired_a_dev") %></span>
                   <% end %>
                 <% end %>
@@ -118,14 +118,14 @@
         <% if developer? %>
           <%= link_to hired_path, class: "text-blue-300 hover:bg-blue-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" do %>
             <span><%= t(".found_a_job") %></span>
-            <span class="absolute -mt-2.5 z-10 uppercase text-indigo-400 tracking-tight font-bold text-xs rotate-12"><%= t(".new") %></span>
+            <span class="absolute -mt-2.5 z-10 uppercase text-red-400 tracking-tight font-bold text-xs rotate-12"><%= t(".new") %></span>
           <% end %>
         <% end %>
 
         <% if business? %>
           <%= link_to new_businesses_hiring_invoice_request_path, class: "text-blue-300 hover:bg-blue-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" do %>
             <span><%= t(".hired_a_dev") %></span>
-            <span class="absolute -mt-2.5 z-10 uppercase text-indigo-400 tracking-tight font-bold text-xs rotate-12"><%= t(".new") %></span>
+            <span class="absolute -mt-2.5 z-10 uppercase text-red-400 tracking-tight font-bold text-xs rotate-12"><%= t(".new") %></span>
           <% end %>
         <% end %>
       </div>
