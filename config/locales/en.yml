@@ -2,7 +2,7 @@
 en:
   about:
     show:
-      caption: Vincent & Charlton, founders of 
+      caption: Vincent & Charlton, founders of
       description: We're Tampa Devs, Tampa Bay's Develper Community. We're building Tampa Devs Talent to make it easier for Tampa Bay's developers to find their next gig while supporting our charitable mission.
       readtime: 1 minute read
       title: About
@@ -758,11 +758,11 @@ en:
     plan:
       description: Hire directly from a pool of local developers in Tampa Bay, at all levels of experience.
       features:
+        climate_html: We donate 1% of revenue to fight climate change. <a style="text-decoration:underline" href="https://climate.stripe.com/nxdibE">Learn more</a>
         email_updates: Email updates of new candidates
         hand_selected_matches: Find awesome local matches every month
         message: Message directly with developers
         oss: 100% nonprofit. Supports educational and community programs at Tampa Devs, Tampa's fastest-growing nonprofit developer community
-        climate_html: We donate 1% of revenue to fight climate change. <a style="text-decoration:underline" href="https://climate.stripe.com/nxdibE">Learn more</a> 
         support: Email and video support from the Talent Team at Tampa Devs
         title: Tampa Devs Talent exclusives
       hiring_fee: "+ 5% first year salary"
@@ -824,11 +824,11 @@ en:
       email: Email
       github: GitHub
       language_name_of_locale: English
-      tampadevs_com: Tampa Devs
       open_source: Open source
       open_startup: Open finances
       privacy_policy: Privacy policy
       support: Support
+      tampadevs_com: Tampa Devs
       terms_and_conditions: Terms and conditions
       twitter: Twitter
   size:
