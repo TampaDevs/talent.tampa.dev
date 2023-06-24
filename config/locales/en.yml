@@ -701,7 +701,6 @@ en:
         profit: Profit
         revenue: Revenue
         title: Open finances
-        visitors: Visitors (last 30 days)
     expenses:
       index:
         amount: Amount
@@ -823,7 +822,6 @@ en:
       copyright: All rights reserved.
       email: Email
       github: GitHub
-      language_name_of_locale: English
       open_source: Open source
       open_startup: Open finances
       privacy_policy: Privacy policy
@@ -831,11 +829,6 @@ en:
       tampadevs_com: Tampa Devs
       terms_and_conditions: Terms and conditions
       twitter: Twitter
-  size:
-    billion: B
-    million: M
-    thousand: K
-    unit: ''
   submit_button_component:
     save: Save
     saving: Saving...
