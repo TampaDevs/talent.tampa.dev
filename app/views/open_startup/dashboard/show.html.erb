@@ -18,7 +18,7 @@
                 <%= t(".mrr") %>
               </dt>
               <dd class="order-1 text-5xl font-extrabold text-blue-950">
-                <%= number_to_currency(@metric.mrr, precision: 0) %>
+                <%= number_to_currency(@metric.mrr, precision: 0) if @metric.present? %>
               </dd>
             <% end %>
             <%= link_to open_startup_contributions_path, class: "relative flex flex-col border-b border-gray-100 p-6 text-center bg-white rounded-lg overflow-hidden shadow-lg group hover:bg-blue-50" do %>
