@@ -32,10 +32,6 @@ class DevelopersController < ApplicationController
       event = Analytics::Event.added_developer_profile(url, cookies, @developer)
       redirect_to event, notice: t(".created")
     else
-      # Debug statements:
-      Rails.logger.debug("Developer parameters: #{developer_params.inspect}")
-      Rails.logger.debug("Developer errors: #{@developer.errors.full_messages.inspect}")
-
       @specialties = Specialty.visible
       render :new, status: :unprocessable_entity
     end
@@ -55,10 +51,6 @@ class DevelopersController < ApplicationController
       Analytics::Event.developer_profile_updated(current_user, cookies, developer_params)
       redirect_to @developer, notice: t(".updated")
     else
-      # Debug statements:
-      Rails.logger.debug("Developer parameters: #{developer_params.inspect}")
-      Rails.logger.debug("Developer errors: #{@developer.errors.full_messages.inspect}")
-
       @specialties = Specialty.visible
       render :edit, status: :unprocessable_entity
     end
