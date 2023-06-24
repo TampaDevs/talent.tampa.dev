@@ -72,8 +72,34 @@ class DeveloperQuery
     @search_query.to_s.strip
   end
 
+  def all_search_params
+    {
+      items_per_page: @items_per_page,
+      sort: @sort,
+      specialty_ids: @specialty_ids,
+      countries: @countries,
+      search_query: search_query,
+      utc_offsets: @utc_offsets,
+      role_types: @role_types,
+      role_levels: @role_levels,
+      badges: @badges,
+      include_not_interested: @include_not_interested
+    }
+  end
+
   def include_not_interested
     ActiveModel::Type::Boolean.new.cast(@include_not_interested)
+  end
+
+  def empty_search?
+    utc_offsets.empty? &&
+      role_types.empty? &&
+      role_levels.empty? &&
+      search_query.blank? &&
+      countries.blank? &&
+      badges.blank? &&
+      specialty_ids.empty? &&
+      !include_not_interested
   end
 
   private
@@ -94,17 +120,6 @@ class DeveloperQuery
 
   def items_per_page
     @items_per_page || Pagy::DEFAULT[:items]
-  end
-
-  def empty_search?
-    utc_offsets.empty? &&
-      role_types.empty? &&
-      role_levels.empty? &&
-      search_query.blank? &&
-      countries.blank? &&
-      badges.blank? &&
-      specialty_ids.empty? &&
-      !include_not_interested
   end
 
   def badges_filter_records
