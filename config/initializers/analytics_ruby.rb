@@ -1,7 +1,8 @@
 Rails.application.config.analytics_key = ENV["SEGMENT_WRITE_KEY"]
 
 class SegmentAnalyticsStub
-  def initialize(*); end
+  def initialize(*)
+  end
 
   def track(*args)
     Rails.logger.debug "Segment::Analytics.track called with args: #{args.inspect}"

@@ -17,6 +17,7 @@ module AnalyticsHelper
         analytics.page();
         }}();
         JS
-      end    end
+      end
+    end
   end
 end
