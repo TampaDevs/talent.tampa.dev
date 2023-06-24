@@ -762,7 +762,7 @@ en:
         hand_selected_matches: Find awesome local matches every month
         message: Message directly with developers
         oss: 100% nonprofit. Supports educational and community programs at Tampa Devs, Tampa's fastest-growing nonprofit developer community
-        rails: We donate 1% of revenue to fight climate change. <a style="text-decoration:underline" href="https://climate.stripe.com/nxdibE">Learn more</a> 
+        climate_html: We donate 1% of revenue to fight climate change. <a style="text-decoration:underline" href="https://climate.stripe.com/nxdibE">Learn more</a> 
         support: Email and video support from the Talent Team at Tampa Devs
         title: Tampa Devs Talent exclusives
       hiring_fee: "+ 5% first year salary"
