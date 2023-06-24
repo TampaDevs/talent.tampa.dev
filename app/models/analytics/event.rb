@@ -33,15 +33,17 @@ module Analytics
       Analytics::Event.create!(url:, goal: goals.subscribed_to_busines_plan, value: value * 100)
     end
 
-    def self.subscription_created(customer)
+    def self.subscription_created(business, customer)
       SegmentClient.track(
+        user_id: business.user.hashid,
         event: "business_plan_subscribe_success",
         properties: customer.attributes
       )
     end
 
-    def self.subscription_canceled(customer)
+    def self.subscription_canceled(business, customer)
       SegmentClient.track(
+        user_id: business.user.hashid,
         event: "business_plan_subscribe_cancel",
         properties: customer.attributes
       )
