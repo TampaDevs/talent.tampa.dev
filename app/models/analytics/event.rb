@@ -130,7 +130,7 @@ module Analytics
         user_id: user.hashid,
         anonymous_id: cookies[:uuid],
         event: "hiring_agreement_signature_created",
-        properties: signature.attributes
+        properties: signature.to_h
       )
     end
 
