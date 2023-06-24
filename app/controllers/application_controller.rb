@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   around_action :set_locale
   before_action :redirect_suspended_accounts
   before_action :set_variant
+  before_action :set_uuid
 
   helper_method :resolve_locale
   helper_method :turbo_native_app?
@@ -44,5 +45,9 @@ class ApplicationController < ActionController::Base
     if Feature.enabled?(:redesign)
       request.variant = :redesign
     end
+  end
+
+  def set_uuid
+    cookies[:uuid] = SecureRandom.uuid unless cookies[:uuid]
   end
 end
