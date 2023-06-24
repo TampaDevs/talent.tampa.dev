@@ -2,7 +2,7 @@ class SignificantFigure
   private attr_reader :number
 
   def initialize(number)
-    @number = number
+    @number = number.finite? ? number : 0
   end
 
   def rounded
