@@ -30,19 +30,6 @@
                 <%= number_to_currency(@contributions, precision: 0) %>
               </dd>
             <% end %>
-            <!-- TODO: Visitor analytics <%= link_to "https://app.usefathom.com/share/cacnfaan/railsdevs.com#/?filters=%5B%5D&range=last_30_days&site=1125899910004402", target: "_blank", class: "relative flex flex-col border-b border-gray-100 p-6 text-center bg-white rounded-lg overflow-hidden shadow-lg group hover:bg-blue-50" do %>
-              <%= inline_svg_tag "icons/solid/external_link.svg", class: "w-5 h-5 text-blue-400 absolute top-0 right-0 mt-2 mr-3 group-hover:text-blue-950", title: t(".external_link") %>
-              <dt class="order-2 mt-2 text-lg leading-6 font-medium text-blue-950">
-                <%= t(".visitors") %>
-              </dt>
-              <dd class="order-1 text-5xl font-extrabold text-blue-950">
-                <%# i18n-tasks-use t('size.billion') %>
-                <%# i18n-tasks-use t('size.million') %>
-                <%# i18n-tasks-use t('size.thousand') %>
-                <%# i18n-tasks-use t('size.unit') %>
-                <%= number_to_human(@metric.visitors, units: :size) %>
-              </dd>
-            <% end %> -->
           </dl>
         </div>
       </div>
