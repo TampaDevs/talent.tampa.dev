@@ -14,6 +14,7 @@ def revenue_cat_product_identifier(subscription)
     credentials.dig(:revenue_cat, :product_identifiers, subscription) ||
       "#{subscription}_dummy_revenue_cat_product_identifier"
   else
-    credentials.revenue_cat[:product_identifiers][subscription]
+    # credentials.revenue_cat[:product_identifiers][subscription]
+    ""
   end
 end
