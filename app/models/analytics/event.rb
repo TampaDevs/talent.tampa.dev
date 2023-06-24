@@ -17,7 +17,7 @@ module Analytics
 
     def self.added_business_profile(url, cookies, business)
       SegmentClient.track(
-        user_id: business.hashid,
+        user_id: business.user_id,
         event: "business_profile_added",
         properties: business.attributes
       )
@@ -34,8 +34,14 @@ module Analytics
     end
 
     def self.subscription_created(business, customer)
+      business_or_customer_id = if business.nil?
+        customer.id
+      else
+        business.id
+      end
+
       SegmentClient.track(
-        user_id: business.user.hashid,
+        user_id: business_or_customer_id,
         event: "business_plan_subscribe_success",
         properties: customer.attributes
       )
@@ -43,7 +49,7 @@ module Analytics
 
     def self.subscription_canceled(business, customer)
       SegmentClient.track(
-        user_id: business.user.hashid,
+        user_id: business.id,
         event: "business_plan_subscribe_cancel",
         properties: customer.attributes
       )
@@ -301,12 +307,20 @@ module Analytics
     end
 
     def self.referral_created(user, cookies, ref_code)
-      SegmentClient.track(
-        user_id: user.hashid,
-        anonymous_id: cookies[:uuid],
-        event: "referral_created",
-        properties: {code: ref_code}
-      )
+      if user.nil?
+        SegmentClient.track(
+          anonymous_id: cookies[:uuid],
+          event: "referral_created",
+          properties: {code: ref_code}
+        )
+      else
+        SegmentClient.track(
+          user_id: user.hashid,
+          anonymous_id: cookies[:uuid],
+          event: "referral_created",
+          properties: {code: ref_code}
+        )
+      end
     end
 
     def self.developer_response_rate_updated(developer_id, rate)

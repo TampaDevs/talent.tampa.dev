@@ -6,7 +6,8 @@ class OpenStartup::DashboardTest < ActionDispatch::IntegrationTest
 
     assert_select "dd", "$1,000"
     assert_select "dd", "$15"
-    assert_select "dd", "5 K"
+    # TODO: dashboard analytics are disabled pending Segment integration
+    # assert_select "dd", "5 K"
   end
 
   test "shows monthly balances" do

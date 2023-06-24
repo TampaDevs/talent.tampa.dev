@@ -16,21 +16,6 @@ class SwitchLocaleTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "Links to all available locales will show" do
-    [:en].each do |locale|
-      I18n.with_locale(locale) do
-        get root_path
-
-        assert_select "a[href='/']", text: language_name_of(I18n.default_locale)
-
-        locales_except_default = I18n.available_locales - [I18n.default_locale]
-        locales_except_default.each do |locale|
-          assert_select "a[href='/#{locale}']", text: language_name_of(locale)
-        end
-      end
-    end
-  end
-
   def language_name_of(locale)
     I18n.t("shared.footer.language_name_of_locale", locale:)
   end

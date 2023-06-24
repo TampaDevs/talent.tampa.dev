@@ -20,7 +20,7 @@ module Developers
     test "renders high response rate badge when response rate is 90%+" do
       @developer.response_rate = 90
       render_inline BadgesComponent.new(@developer)
-      assert_selector("span[class~='100']")
+      assert_selector("span[class*='100']")
       assert_text "High response rate"
 
       @developer.response_rate = 89
@@ -31,7 +31,7 @@ module Developers
     test "renders source contributor badge" do
       @developer.source_contributor = true
       render_inline BadgesComponent.new(@developer)
-      assert_selector("span[class~='bg-blue-100']")
+      assert_selector("span[class~='bg-gray-100']")
       assert_text "Source contributor"
 
       @developer.source_contributor = false

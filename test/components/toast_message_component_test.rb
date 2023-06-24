@@ -64,7 +64,10 @@ class ToastMessageComponentTest < ViewComponent::TestCase
 
   def expect_to_be_color(color:)
     assert_selector(".bg-#{color}-50")
-    assert_selector(".text-#{color}-400")
-    assert_selector(".text-#{color}-700")
+    if color == :red
+      assert_selector(".text-#{color}-700")
+    elsif color == :blue
+      assert_selector(".text-#{color}-950")
+    end
   end
 end

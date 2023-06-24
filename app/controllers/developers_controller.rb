@@ -29,7 +29,7 @@ class DevelopersController < ApplicationController
 
     if @developer.save_and_notify
       url = developer_path(@developer)
-      event = Analytics::Event.added_developer_profile(url, @developer)
+      event = Analytics::Event.added_developer_profile(url, cookies, @developer)
       redirect_to event, notice: t(".created")
     else
       @specialties = Specialty.visible
