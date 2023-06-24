@@ -8,6 +8,12 @@ class DevelopersController < ApplicationController
     @meta = Developers::Meta.new(query: @query, count: @developers_count)
     Analytics::SearchQuery.create!(permitted_attributes([:developers, :query]))
 
+    if @query.empty_search?
+      Analytics::Event.developers_page_viewed(current_user, cookies)
+    else
+      Analytics::Event.developers_search_queried(current_user, cookies, @query.all_search_params, @query.records.length)
+    end
+
     paywall = Developers::PaywalledSearchResults.new(user: current_user, page: @query.pagy.page)
     redirect_to developers_path if paywall.unauthorized_page?
     @paywall_results = paywall.show_paywall?(@query.pagy.count)
@@ -23,7 +29,7 @@ class DevelopersController < ApplicationController
 
     if @developer.save_and_notify
       url = developer_path(@developer)
-      event = Analytics::Event.added_developer_profile(url)
+      event = Analytics::Event.added_developer_profile(url, @developer)
       redirect_to event, notice: t(".created")
     else
       @specialties = Specialty.visible
@@ -42,6 +48,7 @@ class DevelopersController < ApplicationController
     authorize @developer
 
     if @developer.update_and_notify(developer_params)
+      Analytics::Event.developer_profile_updated(current_user, cookies, developer_params)
       redirect_to @developer, notice: t(".updated")
     else
       @specialties = Specialty.visible
@@ -54,6 +61,8 @@ class DevelopersController < ApplicationController
 
     @public_key = params[:key]
     authorize @developer
+
+    Analytics::Event.developers_profile_shown(current_user, cookies, params[:id])
   end
 
   private

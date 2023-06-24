@@ -3,6 +3,7 @@ module Affiliates
     before_action :authenticate_user!, only: %w[new create]
 
     def index
+      Analytics::Event.affiliate_program_viewed(current_user, cookies)
     end
 
     def new
@@ -13,6 +14,7 @@ module Affiliates
       @registration = Registration.new(request_params)
       if @registration.valid?
         Admin::Affiliates::RegistrationNotification.with(user: current_user).deliver_later(User.admin)
+        Analytics::Event.affiliate_registration_created(current_user, cookies)
         redirect_to affiliates_path, notice: t(".notice")
       else
         render :new, status: :unprocessable_entity

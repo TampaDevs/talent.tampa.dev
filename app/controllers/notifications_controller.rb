@@ -11,6 +11,7 @@ class NotificationsController < ApplicationController
   def show
     notification = current_user.notifications.find(params[:id])
     notification.mark_as_read!
+    Analytics::Event.notifications_viewed(current_user, cookies)
 
     if (url = notification.to_notification.url)
       redirect_to url

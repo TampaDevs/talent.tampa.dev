@@ -22,6 +22,7 @@ module Pay
 
       business = customer.owner.business
       BusinessMailer.with(business:).subscribed.deliver_later
+      Analytics::Event.subscription_created(business, customer)
     rescue Pay::SubscriptionChanges::UnknownSubscriptionChange => e
       Honeybadger.notify(e)
     end
@@ -31,6 +32,7 @@ module Pay
 
       business = customer.owner.business
       BusinessMailer.with(business:).cancel_subscription.deliver_later
+      Analytics::Event.subscription_canceled(business, customer)
     rescue Pay::SubscriptionChanges::UnknownSubscriptionChange => e
       Honeybadger.notify(e)
     end

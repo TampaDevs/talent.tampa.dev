@@ -11,6 +11,7 @@ module HiringAgreements
       @signature = Signature.new(signature_params.merge(term: Term.active, user: current_user))
 
       if @signature.save
+        Analytics::Event.hiring_agreement_signature_created(current_user, cookies, signature_params.merge(term: Term.active, user: current_user))
         redirect_to (stored_location || pricing_path), notice: t(".created")
       else
         render :new, status: :unprocessable_entity

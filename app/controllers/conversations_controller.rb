@@ -9,6 +9,7 @@ class ConversationsController < ApplicationController
     @conversation = conversation
     @message = Message.new(conversation: @conversation)
     authorize @conversation
+    Analytics::Event.conversation_shown(current_user, cookies, @conversation)
     @conversation.mark_notifications_as_read(current_user)
   end
 

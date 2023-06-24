@@ -10,6 +10,7 @@ module Businesses
     def create
       @form = Businesses::HiringInvoiceRequest.new(form_params)
       if @form.save_and_notify
+        Analytics::Event.hiring_invoice_request_created(current_user, cookies, @form)
         redirect_to root_path, notice: t(".success")
       else
         render :new, status: :unprocessable_entity

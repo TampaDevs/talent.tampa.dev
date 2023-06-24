@@ -14,6 +14,7 @@ module Referrals
   def create_referral(user)
     if cookies[:ref].present?
       user.create_referral!(code: cookies[:ref])
+      Analytics::Event.referral_created(current_user, cookies, cookies[:ref])
     end
   end
 end
