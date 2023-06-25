@@ -2,7 +2,7 @@ module Webhooks
   class RevenueCatController < ApplicationController
     def create
       if request.headers["Authorization"] == webhook_authorization
-        RevenueCatSubscriptionsSyncJob.perform_later(user_id)
+        # RevenueCatSubscriptionsSyncJob.perform_later(user_id)
         head :ok
       else
         head :unauthorized
