@@ -2,6 +2,7 @@ class SignificantFigure
   private attr_reader :number
 
   def initialize(number)
+    # TODO: Possible source of inaccurate counts
     @number = number.finite? ? number : 0
   end
 
