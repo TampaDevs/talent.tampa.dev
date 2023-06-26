@@ -6,61 +6,154 @@ module Analytics
     validates :goal, presence: true
     validates :value, presence: true, numericality: {greater_than_or_equal_to: 0}
 
+    def self.user_signed_in(user, cookies)
+      SegmentClient.identify(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        traits: {
+          **user.analytics_profile_identify_traits,
+          **user.attributes
+        }
+      )
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "user_signed_in",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
+    end
+
+    def self.user_signed_out(user, cookies)
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "user_signed_out",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
+    end
+
+    def self.user_registered(user, cookies)
+      SegmentClient.identify(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        traits: {
+          **user.analytics_profile_identify_traits,
+          **user.attributes
+        }
+      )
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "user_registered",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
+    end
+
     def self.added_developer_profile(url, cookies, developer)
       SegmentClient.track(
-        user_id: developer.hashid,
+        user_id: developer.analytics_profile[:ap_stable_id],
         event: "developer_profile_added",
-        properties: developer.attributes
+        properties: {
+          user: {
+            **developer.analytics_profile,
+            **developer.attributes
+          }
+        }
       )
       Analytics::Event.create!(url:, goal: goals.added_developer_profile)
     end
 
     def self.added_business_profile(url, cookies, business)
       SegmentClient.track(
-        user_id: business.user_id,
+        user_id: business.analytics_profile[:ap_stable_id],
         event: "business_profile_added",
-        properties: business.attributes
+        properties: {
+          business: {
+            **business.analytics_profile,
+            **business.attributes
+          }
+        }
       )
       Analytics::Event.create!(url:, goal: goals.added_business_profile)
     end
 
     def self.subscribed_to_busines_plan(url, user, value:)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         event: "business_plan_checkout_started",
-        properties: {value: value, user_id: user.id, user_email: user.email, path: url}
+        properties: {
+          value: value,
+          path: url,
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
       Analytics::Event.create!(url:, goal: goals.subscribed_to_busines_plan, value: value * 100)
     end
 
     def self.subscription_created(business, customer)
-      business_or_customer_id = if business.nil?
-        customer.id
-      else
-        business.id
-      end
-
       SegmentClient.track(
-        user_id: business_or_customer_id,
+        user_id: business.analytics_profile[:ap_stable_id],
         event: "business_plan_subscribe_success",
-        properties: customer.attributes
+        properties: {
+          business: {
+            **business.analytics_profile,
+            **business.attributes
+          },
+          customer: {
+            **customer.attributes
+          }
+        }
       )
     end
 
     def self.subscription_canceled(business, customer)
       SegmentClient.track(
-        user_id: business.id,
+        user_id: business.analytics_profile[:ap_stable_id],
         event: "business_plan_subscribe_cancel",
-        properties: customer.attributes
+        properties: {
+          customer: {
+            **customer.attributes
+          },
+          business: {
+            **business.attributes,
+            **business.analytics_profile
+          }
+        }
       )
     end
 
     def self.celebration_package_requested(developer, cookies, form)
       SegmentClient.track(
-        user_id: developer.hashid,
+        user_id: developer.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "celebration_package_requested",
-        properties: {form: form.attributes}
+        properties: {
+          user: {
+            **developer.analytics_profile,
+            **developer.attributes
+          },
+          form: {
+            **form.attributes
+          }
+        }
       )
     end
 
@@ -69,14 +162,24 @@ module Analytics
         SegmentClient.track(
           anonymous_id: cookies[:uuid],
           event: "developer_search_queried",
-          properties: {query: query, num_results: num_results}
+          properties: {
+            query: query,
+            num_results: num_results
+          }
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
           event: "developer_search_queried",
-          properties: {query: query, num_results: num_results}
+          properties: {
+            query: query,
+            num_results: num_results,
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -90,10 +193,16 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
           event: "developers_profile_shown",
-          properties: {id: id}
+          properties: {
+            id: id,
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -106,55 +215,94 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "developers_page_viewed"
+          event: "developers_page_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
 
     def self.developer_profile_updated(user, cookies, params)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "developer_profile_updated",
-        properties: params.to_h
+        properties: {
+          profile: {**params.to_h},
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
     def self.business_profile_updated(user, cookies, business)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "business_profile_updated",
-        properties: business.attributes
+        properties: {
+          business: {
+            **business.attributes
+          },
+          user: {
+            **user.attributes,
+            **user.analytics_profile
+          }
+        }
       )
     end
 
     def self.hiring_agreement_signature_created(user, cookies, signature)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "hiring_agreement_signature_created",
-        properties: signature.to_h
+        properties: {
+          **signature.to_h,
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
     def self.cold_message_created(user, cookies, message)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "cold_message_created",
-        properties: message.attributes
+        properties: {
+          message: {**message.attributes},
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
     def self.block_created(user, cookies, conversation, other_recipient)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "block_created",
-        properties: {conversation: conversation.attributes, other_recipient: other_recipient}
+        properties: {
+          conversation: {**conversation.attributes},
+          other_recipient: other_recipient,
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
@@ -166,9 +314,15 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "about_page_viewed"
+          event: "about_page_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -181,9 +335,15 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "tos_page_viewed"
+          event: "tos_page_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -196,9 +356,15 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "privacy_page_viewed"
+          event: "privacy_page_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -211,9 +377,15 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "home_page_viewed"
+          event: "home_page_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -226,36 +398,60 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "open_page_viewed"
+          event: "open_page_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
 
     def self.conversation_shown(user, cookies, conversation)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "conversation_shown",
-        properties: {conversation: conversation.attributes}
+        properties: {
+          conversation: {**conversation.attributes},
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
     def self.message_created(user, cookies, message)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "message_created",
-        properties: {message: message.attributes}
+        properties: {
+          message: {**message.attributes},
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
     def self.notifications_viewed(user, cookies)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
-        event: "notifications_viewed"
+        event: "notifications_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
@@ -267,9 +463,15 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "pricing_viewed"
+          event: "pricing_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -282,9 +484,15 @@ module Analytics
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
-          event: "affiliate_program_viewed"
+          event: "affiliate_program_viewed",
+          properties: {
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -294,14 +502,22 @@ module Analytics
         SegmentClient.track(
           anonymous_id: cookies[:uuid],
           event: "developer_public_profile_viewed",
-          properties: {developer_id: developer_id}
+          properties: {
+            developer_id: developer_id
+          }
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
           event: "developer_public_profile_viewed",
-          properties: {developer_id: developer_id}
+          properties: {
+            developer_id: developer_id,
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -311,14 +527,22 @@ module Analytics
         SegmentClient.track(
           anonymous_id: cookies[:uuid],
           event: "referral_created",
-          properties: {code: ref_code}
+          properties: {
+            code: ref_code
+          }
         )
       else
         SegmentClient.track(
-          user_id: user.hashid,
+          user_id: user.analytics_profile[:ap_stable_id],
           anonymous_id: cookies[:uuid],
           event: "referral_created",
-          properties: {code: ref_code}
+          properties: {
+            code: ref_code,
+            user: {
+              **user.analytics_profile,
+              **user.attributes
+            }
+          }
         )
       end
     end
@@ -333,18 +557,30 @@ module Analytics
 
     def self.hiring_invoice_request_created(user, cookies, form)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
         event: "hiring_invoice_request_created",
-        properties: {form: form.attributes}
+        properties: {
+          form: {**form.attributes},
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 
     def self.affiliate_registration_created(user, cookies)
       SegmentClient.track(
-        user_id: user.hashid,
+        user_id: user.analytics_profile[:ap_stable_id],
         anonymous_id: cookies[:uuid],
-        event: "affiliate_registration_created"
+        event: "affiliate_registration_created",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
       )
     end
 

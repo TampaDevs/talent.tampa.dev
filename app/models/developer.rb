@@ -11,6 +11,7 @@ class Developer < ApplicationRecord
   include PersonName
   include PgSearch::Model
   include PublicProfile
+  include Analytics::Profile
 
   FEATURE_LENGTH = 1.week
 
