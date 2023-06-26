@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   impersonates :user
 
   def after_sign_in_path_for(user)
+    Analytics::Event.user_signed_in(user, cookies)
     if (stored_location = stored_location_for(:user)).present?
       stored_location
     elsif user.developer.present? || user.business.present?

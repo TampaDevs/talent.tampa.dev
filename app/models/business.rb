@@ -3,6 +3,7 @@ class Business < ApplicationRecord
   include Businesses::HasOnlineProfiles
   include Businesses::Notifications
   include PersonName
+  include Analytics::Profile
 
   enum :developer_notifications, %i[no daily weekly], default: :no, suffix: true
 

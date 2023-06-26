@@ -3,6 +3,7 @@ class User < ApplicationRecord
   include Hashid::Rails
   include PayCustomer
   include Referrable
+  include Analytics::Profile
 
   devise :confirmable,
     :database_authenticatable,
