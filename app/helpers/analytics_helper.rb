@@ -9,6 +9,8 @@ module AnalyticsHelper
         }}();
         JS
       end
+
+      javascript_include_tag "https://static.cloudflareinsights.com/beacon.min.js", defer: true, data: {cf_beacon: '{"token": "4352fe465c8e4236868952c7af6fb82a"}'}
     else
       javascript_tag do
         <<-JS.html_safe
