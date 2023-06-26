@@ -13,7 +13,8 @@
     <%= stylesheet_link_tags %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
-    <%= analytics_tag %>
+    <%= segment_analytics_tag %>
+    <%= cloudflare_analytics_tag %>
     <%= hotwire_livereload_tags %>
   </head>
 

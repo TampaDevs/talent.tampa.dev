@@ -1,5 +1,5 @@
 module AnalyticsHelper
-  def analytics_tag
+  def segment_analytics_tag
     if Rails.env.production?
       javascript_tag do
         <<-JS.html_safe
@@ -9,8 +9,6 @@ module AnalyticsHelper
         }}();
         JS
       end
-
-      javascript_include_tag "https://static.cloudflareinsights.com/beacon.min.js", defer: true, data: {cf_beacon: '{"token": "4352fe465c8e4236868952c7af6fb82a"}'}
     else
       javascript_tag do
         <<-JS.html_safe
@@ -20,6 +18,12 @@ module AnalyticsHelper
         }}();
         JS
       end
+    end
+  end
+
+  def cloudflare_analytics_tag
+    if Rails.env.production?
+      "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"4352fe465c8e4236868952c7af6fb82a\"}'></script>".html_safe
     end
   end
 end
