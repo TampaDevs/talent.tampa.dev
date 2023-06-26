@@ -8,7 +8,11 @@ class SignificantFigure
 
   def rounded
     if number < 100
-      number.floor(-1)
+      if number < 10
+        number.floor
+      else
+        number.floor(-1)
+      end
     else
       number.floor(-2)
     end
