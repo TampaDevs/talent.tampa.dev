@@ -536,6 +536,7 @@ en:
   errors:
     business_blank: Fill out your business profile to message developers.
     business_subscription_inactive: Sign up for a business subscription to message developers.
+    business_subscription_no_profile: Before subscribing, fill out your business profile.
     developer_blank: Please create a developer profile first.
     hiring_agreements:
       cold_message: Please sign the hiring agreement to message developers.
