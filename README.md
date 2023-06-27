@@ -1,16 +1,30 @@
-# RailsDevs
+# Tampa Devs Talent
 
-The reverse job board for Rails developers.
+The reverse job board for Tampa Bay's Developer Community.
 
-![RailsDevs homepage](https://user-images.githubusercontent.com/2092156/147028085-eea40303-c572-48c0-b107-0be93cce067c.png)
+<img width="1380" alt="image" src="https://github.com/TampaDevs/talent.tampa.dev/assets/7227500/70f95ff0-74b5-4996-9c50-ba4060e75b60">
 
-RailsDevs empowers independent developers available for their next gig. It is being built around [three core values](https://railsdevs.com/about):
 
-1. Empowering the independent developer
-1. Doing everything in public
-1. Creating a safe, inclusive environment
+This board is run by [Tampa Devs](https://www.tampadevs.com), the fastest-growing nonprofit software development community in Tampa Bay. 
+
+
+We're a nonprofit organization with a mission - promoting educational and social resources that develop local talent in technology and bridging the gap between them and potential employers in our community, all while enhancing the exceptional educational, community, and career resources from our programs.
+
+Our vision is anchored in three core principles:
+
+- Empowering developers and businesses to tap into brilliant local resources.
+
+- Championing the growth and vitality of our Tampa Bay's tech community.
+
+- Building an exemplary, safe, and inclusive space for everyone. Enjoy the ride!
+
+To learn more about the background, organization, and mission of Tampa Devs, refer to our website at https://www.tampadevs.com.
 
 ---
+
+## Original inspiration
+
+This project is based on the incredible work of [Joe Masilloti](https://github.com/joemasilotti/) on [RailsDevs](https://railsdevs.com).
 
 ## Getting started
 
