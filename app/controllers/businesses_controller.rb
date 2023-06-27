@@ -1,4 +1,6 @@
 class BusinessesController < ApplicationController
+  include CheckoutHelper
+
   before_action :authenticate_user!, only: %i[new create]
   before_action :require_new_business!, only: %i[new create]
 
@@ -11,9 +13,18 @@ class BusinessesController < ApplicationController
     @business.assign_attributes(permitted_attributes(@business))
 
     if @business.save_and_notify
-      url = stored_location_for(:user) || developers_path
-      event = Analytics::Event.added_business_profile(url, cookies, @business)
-      redirect_to event, notice: t(".created")
+      @url = stored_location_for(:user) || developers_path
+      @event = Analytics::Event.added_business_profile(@url, cookies, @business)
+
+      if session[:checkout_continue]
+        checkout_flow_completed!
+        redirect_to pricing_path, notice: t(".can_continue")
+      elsif @event
+        redirect_to @event, notice: t(".updated")
+      else
+        redirect_to @url, notice: t(".updated")
+      end
+
     else
       render :new, status: :unprocessable_entity
     end

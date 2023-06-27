@@ -37,7 +37,7 @@ class HiringAgreements::SignaturesTest < ActionDispatch::IntegrationTest
 
     post hiring_agreement_signature_path, params: signature_params(signed: true)
 
-    assert_redirected_to pricing_path
+    assert_redirected_to new_business_path
   end
 
   def signature_params(signed: true)
