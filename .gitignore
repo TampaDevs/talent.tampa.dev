@@ -47,3 +47,6 @@ dip.yml
 
 # Ignore RubyMine settings files
 .idea/
+
+# Ignore local testing output
+tests
