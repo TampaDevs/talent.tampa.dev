@@ -249,6 +249,8 @@ en:
       title: Admin
     create:
       created: Your business was added!
+      updated: Your business information was updated.
+      checkout_can_continue: All set! You can now continue setting up your subscription.
     edit:
       title: Your business profile
     expired_subscription_component:
