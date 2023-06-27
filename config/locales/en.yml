@@ -248,7 +248,8 @@ en:
       invisiblize: Invisiblize
       title: Admin
     create:
-      created: Your business was added!
+      can_continue: All set! You can now continue setting up your subscription.
+      updated: Your business information was updated.
     edit:
       title: Your business profile
     expired_subscription_component:
