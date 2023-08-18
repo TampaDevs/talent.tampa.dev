@@ -34,7 +34,6 @@ group :test do
   gem "minitest-reporters", require: false
   gem "minitest-reporters-pride_reporter", require: false
   gem "selenium-webdriver"
-  gem "webdrivers"
   gem "webmock"
 end
 
