@@ -1,5 +1,5 @@
 require "test_helper"
-require "webdrivers"
+require "selenium-webdriver"
 
 Capybara.register_driver :headless_chrome do |app|
   options = ::Selenium::WebDriver::Chrome::Options.new
