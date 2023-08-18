@@ -315,7 +315,7 @@ en:
     upgrade_required_component:
       body:
         expired: Your subscription has expired. Reactivate your account to continue messaging developers.
-        upgrade: With your current plan you can only message developers looking for part-time work. Upgrade your account to message this developer.
+        upgrade: With your current plan, you can only message developers looking for part-time work. Upgrade your account to message this developer.
       cta:
         expired: Reactivate my account
         upgrade: Upgrade my account
@@ -375,7 +375,7 @@ en:
         success: Thank you! Our team will reach out to you soon.
       new:
         company_name: Company name
-        description: Congrats on your new job! Tell us about it and we'll send you a custom Tampa Devs Talent celebration package free.
+        description: Congrats on your new job! Tell us about it and we'll send you a custom Tampa Devs Talent celebration package, completely free.
         feedback: Feedback (optional)
         feedback_help: Please let us know how we can improve Tampa Devs Talent or anything you'd like to share.
         mailing_address: Mailing address
@@ -402,7 +402,7 @@ en:
           help: How you can help where others can't
           learned: Something new you learned
           origin: Your developer origin story
-          passion: What you're passionate about
+          passion: What are you passionate about?
           title: Example topics
           unique: Your unique skills that make you awesome
         help_text: Personally identifiable information will be removed.
@@ -469,7 +469,7 @@ en:
       cta: Edit my profile
       title: Your developer profile is invisible – only you can see it.
     meta:
-      description: "%{count}+ local developers looking for their next gig. For any stacks, levels, and working arrangements, you'll find them all here."
+      description: "%{count}+ local developers looking for their next gig. For all stacks, experience levels, and working arrangements, you'll find them all here."
       freelance: freelance
       hire: Hire
       in_country: in %{country}
@@ -559,7 +559,7 @@ en:
       new:
         accept: Accept agreement
         accepting: Accepting...
-        agreement: By checking this box I confirm my full understanding and acceptance of the site terms. I acknowledge that this constitutes a legally binding agreement under applicable laws.
+        agreement: By checking this box I confirm my complete understanding and acceptance of the site terms. I acknowledge that this constitutes a legally binding agreement.
         description: Last updated %{last_updated}
         questions_html: Questions? Email the Tampa Devs Talent team at <a href="mailto:jobs@tampadevs.com" class="font-medium no-underline hover:underline">jobs@tampadevs.com</a>.
         sign_below: Sign agreement below
@@ -571,7 +571,7 @@ en:
         signed_on: Signed on %{date}
   home:
     show:
-      description_og: Tampa Devs Talent empowers local developers and supports social good. Stop combing through job listings and kick back while companies reach out to you!
+      description_og: Tampa Devs Talent empowers local developers and supports social good. Stop combing through job listings, and kick back while companies reach out to you!
       developers_heading: New awesome local developers on Tampa Devs Talent
       get_started: Get started
       learn_more: Learn more
@@ -666,7 +666,7 @@ en:
         title: 'New feature alert: Developer specialties'
       profile_reminder_notification:
         email_subject: Is your Tampa Devs Talent profile up to date?
-        title: Is your developer profile up to date?
+        title: Is your Tampa Devs Talent profile up to date?
     index:
       cta: View history
       empty_state:
@@ -691,12 +691,12 @@ en:
         recipient: Recipient
         title: Tampa Devs Talent contributions
         to_co2_removal: to CO₂ removal
-        to_communities: to communities
+        to_communities: to Tampa Devs' community programs
     dashboard:
       show:
         contributions: Contributions
         date: Date
-        description: Tampa Devs Talent is an open startup with public metrics.
+        description: Tampa Devs Talent is an open startup with completely public metrics.
         expenses: Expenses
         external_link: Open in new tab
         mrr: MRR
@@ -707,7 +707,7 @@ en:
       index:
         amount: Amount
         date: Date
-        description: All monetary transactions associated with Tampa Devs Talent, like hosting, fees, and purchases.
+        description: All expenses associated with Tampa Devs Talent, including things like hosting, fees, and purchases.
         expenses: Expenses
         open_startup: Open finances
         source: Source
@@ -716,7 +716,7 @@ en:
       index:
         amount: Amount
         date: Date
-        description: All revenue Tampa Devs Talent has generated since launching in November, 2021.
+        description: All revenue Tampa Devs Talent has generated since launching in June, 2023.
         open_startup: Open finances
         revenue: Revenue
         source: Source
@@ -744,7 +744,7 @@ en:
         a_html: Yes. You can cancel your subscription from the Billing link in the user drop-down. You will lose access to all paid features at the end of your billing period.
         q: Can I cancel my subscription at any time?
       developers:
-        a: No. Tampa Devs Talent is free for developers.
+        a: No. Tampa Devs Talent is FREE for developers!
         q: Does Tampa Devs Talent cost anything for developers?
       fee:
         a_html: If you hire a full-time employee through Tampa Devs Talent you agree to pay a placement fee equal to 5% of their salary.
@@ -764,7 +764,7 @@ en:
         hand_selected_matches: Find awesome local matches every month
         message: Message directly with developers
         oss: 100% nonprofit. Supports educational and community programs at Tampa Devs, Tampa's fastest-growing nonprofit developer community
-        support: Email and video support from the Talent Team at Tampa Devs
+        support: Direct, personal support from the Talent Team at Tampa Devs
         title: Tampa Devs Talent exclusives
       hiring_fee: "+ 5% first year salary"
       per_month: "/month"

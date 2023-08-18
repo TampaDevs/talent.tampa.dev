@@ -159,73 +159,59 @@ module Analytics
 
     def self.developers_search_queried(user, cookies, query, num_results)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "developer_search_queried",
-          properties: {
-            query: query,
-            num_results: num_results
-          }
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "developer_search_queried",
-          properties: {
-            query: query,
-            num_results: num_results,
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "developer_search_queried",
+        properties: {
+          query: query,
+          num_results: num_results,
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.developers_profile_shown(user, cookies, id)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "developers_profile_shown",
-          properties: {id: id}
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "developers_profile_shown",
-          properties: {
-            id: id,
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "developers_profile_shown",
+        properties: {
+          id: id,
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.developers_page_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "developers_page_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "developers_page_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "developers_page_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.developer_profile_updated(user, cookies, params)
@@ -308,107 +294,92 @@ module Analytics
 
     def self.about_page_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "about_page_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "about_page_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "about_page_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.tos_page_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "tos_page_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "tos_page_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "tos_page_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.privacy_page_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "privacy_page_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "privacy_page_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "privacy_page_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.home_page_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "home_page_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "home_page_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "home_page_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.open_page_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "open_page_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "open_page_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "open_page_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.conversation_shown(user, cookies, conversation)
@@ -457,94 +428,76 @@ module Analytics
 
     def self.pricing_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "pricing_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "pricing_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "pricing_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.affiliate_program_viewed(user, cookies)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "affiliate_program_viewed"
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "affiliate_program_viewed",
-          properties: {
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "affiliate_program_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.developer_public_profile_viewed(user, cookies, developer_id)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "developer_public_profile_viewed",
-          properties: {
-            developer_id: developer_id
-          }
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "developer_public_profile_viewed",
-          properties: {
-            developer_id: developer_id,
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "developer_public_profile_viewed",
+        properties: {
+          developer_id: developer_id,
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.referral_created(user, cookies, ref_code)
       if user.nil?
-        SegmentClient.track(
-          anonymous_id: cookies[:uuid],
-          event: "referral_created",
-          properties: {
-            code: ref_code
-          }
-        )
-      else
-        SegmentClient.track(
-          user_id: user.analytics_profile[:ap_stable_id],
-          anonymous_id: cookies[:uuid],
-          event: "referral_created",
-          properties: {
-            code: ref_code,
-            user: {
-              **user.analytics_profile,
-              **user.attributes
-            }
-          }
-        )
+        return
       end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "referral_created",
+        properties: {
+          code: ref_code,
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
     end
 
     def self.developer_response_rate_updated(developer_id, rate)
