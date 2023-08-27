@@ -25,8 +25,8 @@ module Analytics
     def ap_types
       profiles = []
       profiles << :user
-      profiles << :developer if is_a?(Developer)
-      profiles << :business if is_a?(Business)
+      profiles << :developer if developer.present? || is_a?(Developer)
+      profiles << :business if business.present? || is_a?(Business)
       profiles
     end
 
