@@ -18,23 +18,23 @@ module Analytics
       if is_a?(User)
         email
       elsif is_a?(Developer) || is_a?(Business)
-        self.try(:user).try(:email)
+        try(:user).try(:email)
       end
-    end    
+    end
 
     def ap_types
       profiles = []
       profiles << :user
-      profiles << :developer if self.try(:developer).present?
-      profiles << :business if self.try(:business).present?
+      profiles << :developer if try(:developer).present?
+      profiles << :business if try(:business).present?
       profiles
-    end    
+    end
 
     def ap_stable_id
       if is_a?(User)
         id
       elsif is_a?(Developer) || is_a?(Business)
-        self.try(:user).try(:id)
+        try(:user).try(:id)
       end
     end
 
@@ -46,23 +46,23 @@ module Analytics
         ap_types: ap_types,
         ap_stable_id: ap_stable_id
       }
-    
+
       if is_a?(User)
         if ap_types.include?(:developer)
-          profile[:ap_developer_hashid] = self.try(:developer).try(:hashid)
+          profile[:ap_developer_hashid] = try(:developer).try(:hashid)
         end
-    
+
         if ap_types.include?(:business)
-          profile[:ap_business_id] = self.try(:business).try(:id)
+          profile[:ap_business_id] = try(:business).try(:id)
         end
       elsif is_a?(Developer)
-        profile[:ap_developer_hashid] = self.try(:hashid)
+        profile[:ap_developer_hashid] = try(:hashid)
       elsif is_a?(Business)
-        profile[:ap_business_id] = self.try(:id)
+        profile[:ap_business_id] = try(:id)
       end
-    
+
       profile
-    end    
+    end
 
     def analytics_profile_identify_traits
       trait_map = {ap_first_name: :firstName, ap_last_name: :lastName, ap_email: :email, ap_stable_id: :id, ap_types: :user_types}
