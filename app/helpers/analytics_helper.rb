@@ -45,7 +45,8 @@ module AnalyticsHelper
 
   def gtm_tag_noscript
     if Rails.env.production?
-      "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"4352fe465c8e4236868952c7af6fb82a\"}'></script>".html_safe
+      "<noscript><iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-MRVDHQWS\"
+      height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe></noscript>".html_safe
     end
   end
 end
