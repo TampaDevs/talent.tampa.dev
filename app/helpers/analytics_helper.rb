@@ -28,4 +28,24 @@ module AnalyticsHelper
       "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"4352fe465c8e4236868952c7af6fb82a\"}'></script>".html_safe
     end
   end
+
+  def gtm_tag
+    if Rails.env.production?
+      javascript_tag do
+        <<-JS.html_safe
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MRVDHQWS');
+        JS
+      end
+    end
+  end
+
+  def gtm_tag_noscript
+    if Rails.env.production?
+      "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"4352fe465c8e4236868952c7af6fb82a\"}'></script>".html_safe
+    end
+  end
 end

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>" class="h-full bg-blue-50" dir="<%= t("dir") %>">
   <head>
+    <%= gtm_tag %>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,6 +21,8 @@
   </head>
 
   <body data-controller="analytics--page-views" class="min-h-full flex flex-col">
+    <%= gtm_tag_noscript %>
+
     <div class="flex-1">
       <%= render ImpersonatingBannerComponent.new %>
       <%= render NavBar::BaseComponent.new(current_user) %>
