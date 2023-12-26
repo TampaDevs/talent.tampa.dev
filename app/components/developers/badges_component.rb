@@ -4,6 +4,7 @@ module Developers
       :high_response_rate?,
       :recently_updated?,
       :recently_added?,
+      :codeboxx_student?,
       :source_contributor?,
       :response_rate,
       to: :developer

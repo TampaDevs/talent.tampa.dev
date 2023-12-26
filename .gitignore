@@ -50,3 +50,5 @@ dip.yml
 
 # Ignore local testing output
 tests
+
+.irb_history
