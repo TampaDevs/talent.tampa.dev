@@ -10,9 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_182219) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_26_205122) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
@@ -142,13 +141,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_182219) do
     t.string "stack_overflow"
     t.string "public_profile_key"
     t.boolean "source_contributor", default: false, null: false
-    t.string "mastodon"
     t.integer "response_rate", default: 0, null: false
+    t.string "mastodon"
     t.boolean "product_announcement_notifications", default: true
     t.string "scheduling_link"
     t.datetime "profile_updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.integer "search_score", default: 0, null: false
     t.integer "conversations_count", default: 0, null: false
+    t.boolean "codeboxx_student"
     t.index ["public_profile_key"], name: "index_developers_on_public_profile_key", unique: true
     t.index ["textsearchable_index_col"], name: "textsearchable_index", using: :gin
     t.index ["user_id"], name: "index_developers_on_user_id"
@@ -332,7 +332,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_182219) do
     t.string "processor_id"
     t.boolean "default"
     t.jsonb "data"
-    t.datetime "deleted_at", precision: nil
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["owner_type", "owner_id", "deleted_at", "default"], name: "pay_customer_owner_index"
@@ -369,8 +369,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_182219) do
     t.string "processor_plan", null: false
     t.integer "quantity", default: 1, null: false
     t.string "status", null: false
-    t.datetime "trial_ends_at", precision: nil
-    t.datetime "ends_at", precision: nil
+    t.datetime "trial_ends_at"
+    t.datetime "ends_at"
     t.decimal "application_fee_percent", precision: 8, scale: 2
     t.jsonb "metadata"
     t.jsonb "data"

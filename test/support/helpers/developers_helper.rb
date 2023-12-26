@@ -8,6 +8,7 @@ module DevelopersHelper
         name: "Name",
         hero: "Hero",
         bio: "Bio",
+        codeboxx_student: false,
         avatar: active_storage_blobs(:lovelace),
         location_attributes: {
           city: "City",

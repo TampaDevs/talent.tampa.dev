@@ -21,6 +21,7 @@ class DevelopersController < ApplicationController
 
   def new
     @developer = current_user.build_developer
+    @developer.set_default_codeboxx_student(request.cookies["partner"] == "codeboxx")
     @specialties = Specialty.visible
   end
 
@@ -92,6 +93,7 @@ class DevelopersController < ApplicationController
       :cover_image,
       :search_status,
       :search_query,
+      :codeboxx_student,
       :profile_reminder_notifications,
       :product_announcement_notifications,
       :scheduling_link,

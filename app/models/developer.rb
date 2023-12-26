@@ -47,6 +47,9 @@ class Developer < ApplicationRecord
 
   pg_search_scope :filter_by_search_query, against: [:bio, :hero], associated_against: {specialties: :name}, using: {tsearch: {tsvector_column: :textsearchable_index_col, prefix: true}}
 
+  validates :codeboxx_student, inclusion: {in: [true, false]}, allow_nil: true
+  after_initialize :set_default_codeboxx_student, if: :new_record?
+
   delegate :email, to: :referring_user, prefix: true, allow_nil: true
 
   scope :filter_by_role_types, ->(role_types) do
@@ -118,5 +121,9 @@ class Developer < ApplicationRecord
 
   def featured?
     featured_at? && featured_at >= FEATURE_LENGTH.ago
+  end
+
+  def set_default_codeboxx_student(codeboxx_partner = false)
+    self.codeboxx_student ||= codeboxx_partner
   end
 end

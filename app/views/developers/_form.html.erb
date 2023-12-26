@@ -230,6 +230,19 @@
               </div>
             </fieldset>
 
+            <fieldset>
+              <legend class="text-base font-medium text-blue-900">
+                <%= t(".codeboxx_student.title") %>
+              </legend>
+              <p class="text-sm text-blue-950"><%= sanitize t(".codeboxx_student.learn_more"), tags: %w[a p span div], attributes: %w[href class style] %></p>
+              <div class="mt-4 space-y-4">
+                <div class="flex items-center">
+                  <%= form.check_box :codeboxx_student, class: "focus:ring-blue-500 h-4 w-4 text-blue-950 border-gray-300 rounded" %>
+                  <%= form.label t(".codeboxx_student.label"), t(".codeboxx_student.label"), class: "ml-3 block text-sm font-medium text-blue-950" %>
+                </div>
+              </div>
+            </fieldset>
+
             <%= form.fields_for :role_type, include_id: false do |role_type| %>
               <fieldset>
                 <div>

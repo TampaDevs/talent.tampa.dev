@@ -7,6 +7,7 @@ module HasBadges
     source_contributor
     recently_added
     recently_updated
+    codeboxx_student
   ]
 
   RECENT_CHANGES_LENGTH = 1.week
