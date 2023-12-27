@@ -18,7 +18,7 @@ class Admin::ConversationsTest < ActionDispatch::IntegrationTest
 
     assert_select "h1", I18n.t("admin.conversations.index.title")
     assert_select "td", text: "#{businesses(:subscriber).company} (#{businesses(:subscriber).name})"
-    assert_select "td", text: developers(:prospect).name
+    assert_select "td", text: "#{developers(:prospect).name} (#{developers(:prospect).user.email})"
   end
 
   test "lists developer conversations" do

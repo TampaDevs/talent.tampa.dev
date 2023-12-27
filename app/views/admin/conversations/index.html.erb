@@ -33,7 +33,7 @@
 
           <% row.with_cell do %>
             <% if conversation.developer %>
-              <%= render Admin::BasicLinkComponent.new(conversation.developer.name, admin_developer_conversations_path(conversation.developer)) %>
+              <%= render Admin::BasicLinkComponent.new(conversation.developer.name, admin_developer_conversations_path(conversation.developer)) %> (<%= render Admin::BasicLinkComponent.new(conversation.developer.user.email, "mailto:#{conversation.developer.user.email}") %>)
             <% else %>
               <%= t("deleted_account") %>
             <% end %>
