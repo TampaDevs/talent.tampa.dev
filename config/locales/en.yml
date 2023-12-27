@@ -235,6 +235,13 @@ en:
       cancel: Cancel
       message: Are you sure you want to flag this conversation and block the sender? This will hide the conversation and they won't be able to contact you again.
       title: Block sender
+  bootcamps:
+    show:
+      caption: " has been upskilling developers since 2018."
+      cta: Learn More
+      description: CodeBoxx Academy is the official bootcamp partner of Tampa Devs Talent.
+      title: Coding Bootcamps
+      title_og: Coding Bootcamps
   business_mailer:
     cancel_subscription:
       subject: Tampa Devs Talent cancellation confirmation
@@ -410,7 +417,7 @@ en:
         markdown: Markdown is supported but links and images are removed.
       codeboxx_student:
         label: Yes!
-        learn_more: <a style="text-decoration:underline" href="https://www.academy.codeboxx.com?utm_source=tampadevs_talent&utm_medium=organic" target="_blank">Click here</a> to learn more about bootcamp programs at CodeBoxx.
+        learn_more: <a style="text-decoration:underline" href="https://www.academy.codeboxx.com?utm_source=td_talent&utm_medium=organic" target="_blank">Click here</a> to learn more about bootcamp programs at CodeBoxx.
         title: Are you a CodeBoxx student or graduate?
       creating: Creating...
       loading: Loading...
@@ -607,6 +614,7 @@ en:
   nav_bar:
     base_component:
       affiliates: Affiliate program
+      bootcamps: Bootcamps
       developers: Developers
       home: Home
       pricing: Pricing

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     }
 
     resource :about, only: :show, controller: :about
+    resource :bootcamps, only: :show, controller: :bootcamps
     resource :conduct, only: :show
     resource :home, only: :show
     resource :pricing, only: :show, controller: :pricing
