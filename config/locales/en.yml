@@ -365,7 +365,7 @@ en:
       source_contributor: Source contributor
       title: Admin
     badges_component:
-      codeboxx_student: CodeBoxx Student
+      codeboxx_student: CodeBoxx
       featured: Featured
       high_response_rate: High response rate
       recently_added: New profile
@@ -411,7 +411,7 @@ en:
       codeboxx_student:
         label: Yes!
         learn_more: <a style="text-decoration:underline" href="https://www.academy.codeboxx.com?utm_source=tampadevs_talent&utm_medium=organic" target="_blank">Click here</a> to learn more about bootcamp programs at CodeBoxx.
-        title: Are you a CodeBoxx student?
+        title: Are you a CodeBoxx student or graduate?
       creating: Creating...
       loading: Loading...
       notifications:
