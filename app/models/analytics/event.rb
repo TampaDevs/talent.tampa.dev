@@ -310,6 +310,24 @@ module Analytics
       )
     end
 
+    def self.bootcamps_page_viewed(user, cookies)
+      if user.nil?
+        return
+      end
+
+      SegmentClient.track(
+        user_id: user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "bootcamps_page_viewed",
+        properties: {
+          user: {
+            **user.analytics_profile,
+            **user.attributes
+          }
+        }
+      )
+    end
+
     def self.tos_page_viewed(user, cookies)
       if user.nil?
         return
