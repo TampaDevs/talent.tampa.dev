@@ -11,6 +11,8 @@ class Business < ApplicationRecord
   has_one :referring_user, through: :user
   has_many :conversations, -> { visible }
 
+  has_many :job_posts, dependent: :destroy
+
   has_noticed_notifications
 
   validates :contact_name, presence: true
