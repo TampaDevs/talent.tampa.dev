@@ -1,0 +1,5 @@
+class AddJobPostIdToRoleLevels < ActiveRecord::Migration[7.0]
+  def change
+    add_reference :role_levels, :job_post, null: true, foreign_key: true
+  end
+end
