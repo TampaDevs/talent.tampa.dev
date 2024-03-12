@@ -30,7 +30,7 @@ namespace :users do
 
     response = sg.client._("marketing/contacts").put(request_body: {contacts: contacts})
 
-    if response.status_code != 202
+    if response.status_code != '202'
       Rails.logger.error "Failed to update SendGrid contacts with error #{response.status_code} #{response.body}"
     else
       Rails.logger.info "Updated #{contacts.length} contacts(s)"
