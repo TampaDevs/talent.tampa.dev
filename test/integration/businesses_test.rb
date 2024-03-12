@@ -198,6 +198,7 @@ class BusinessesTest < ActionDispatch::IntegrationTest
         contact_role: "Director",
         company: "Business, LLC",
         bio: "We're in the business for business.",
+        phone_number: "1234567890",
         avatar: fixture_file_upload("basecamp.png", "image/png"),
         website: "http://www.example.com"
       }

@@ -5,6 +5,7 @@ module BusinessesHelper
       name: "Name",
       company: "Company",
       bio: "Bio",
+      phone_number: "1234567890",
       avatar: active_storage_blobs(:basecamp),
       developer_notifications: :no
     }
