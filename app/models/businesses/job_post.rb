@@ -8,12 +8,12 @@ module Businesses
     has_one :role_level, dependent: :destroy, autosave: true
     has_one :role_type, dependent: :destroy, autosave: true
 
-    enum status: { open: 1, closed: 2 }
-    enum role_location: { remote: 1, in_office: 2, hybrid: 3 }
+    enum status: {open: 1, closed: 2}
+    enum role_location: {remote: 1, in_office: 2, hybrid: 3}
 
     validates :role_level, :role_type, :role_location, :description, :city, presence: true
-    validates :description, length: { minimum: 10 }
-    validates :city, length: { minimum: 2 }
+    validates :description, length: {minimum: 10}
+    validates :city, length: {minimum: 2}
 
     validate :validate_salary_range_for_full_time_employment
     validate :validate_fixed_fee_for_contract

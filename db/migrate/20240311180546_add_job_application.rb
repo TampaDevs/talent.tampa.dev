@@ -7,7 +7,7 @@ class AddJobApplication < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    
+
     add_index :job_applications, :status
   end
 end

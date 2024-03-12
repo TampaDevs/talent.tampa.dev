@@ -1,4 +1,3 @@
-
 class JobPostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
   before_action :require_business!, only: %i[new create edit update]
@@ -40,4 +39,3 @@ class JobPostsController < ApplicationController
     ).merge(business: business)
   end
 end
-  
