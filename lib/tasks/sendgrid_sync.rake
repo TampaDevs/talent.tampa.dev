@@ -17,10 +17,10 @@ namespace :users do
       }
 
       if u.developer
-        contact[:custom_fields]["e16_T"] = u.developer.linkedin
-        contact[:custom_fields]["e18_T"] = u.developer.github
-        contact[:custom_fields]["e53_T"] = u.developer.codeboxx_student
-        contact[:custom_fields]["e15_T"] = u.developer.website
+        contact[:custom_fields]["e16_T"] = u.developer.linkedin || ""
+        contact[:custom_fields]["e18_T"] = u.developer.github || ""
+        contact[:custom_fields]["e53_T"] = "1" if u.developer.codeboxx_student
+        contact[:custom_fields]["e15_T"] = u.developer.website || ""
       end
 
       contacts << contact
