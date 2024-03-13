@@ -87,6 +87,13 @@
                 <%= form.text_field :contact_role, class: field_classes(form, :contact_role) %>
               </div>
             </div>
+
+            <div class="sm:col-span-3">
+              <%= form.label :phone_number, class: "block text-sm font-medium text-blue-950" %>
+              <div class="mt-1">
+                <%= form.text_field :phone_number, class: field_classes(form, :phone_number), value: number_to_phone(form.object.phone_number, pattern: /(\d{1,3})(\d{3})(\d{4})$/, area_code: true) %>
+              </div>
+            </div>
           </div>
         </div>
       </div>

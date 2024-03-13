@@ -30,6 +30,7 @@ module SeedsHelper
       attributes.merge!({
         user: create_user!(name),
         contact_name: Faker::Name.name,
+        phone_number: rand.to_s[2..11],
         company:,
         bio: Faker::Lorem.paragraph(sentence_count: 10)
       })

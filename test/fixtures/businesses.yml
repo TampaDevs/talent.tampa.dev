@@ -3,9 +3,11 @@ one:
   contact_name: Business Owner One
   company: Company One
   bio: We are Company One.
+  phone_number: "1111111111"
 
 subscriber:
   user: subscribed_business
   contact_name: Business Owner with Conversation
   company: Conversation Business
   bio: We are Conversation Business.
+  phone_number: "2222222222"
