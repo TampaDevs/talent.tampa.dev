@@ -46,7 +46,7 @@ class BusinessesController < ApplicationController
 
     if @business.update(permitted_attributes(@business))
       Analytics::Event.business_profile_updated(current_user, cookies, @business)
-      redirect_to developers_path, notice: t(".updated")
+      redirect_to edit_business_path(current_user.business), notice: t(".updated")
     else
       render :edit, status: :unprocessable_entity
     end
