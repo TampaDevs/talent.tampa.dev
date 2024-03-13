@@ -56,6 +56,10 @@ class User < ApplicationRecord
       !HiringAgreements::Term.signed_by?(self)
   end
 
+  def needs_to_provide_phone_number?
+    !business.phone_number.present?
+  end
+
   def permissions
     Businesses::Permission.new(subscriptions)
   end
