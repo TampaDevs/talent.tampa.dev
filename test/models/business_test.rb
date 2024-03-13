@@ -106,7 +106,7 @@ class BusinessTest < ActiveSupport::TestCase
     invalid_phone_numbers.each do |invalid_phone_number|
       business.phone_number = invalid_phone_number
       assert_not business.valid?, "#{invalid_phone_number} should be an invalid phone number format"
-      assert_includes business.errors[:phone_number], "Phone number must be 10-digits", "#{invalid_phone_number} should fail the 10 digits format validation"
+      assert_includes business.errors[:phone_number], "must be 10 digits", "#{invalid_phone_number} should fail the 10 digits format validation"
     end
   end
 end

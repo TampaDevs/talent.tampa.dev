@@ -88,7 +88,7 @@ class BusinessesTest < ActionDispatch::IntegrationTest
         website: "http://www.newwebsite.com"
       }
     }
-    assert_redirected_to developers_path
+    assert_redirected_to edit_business_path(business)
     follow_redirect!
 
     assert_equal "New Owner Name", business.reload.name
@@ -123,7 +123,7 @@ class BusinessesTest < ActionDispatch::IntegrationTest
         website: "http://www.newwebsite.com"
       }
     }
-    assert_redirected_to developers_path
+    assert_redirected_to edit_business_path(business)
     assert_equal "New Name", business.reload.name
   end
 

@@ -21,7 +21,7 @@ class Business < ApplicationRecord
 
   validates :phone_number,
     format: {with: /\A(?:\D*\d){10}\D*\z/,
-             message: "Phone number must be 10-digits"}, presence: true
+             message: "must be 10 digits"}, presence: true
 
   validates :developer_notifications, inclusion: {in: developer_notifications.keys}
 
