@@ -753,13 +753,13 @@ en:
       title: Ready to get started?
     faq:
       annual:
-        a_html: Yes. Email the Tampa Devs Talent team to set up discounted annual billing at <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
+        a_html: Yes! Email the Tampa Devs Talent team to set up discounted annual billing at <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: Can I pay annually or yearly?
       cancellation:
-        a_html: Yes. You can cancel your subscription from the Billing link in the user drop-down. You will lose access to all paid features at the end of your billing period.
+        a_html: Yes! You can cancel your subscription from the Billing link in the user drop-down. You will lose access to all paid features at the end of your billing period.
         q: Can I cancel my subscription at any time?
       developers:
-        a: No. Tampa Devs Talent is FREE for developers!
+        a: No. Tampa Devs Talent is free for developers!
         q: Does Tampa Devs Talent cost anything for developers?
       fee:
         a_html: If you hire an employee through Tampa Devs Talent you agree to pay a placement fee equal to 5% of their salary.
@@ -768,6 +768,9 @@ en:
         a_html: Email the Tampa Devs Talent team with any questions. You can reach us at <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
         q: Who can I contact for more specific questions?
       title: Frequently asked questions
+      warranty:
+        a_html: Yes! Tampa Devs offers a 90 day warranty for all hires, and we'll issue a credit equal to the full amount of the original placement fee paid.
+        q: Is there a hiring fee warranty?
     hero:
       description: Directly connect with hundreds of local developers in Tampa Bay looking for their next job.
       title: Hire developers in Tampa Bay
@@ -781,6 +784,7 @@ en:
         oss: 100% nonprofit. Supports educational and community programs at Tampa Devs, Tampa's fastest-growing nonprofit developer community
         support: Direct, personal support from the Talent Team at Tampa Devs
         title: Tampa Devs Talent exclusives
+        warranty: 90 day placement warranty
       hiring_fee: "+ 5% first year salary"
       per_month: "/month"
       title_html: For your 1<sup>st</sup> hire and beyond
