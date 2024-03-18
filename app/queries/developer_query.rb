@@ -21,7 +21,8 @@ class DeveloperQuery
   end
 
   def filters
-    @filters = {sort:, utc_offsets:, role_types:, role_levels:, include_not_interested:, search_query:, countries:, badges:}
+    @filters = {sort:, utc_offsets:, role_types:, role_levels:, include_not_interested:, search_query:, countries:,
+                badges:}
   end
 
   def pagy
@@ -78,7 +79,7 @@ class DeveloperQuery
       sort: @sort,
       specialty_ids: @specialty_ids,
       countries: @countries,
-      search_query: search_query,
+      search_query:,
       utc_offsets: @utc_offsets,
       role_types: @role_types,
       role_levels: @role_levels,
@@ -132,14 +133,16 @@ class DeveloperQuery
         @_records.merge!(Developer.recently_added)
       elsif badge == :recently_updated
         @_records.merge!(Developer.recently_updated)
+      elsif badge == :codeboxx_student
+        @_records.merge!(Developer.codeboxx_student)
       end
     end
   end
 
   def specialty_filter_records
-    if specialty_ids.any?
-      @_records.merge!(Developer.with_specialty_ids(specialty_ids))
-    end
+    return unless specialty_ids.any?
+
+    @_records.merge!(Developer.with_specialty_ids(specialty_ids))
   end
 
   def sort_records
@@ -155,9 +158,9 @@ class DeveloperQuery
   end
 
   def utc_offset_filter_records
-    if utc_offsets.any?
-      @_records.merge!(Developer.filter_by_utc_offsets(utc_offsets))
-    end
+    return unless utc_offsets.any?
+
+    @_records.merge!(Developer.filter_by_utc_offsets(utc_offsets))
   end
 
   def role_type_filter_records

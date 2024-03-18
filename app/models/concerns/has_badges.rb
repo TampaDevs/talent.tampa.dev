@@ -17,6 +17,7 @@ module HasBadges
   included do
     scope :high_response_rate, -> { where("response_rate >= ?", HIGH_RESPONSE_RATE_CUTTOFF) }
     scope :source_contributor, -> { where(source_contributor: true) }
+    scope :codeboxx_student, -> { where(codeboxx_student: true) }
     scope :recently_added, -> { where("developers.created_at >= ?", RECENT_CHANGES_LENGTH.ago) }
     scope :recently_updated, -> { where("developers.profile_updated_at >= ?", RECENT_CHANGES_LENGTH.ago) }
   end
