@@ -6,6 +6,10 @@
 
 * June 7 - Render signed hiring agreement PDFs via Prawn #870
 
+### May
+
+* May 22 - Progressively enhanced combobox for developer specialties #820 @MiaSinek
+
 ### April
 
 * April 8 - Send subscription renewal email #860 @jkostolansky
