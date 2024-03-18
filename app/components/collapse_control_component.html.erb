@@ -1,6 +1,6 @@
-<%= tag.button type: "button", data: {action: "toggle#toggle accessibility#toggleAriaExpanded", accessibility_target: "button"}, "aria-expanded": !collapsed?, class: "px-2 py-3 w-full flex items-center justify-between text-gray-400 hover:text-gray-500 text-sm" do %>
+<%= tag.button type: "button", data: {action: "toggle#toggle accessibility#toggleAriaExpanded", accessibility_target: "button"}, "aria-expanded": !collapsed?, class: "px-2 py-3 w-full flex items-center justify-between text-blue-400 hover:text-blue-950 text-sm" do %>
   <div class="flex items-center space-x-3">
-    <%= tag.span title, class: ["font-medium text-gray-900", "text-xs": subcomponent?] %>
+    <%= tag.span title, class: ["font-medium text-blue-900", "text-xs": subcomponent?] %>
     <%= content %>
   </div>
 

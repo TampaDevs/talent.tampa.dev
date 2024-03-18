@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   around_action :set_locale
   before_action :redirect_suspended_accounts
   before_action :set_variant
+  before_action :set_uuid
 
   helper_method :resolve_locale
   helper_method :turbo_native_app?
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::Base
   impersonates :user
 
   def after_sign_in_path_for(user)
+    Analytics::Event.user_signed_in(user, cookies)
     if (stored_location = stored_location_for(:user)).present?
       stored_location
     elsif user.developer.present? || user.business.present?
@@ -44,5 +46,9 @@ class ApplicationController < ActionController::Base
     if Feature.enabled?(:redesign)
       request.variant = :redesign
     end
+  end
+
+  def set_uuid
+    cookies[:uuid] = SecureRandom.uuid unless cookies[:uuid]
   end
 end

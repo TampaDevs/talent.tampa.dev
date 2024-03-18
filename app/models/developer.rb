@@ -11,6 +11,7 @@ class Developer < ApplicationRecord
   include PersonName
   include PgSearch::Model
   include PublicProfile
+  include Analytics::Profile
 
   FEATURE_LENGTH = 1.week
 
@@ -45,6 +46,9 @@ class Developer < ApplicationRecord
   validates :response_rate, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
 
   pg_search_scope :filter_by_search_query, against: [:bio, :hero], associated_against: {specialties: :name}, using: {tsearch: {tsvector_column: :textsearchable_index_col, prefix: true}}
+
+  validates :codeboxx_student, inclusion: {in: [true, false]}, allow_nil: true
+  after_initialize :set_default_codeboxx_student, if: :new_record?
 
   delegate :email, to: :referring_user, prefix: true, allow_nil: true
 
@@ -117,5 +121,9 @@ class Developer < ApplicationRecord
 
   def featured?
     featured_at? && featured_at >= FEATURE_LENGTH.ago
+  end
+
+  def set_default_codeboxx_student(codeboxx_partner = false)
+    self.codeboxx_student ||= codeboxx_partner
   end
 end

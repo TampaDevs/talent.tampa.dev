@@ -9,7 +9,7 @@ module Businesses
         position: "Rails Developer",
         start_date: Date.today,
         employment_type: :full_time_employment,
-        feedback: "Joe, you are doing a great job. Keep it up 🙏"
+        feedback: "Team, you are doing a great job. Keep it up 🙏"
       }
     end
   end

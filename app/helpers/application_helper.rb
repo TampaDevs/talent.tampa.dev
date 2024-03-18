@@ -8,7 +8,7 @@ module ApplicationHelper
       if Feature.enabled?(:redesign)
         ["redesign", "fonts"]
       else
-        ["application", "inter"]
+        ["application", "nunito"]
       end
 
     stylesheet_link_tag(*stylesheets, media: "all", "data-turbo-track": "reload")

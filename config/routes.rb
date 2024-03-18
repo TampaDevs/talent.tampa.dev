@@ -3,10 +3,12 @@ require "sidekiq/web"
 Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, controllers: {
-      registrations: "users"
+      registrations: "users",
+      sessions: "users/sessions"
     }
 
     resource :about, only: :show, controller: :about
+    resource :bootcamps, only: :show, controller: :bootcamps
     resource :conduct, only: :show
     resource :home, only: :show
     resource :pricing, only: :show, controller: :pricing

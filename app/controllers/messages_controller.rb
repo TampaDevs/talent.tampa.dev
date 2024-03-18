@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
     authorize @message
 
     if @message.save_and_notify
+      Analytics::Event.message_created(current_user, cookies, @message)
       respond_to do |format|
         format.turbo_stream { @new_message = conversation.messages.build }
         format.html { redirect_to conversation }

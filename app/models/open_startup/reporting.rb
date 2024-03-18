@@ -123,13 +123,17 @@ module OpenStartup
         mrr += subscription.items.first.price.unit_amount.fdiv(100)
       end
 
-      metric.update!(mrr: mrr.round)
+      mrr = mrr.round
+      mrr = 0 if mrr.nil?
+
+      metric.update!(mrr: mrr)
     end
 
     def fetch_visitors
       log "Fetching visitors..."
-      visitors = Visitors.fetch
-      metric.update!(visitors:)
+      # TODO: Migrate reporting from Fathom to Segment
+      # visitors = Visitors.fetch
+      # metric.update!(visitors:)
     end
 
     def metric

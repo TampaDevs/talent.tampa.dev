@@ -3,6 +3,7 @@ class User < ApplicationRecord
   include Hashid::Rails
   include PayCustomer
   include Referrable
+  include Analytics::Profile
 
   devise :confirmable,
     :database_authenticatable,
@@ -53,6 +54,10 @@ class User < ApplicationRecord
     HiringAgreements::Term.active? &&
       !permissions.legacy_subscription? &&
       !HiringAgreements::Term.signed_by?(self)
+  end
+
+  def needs_to_provide_phone_number?
+    !business.phone_number.present?
   end
 
   def permissions

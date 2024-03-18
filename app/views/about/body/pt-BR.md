@@ -10,15 +10,15 @@ RailsDevs se esforça para devolver o poder ao desenvolvedor independente. Em ve
 
 RailsDevs é um Startup Aberta *e* de código livre. Ela opera de forma totalmente transparente e compartilha suas métricas, como receita e tráfego.
 
-* [Código fonte](https://github.com/joemasilotti/railsdevs.com/)
+* [Código fonte](https://github.com/tampadevs/talent.tampa.dev/)
 * [Métricas públicas](https://app.usefathom.com/share/cacnfaan/railsdevs.com)
 * [Receitas e despesas](/open)
 * [Relatório de bugs](https://app.honeybadger.io/project/EKRGgkQdR0)
 
-Além disso, estou tomando todas as minhas decisões em público. Estou postando perguntas e ideias quando procuro feedback no [GitHub Discussions](https://github.com/joemasilotti/railsdevs.com/discussions). E estou twittando sobre o progresso (e prévias) [no Twitter](https://twitter.com/joemasilotti).
+Além disso, estou tomando todas as minhas decisões em público. Estou postando perguntas e ideias quando procuro feedback no [GitHub Discussions](https://github.com/tampadevs/talent.tampa.dev/discussions). E estou twittando sobre o progresso (e prévias) [no Twitter](https://twitter.com/tampadevs).
 
 ### Criar um ambiente seguro e inclusivo
 
 O site está aberto a todos os desenvolvedores, independentemente de raça, cor, nacionalidade, religião, sexo, idade, deficiência ou nível de habilidade que seguem o [código de conduta](/conduct).
 
-Se algo não parecer certo, ou você se sentir desconfortável, por favor [me envie um e-mail](mailto:joe@railsdevs.com) imediatamente.
+Se algo não parecer certo, ou você se sentir desconfortável, por favor [me envie um e-mail](mailto:jobs@tampadevs.com) imediatamente.

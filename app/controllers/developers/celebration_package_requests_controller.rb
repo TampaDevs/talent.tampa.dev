@@ -10,6 +10,7 @@ module Developers
     def create
       @form = CelebrationPackageRequest.new(developers_celebration_package_request_params)
       if @form.save_and_notify
+        Analytics::Event.celebration_package_requested(current_user, cookies, @form)
         redirect_to root_path, notice: t(".success")
       else
         render :new, status: :unprocessable_entity

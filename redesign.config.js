@@ -55,9 +55,9 @@ module.exports = {
       }
     },
     fontFamily: {
-      sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
+      sans: ["Nunito", ...defaultTheme.fontFamily.sans],
       mono: ["Source Code Pro", "serif"],
-      heading: ["Poppins", ...defaultTheme.fontFamily.sans]
+      heading: ["Nunito", ...defaultTheme.fontFamily.sans]
     },
     fontSize: {
       "xs": ["12px", "18px"],

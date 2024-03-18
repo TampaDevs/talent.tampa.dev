@@ -1,10 +1,12 @@
 class UpdateDeveloperResponseRateJob < ApplicationJob
   queue_as :default
 
-  def perform(developer)
+  def perform(developer_id)
+    developer = Developer.find(developer_id)
     conversations = eligable_conversations(developer)
     replied_rate = Stats::Conversation.new(conversations).replied_rate
     developer.update!(response_rate: (replied_rate * 100).round)
+    Analytics::Event.developer_response_rate_updated(developer_id, (replied_rate * 100).round)
   end
 
   private

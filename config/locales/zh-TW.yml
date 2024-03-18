@@ -1,9 +1,0 @@
----
-zh-TW:
-  nav_bar:
-    base_component:
-      developers: 開發者們
-      pricing: 價格
-  shared:
-    footer:
-      language_name_of_locale: 繁體中文

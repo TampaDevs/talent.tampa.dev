@@ -25,8 +25,8 @@ module.exports = {
         red: colors.rose,
       },
       fontFamily: {
-        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
-        serif: ["Merriweather", "serif"],
+        sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+        serif: ["Nunito", "serif"],
       },
       animation: {
         "reverse-spin": "reverse-spin 1.5s linear infinite"

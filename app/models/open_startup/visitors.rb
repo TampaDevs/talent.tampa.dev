@@ -1,5 +1,6 @@
 require "fathom"
 
+# TODO: Migrate reporting from Fathom to Segment
 module OpenStartup
   class Visitors
     def self.fetch

@@ -94,6 +94,6 @@ class ConversationsTest < ActionDispatch::IntegrationTest
 
     assert_match(/deleted account/, response.body)
     assert_no_match(/Pay hiring fee/, response.body)
-    assert_select "title", "Conversation with (deleted account) · RailsDevs"
+    assert_select "title", "Conversation with (deleted account) · Tampa Devs Talent"
   end
 end

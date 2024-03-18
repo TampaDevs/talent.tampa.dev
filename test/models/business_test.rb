@@ -90,4 +90,23 @@ class BusinessTest < ActiveSupport::TestCase
 
     assert business.no_developer_notifications?
   end
+
+  test "should require a phone number" do
+    business = Business.new(business_attributes.merge(phone_number: nil))
+    assert_not business.valid?, "Business should not be valid without a phone number"
+    assert_includes business.errors[:phone_number], "can't be blank"
+  end
+
+  test "phone number must be 10 digits" do
+    valid_phone_number = "1234567890"
+    business = Business.new(business_attributes.merge(phone_number: valid_phone_number))
+    assert business.valid?, "Business with valid phone number format should be valid"
+
+    invalid_phone_numbers = ["12345", "abcdefghij", "123-456-78900", "12345678901"]
+    invalid_phone_numbers.each do |invalid_phone_number|
+      business.phone_number = invalid_phone_number
+      assert_not business.valid?, "#{invalid_phone_number} should be an invalid phone number format"
+      assert_includes business.errors[:phone_number], "must be 10 digits", "#{invalid_phone_number} should fail the 10 digits format validation"
+    end
+  end
 end

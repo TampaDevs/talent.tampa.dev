@@ -9,6 +9,7 @@ class BlocksController < ApplicationController
   def create
     authorize conversation
     conversation.touch(blocked_by_column)
+    Analytics::Event.block_created(current_user, cookies, @conversation, other_recipient)
     redirect_to root_path, notice: t(".notice", other_recipient:)
   end
 

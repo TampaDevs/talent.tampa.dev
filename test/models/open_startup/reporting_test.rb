@@ -93,8 +93,9 @@ class OpenStartup::ReportingTest < ActiveSupport::TestCase
     refresh_metrics
 
     assert_equal OpenStartup::Metric.most_recent.data, {
-      "mrr" => 198,
-      "visitors" => 2500
+      "mrr" => 198
+      # TODO: Migrate Fathom to Segment
+      # "visitors" => 2500
     }
   end
 

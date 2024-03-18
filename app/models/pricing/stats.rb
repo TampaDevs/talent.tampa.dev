@@ -28,7 +28,7 @@ module Pricing
 
     def devs_per_month
       devs_per_month = Developer.group("DATE_TRUNC('month', created_at)").count.values
-      devs_per_month.sum.fdiv(devs_per_month.count)
+      devs_per_month.count.zero? ? 0 : devs_per_month.sum.fdiv(devs_per_month.count)
     end
   end
 end

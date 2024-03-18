@@ -1,6 +1,6 @@
 # Redesign
 
-Notes as [the redesign](https://github.com/joemasilotti/railsdevs.com/milestone/5) gets implemented.
+Notes as [the redesign](https://github.com/tampadevs/talent.tampa.dev/milestone/5) gets implemented.
 
 ## Assumptions made
 

@@ -4,17 +4,17 @@
       <% if message.deleted_sender? %>
         <%= t("deleted_account") %>
       <% else %>
-        <span class="text-gray-900"><%= message.sender?(current_user) ? t(".you") : message.sender.name %></span>
-        <span class="text-gray-600"><%= t(".wrote") %></span>
+        <span class="text-blue-900"><%= message.sender?(current_user) ? t(".you") : message.sender.name %></span>
+        <span class="text-blue-950"><%= t(".wrote") %></span>
       <% end %>
     </h3>
 
-    <p class="mt-1 text-sm text-gray-600 whitespace-nowrap sm:mt-0 sm:ml-3">
+    <p class="mt-1 text-sm text-blue-950 whitespace-nowrap sm:mt-0 sm:ml-3">
       <%= render TimeComponent.new(message.created_at) %>
     </p>
   </div>
 
-  <div class="mt-4 text-sm text-gray-800 prose">
+  <div class="mt-4 text-sm text-blue-800 prose">
     <%== message.body_html %>
   </div>
 </li>
