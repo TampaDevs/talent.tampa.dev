@@ -606,6 +606,7 @@ en:
     loading: Loading...
   messages:
     form:
+      celebration_package_reminder_html: Hired? Don't forget to request a <a class='underline' href="/hired">celebration package</a> for free swag!
       help: Add your message
       hiring_fee_agreement: I agree to pay Tampa Devs Talent the 5% hiring fee if I hire this developer for a full-time role.
       hiring_fee_cta: Questions?
