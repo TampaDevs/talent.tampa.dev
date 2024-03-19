@@ -3,6 +3,11 @@
       Developers::InvisibleBannerComponent.new(current_user),
       Developers::NewFieldsComponent.new(current_user)
     ]) %>
+
+<%= render Businesses::BannerComponent.new([
+      Businesses::InvisibleBannerComponent.new(current_user)
+    ]) %>
+    
 <%= render "shared/flash" %>
 
 <main class="mx-auto">

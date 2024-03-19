@@ -251,6 +251,9 @@ en:
     welcome:
       subject: "Welcome to Tampa Devs Talent 👋"
   businesses:
+    invisible_banner_component:
+      cta: Contact Us
+      title_html: Your business profile is invisible. Please contact <a href="mailto:jobs@tampadevs.com">jobs@tampadevs.com</a> to reinstate your access.
     admin_component:
       conversations: Conversations
       invisiblize: Invisiblize
@@ -481,8 +484,8 @@ en:
         title: No developers found
       title: Tampa Bay developers
     invisible_banner_component:
-      cta: Edit my profile
-      title: Your developer profile is invisible – only you can see it.
+      cta: Contact us
+      title_html: Your developer profile is invisible. Please contact <a href="mailto:jobs@tampadevs.com">jobs@tampadevs.com</a> to reinstate your access.
     meta:
       description: "%{count}+ local developers looking for their next gig. For all stacks, experience levels, and working arrangements, you'll find them all here."
       freelance: freelance
@@ -677,6 +680,7 @@ en:
     businesses:
       invisiblize_notification:
         title: Your profile on Tampa Devs Talent was flagged
+        cta: Edit your profile
     developers:
       invisiblize_notification:
         title: Your profile on Tampa Devs Talent was flagged
