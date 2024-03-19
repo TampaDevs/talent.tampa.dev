@@ -1,10 +1,12 @@
 class ColdMessagesController < ApplicationController
+  include VisibilityRestrictions
   before_action :authenticate_user!
   before_action :require_business!
   before_action :require_new_conversation!
   before_action :require_active_subscription!
   before_action :require_signed_hiring_agreement!
   before_action :require_business_phone_number!
+  before_action :require_developer_and_business_not_invisible!
 
   def new
     message = Message.new(conversation:)
@@ -27,6 +29,13 @@ class ColdMessagesController < ApplicationController
   def cold_message(message)
     ColdMessage.new(message:, show_hiring_fee_terms: permissions.pays_hiring_fee?)
   end
+
+  # def require_not_invisible!
+  #   if current_user.business.invisible?
+  #     store_location!
+  #     redirect_to root_path, alert: I18n.t("errors.business_invisible")
+  #   end
+  # end
 
   def require_business!
     unless business.present?

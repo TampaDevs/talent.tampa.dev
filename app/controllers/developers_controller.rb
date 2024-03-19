@@ -1,4 +1,5 @@
 class DevelopersController < ApplicationController
+  include VisibilityRestrictions
   before_action :authenticate_user!, only: %i[new create edit update]
   before_action :require_new_developer!, only: %i[new create]
 
@@ -61,6 +62,8 @@ class DevelopersController < ApplicationController
   end
 
   def show
+    require_developer_not_invisible!
+
     @developer = Developer.find_by_hashid!(params[:id])
 
     @public_key = params[:key]
@@ -80,6 +83,13 @@ class DevelopersController < ApplicationController
       params[:developer][:search_status] = "invisible"
     end
   end
+
+  # def require_not_invisible!
+  #   if current_user.business.invisible?
+  #     store_location!
+  #     redirect_to root_path, alert: I18n.t("errors.business_invisible")
+  #   end
+  # end
 
   def pundit_params_for(_record)
     params["developer-filters-mobile"] || params
