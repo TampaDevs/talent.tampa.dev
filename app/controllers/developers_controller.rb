@@ -62,7 +62,7 @@ class DevelopersController < ApplicationController
   end
 
   def show
-    require_developer_not_invisible!
+    require_business_not_invisible!
 
     @developer = Developer.find_by_hashid!(params[:id])
 
