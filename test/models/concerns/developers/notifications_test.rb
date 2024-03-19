@@ -61,7 +61,7 @@ class Developers::NotificationsTest < ActiveSupport::TestCase
 
   test "notifies the developer when they are invisibilized" do
     assert_sends_notification Developers::InvisiblizeNotification, to: users(:developer) do
-      developers(:one).invisiblize_and_notify!
+      developers(:one).toggle_visibility_and_notify!
     end
   end
 

@@ -42,11 +42,14 @@ class DevelopersController < ApplicationController
     @developer = Developer.find_by_hashid!(params[:id])
     @specialties = Specialty.visible
     authorize @developer
+    enforce_admin_visibility_controls!
   end
 
   def update
     @developer = Developer.find_by_hashid!(params[:id])
     authorize @developer
+
+    enforce_admin_visibility_controls!
 
     if @developer.update_and_notify(developer_params)
       Analytics::Event.developer_profile_updated(current_user, cookies, developer_params)
@@ -67,6 +70,16 @@ class DevelopersController < ApplicationController
   end
 
   private
+
+  def enforce_admin_visibility_controls!
+    return if params[:developer].nil? || params[:developer][:search_status].blank?
+
+    developer = Developer.find_by_hashid!(params[:id])
+
+    if !current_user.admin? && developer.invisible?
+      params[:developer][:search_status] = "invisible"
+    end
+  end
 
   def pundit_params_for(_record)
     params["developer-filters-mobile"] || params
