@@ -1,4 +1,6 @@
 class DeveloperMailer < ApplicationMailer
+  include VisibilityRestrictions
+
   def welcome
     @developer = params[:developer]
     mail(to: @developer.user.email, subject: t(".subject"))
@@ -8,6 +10,8 @@ class DeveloperMailer < ApplicationMailer
     @notification = params[:record].to_notification
     recipient = params[:recipient]
     @developer = @notification.developer
+
+    return if user_has_invisible_profiles?(@developer)
 
     mail(
       to: recipient.email,
@@ -22,6 +26,8 @@ class DeveloperMailer < ApplicationMailer
     @developer = @conversation.developer
     @business = @conversation.business
 
+    return if user_has_invisible_profiles?(@developer) || user_has_invisible_profiles?(@business)
+
     mail(
       to: @developer.user.email,
       from: Rails.configuration.emails.reminders_mailbox!,
@@ -32,6 +38,8 @@ class DeveloperMailer < ApplicationMailer
 
   def first_message
     @developer = params[:developer]
+
+    return if user_has_invisible_profiles?(@developer)
 
     mail(
       to: @developer.user.email,

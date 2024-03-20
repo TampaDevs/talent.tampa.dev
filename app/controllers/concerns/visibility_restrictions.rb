@@ -1,5 +1,6 @@
 module VisibilityRestrictions
   extend ActiveSupport::Concern
+
   def require_business_not_invisible!
     if current_user&.business&.present? && current_user.business.invisible?
       store_location!
@@ -17,5 +18,9 @@ module VisibilityRestrictions
   def require_developer_and_business_not_invisible!
     require_business_not_invisible!
     require_developer_not_invisible!
+  end
+
+  def user_has_invisible_profiles?(u)
+    u&.developer&.invisible? || u&.business&.invisible?
   end
 end
