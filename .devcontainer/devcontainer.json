@@ -1,0 +1,35 @@
+{
+    "name": "Tampa Devs Talent",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "vscode",
+    "runArgs": ["--platform=linux/amd64" ],
+    "forwardPorts": [
+      3000,
+      5432,
+      6379
+    ],
+    "features": {
+      "ghcr.io/devcontainers/features/github-cli:1": {},
+      "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "files.associations": {
+            "*.html.erb": "erb"
+          },
+          "ruby.format": true
+        },
+        "extensions": [
+          "Shopify.ruby-lsp",
+          "misogi.ruby-rubocop",
+          "redhat.vscode-yaml",
+          "GitHub.codespaces",
+          "GitHub.copilot",
+          "GitHub.copilot-chat"
+        ]
+      }
+    }
+  }
