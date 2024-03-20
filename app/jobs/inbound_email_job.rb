@@ -1,6 +1,4 @@
 class InboundEmailJob < ApplicationJob
-  include VisibilityRestrictions
-
   queue_as :default
 
   rescue_from(ActiveRecord::RecordNotFound) {}
@@ -22,8 +20,6 @@ class InboundEmailJob < ApplicationJob
   private
 
   def send_message(message, email:)
-    return if user_has_invisible_profiles?(sender) || user_has_invisible_profiles?(user)
-
     if email.message.nil? && MessagePolicy.new(user, message).create?
       message.save_and_notify
       conversation.mark_notifications_as_read(user)

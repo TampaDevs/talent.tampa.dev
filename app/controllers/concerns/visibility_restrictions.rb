@@ -21,6 +21,6 @@ module VisibilityRestrictions
   end
 
   def user_has_invisible_profiles?(user)
-    user&.invisible? || user&.developer&.invisible? || user&.business&.invisible?
+    user&.developer&.invisible? || user&.business&.invisible?
   end
 end
