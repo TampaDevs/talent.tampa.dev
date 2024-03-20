@@ -8,8 +8,6 @@ class InboundEmailJob < ApplicationJob
   private attr_reader :payload
 
   def perform(*args)
-    return if user_has_invisible_profiles?(sender) || user_has_invisible_profiles?(user)
-
     @payload = args.first
 
     email = InboundEmail.find_or_create_by!(postmark_message_id:) do |email|
@@ -54,7 +52,7 @@ class InboundEmailJob < ApplicationJob
   end
 
   def email
-    payload.dig("FromFull", "Email")
+    payload&.dig("FromFull", "Email")
   end
 
   def conversation_token

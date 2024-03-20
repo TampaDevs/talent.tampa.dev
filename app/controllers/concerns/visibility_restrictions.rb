@@ -20,7 +20,7 @@ module VisibilityRestrictions
     require_developer_not_invisible!
   end
 
-  def user_has_invisible_profiles?(u)
-    u&.developer&.invisible? || u&.business&.invisible?
+  def user_has_invisible_profiles?(user)
+    user&.invisible? || user&.developer&.invisible? || user&.business&.invisible?
   end
 end
