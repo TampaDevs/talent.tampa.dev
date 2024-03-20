@@ -13,7 +13,7 @@ module Businesses
         update!(invisible: false)
       else
         update!(invisible: true)
-      send_invisiblize_notification
+        send_invisiblize_notification
       end
     end
 

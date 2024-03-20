@@ -254,12 +254,12 @@ en:
       subject: "Welcome to Tampa Devs Talent 👋"
   businesses:
     admin_component:
-      conversations: Conversations
-      invisiblize: Invisiblize
-      title: Admin
-      make_visible: Visibilize
       confirm_make_invisible: Are you sure you want to make this business invisible?
       confirm_make_visible: Are you sure you want to make this business visible?
+      conversations: Conversations
+      invisiblize: Invisiblize
+      make_visible: Visibilize
+      title: Admin
     create:
       can_continue: All set! You can now continue setting up your subscription.
       updated: Your business information was updated.
