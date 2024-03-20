@@ -266,11 +266,6 @@ class DevelopersTest < ActionDispatch::IntegrationTest
     assert_redirected_to developer_path(developer)
     assert_equal "invisible", developer.reload.search_status
   end
-
-  test "admin can turn business profile visible" do
-    business
-  end
-
   test "developer hidden profile information is rendered with public profile key" do
     sign_in users(:empty)
     developer = developers(:one)

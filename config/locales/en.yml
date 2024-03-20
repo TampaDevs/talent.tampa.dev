@@ -85,6 +85,7 @@ en:
       invisiblizes:
         create:
           created: Profile set to invisible.
+          destroyed: Profile set to visible.
     conversations:
       blocks:
         index:
@@ -127,6 +128,7 @@ en:
       invisiblizes:
         create:
           created: Profile set to invisible.
+          destroyed: Profile set to visible.
     features:
       create:
         created: Profile featured for one week.
@@ -251,13 +253,13 @@ en:
     welcome:
       subject: "Welcome to Tampa Devs Talent 👋"
   businesses:
-    invisible_banner_component:
-      cta: Contact Us
-      title_html: Your business profile is invisible. Please contact <a href="mailto:jobs@tampadevs.com">jobs@tampadevs.com</a> to reinstate your access.
     admin_component:
       conversations: Conversations
       invisiblize: Invisiblize
       title: Admin
+      make_visible: Visibilize
+      confirm_make_invisible: Are you sure you want to make this business invisible?
+      confirm_make_visible: Are you sure you want to make this business visible?
     create:
       can_continue: All set! You can now continue setting up your subscription.
       updated: Your business information was updated.
@@ -307,6 +309,9 @@ en:
         requesting: Requesting...
         submit: Submit
         title: Did you hire through Tampa Devs Talent?
+    invisible_banner_component:
+      cta: Contact Us
+      title_html: Your business profile is invisible. Please contact <a href="mailto:jobs@tampadevs.com">jobs@tampadevs.com</a> to reinstate your access.
     primary_action_component:
       edit: Edit
     scheduling_link_component:
@@ -554,12 +559,12 @@ en:
   dir: ltr
   errors:
     business_blank: Fill out your business profile to message developers.
-    business_no_phone_number: Please provide your business phone number.
     business_invisible: Your business profile is invisible, and its ability to interact wth developers is restricted. Please reach out to jobs@tampadevs.com to reinstate your access.
-    developer_invisible: Your developer profile is invisible, and its ability to interact wth businesses is restricted. Please reach out to jobs@tampadevs.com to reinstate your access.
+    business_no_phone_number: Please provide your business phone number.
     business_subscription_inactive: Sign up for a business subscription to message developers.
     business_subscription_no_profile: Before subscribing, fill out your business profile.
     developer_blank: Please create a developer profile first.
+    developer_invisible: Your developer profile is invisible, and its ability to interact wth businesses is restricted. Please reach out to jobs@tampadevs.com to reinstate your access.
     hiring_agreements:
       cold_message: Please sign the hiring agreement to message developers.
       payment: Please sign the hiring agreement before subscribing.
@@ -680,7 +685,6 @@ en:
     businesses:
       invisiblize_notification:
         title: Your profile on Tampa Devs Talent was flagged
-        cta: Edit your profile
     developers:
       invisiblize_notification:
         title: Your profile on Tampa Devs Talent was flagged

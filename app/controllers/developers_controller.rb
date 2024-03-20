@@ -84,13 +84,6 @@ class DevelopersController < ApplicationController
     end
   end
 
-  # def require_not_invisible!
-  #   if current_user.business.invisible?
-  #     store_location!
-  #     redirect_to root_path, alert: I18n.t("errors.business_invisible")
-  #   end
-  # end
-
   def pundit_params_for(_record)
     params["developer-filters-mobile"] || params
   end

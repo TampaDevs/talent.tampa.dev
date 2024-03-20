@@ -18,7 +18,6 @@ module Developers
     def toggle_visibility_and_notify!
       if invisible?
         update!(search_status: :not_interested)
-        # send_visibility_notification(:visible)
       else
         update!(search_status: :invisible)
         send_invisiblize_notification

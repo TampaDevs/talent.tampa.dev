@@ -8,9 +8,13 @@ module Businesses
       end
     end
 
-    def invisiblize_and_notify!
-      update(invisible: true)
+    def toggle_visibility_and_notify!
+      if invisible?
+        update!(invisible: false)
+      else
+        update!(invisible: true)
       send_invisiblize_notification
+      end
     end
 
     private
