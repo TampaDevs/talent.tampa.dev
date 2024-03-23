@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+unset DISPLAY
+unset REMOTE_CONTAINERS_DISPLAY_SOCK
+
 # Exit when any command fails
 set -e
 
