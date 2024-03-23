@@ -77,6 +77,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
     analytics-ruby (2.4.0)
     ansi (1.5.0)
     apnotic (1.7.1)
@@ -115,9 +117,11 @@ GEM
     bigdecimal (3.1.7)
     builder (3.2.4)
     capybara (3.40.0)
+    capybara (3.40.0)
       addressable
       matrix
       mini_mime (>= 0.1.3)
+      nokogiri (~> 1.11)
       nokogiri (~> 1.11)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
@@ -391,6 +395,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    rexml (3.2.6)
     rexml (3.2.6)
     rinku (2.0.6)
     rubocop (1.62.1)
