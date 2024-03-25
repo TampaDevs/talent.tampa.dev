@@ -65,7 +65,7 @@ module OpenStartup
         charge_fees = StripeTransaction.charge.group_by_month(:created).sum(:fee)
         stripe_fees = StripeTransaction.stripe_fee.group_by_month(:created).sum(:amount)
         charge_fees.each do |created, amount|
-          amount += (stripe_fees[created] || 0)
+          amount += stripe_fees[created] || 0
           Expense.create!(occurred_on: created, description: "Stripe fees", amount:)
         end
 

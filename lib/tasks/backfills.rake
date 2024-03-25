@@ -8,7 +8,7 @@ namespace :backfills do
     Developer.where.not(developer_attrs.map { |a| [a, blank_query] }.to_h).find_each do |developer|
       attrs_to_update = {}
       developer_attrs.each do |attr|
-        developer_tmp_record.public_send("#{attr}=", developer.public_send(attr))
+        developer_tmp_record.public_send(:"#{attr}=", developer.public_send(attr))
         attrs_to_update[attr] = developer_tmp_record.public_send(attr)
       end
       developer.update_columns(attrs_to_update)

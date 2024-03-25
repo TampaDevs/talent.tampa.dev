@@ -22,7 +22,7 @@ module RoleTypes
 
     def selected_role_types
       role_types.select do |rt|
-        role_type.public_send("#{rt}?")
+        role_type.public_send(:"#{rt}?")
       end
     end
   end

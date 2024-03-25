@@ -42,7 +42,7 @@ class DeveloperQuery
   end
 
   def sort
-    @sort.to_s.downcase.to_sym == :recommended ? :recommended : :newest
+    (@sort.to_s.downcase.to_sym == :recommended) ? :recommended : :newest
   end
 
   def countries
