@@ -419,7 +419,7 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.14.0)
-    sitemap_generator (6.1.2)
+    sitemap_generator (6.3.0)
       builder (~> 3.0)
     smart_properties (1.17.0)
     sprockets (4.0.2)
