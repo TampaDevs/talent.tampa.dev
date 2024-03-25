@@ -9,8 +9,7 @@ class PublicProfilesController < ApplicationController
   private
 
   def developer
-    developer_instance = Developer.find_by_hashid!(params[:developer_id])
     Analytics::Event.developer_public_profile_viewed(current_user, cookies, params[:developer_id])
-    developer_instance
+    Developer.find_by_hashid!(params[:developer_id])
   end
 end
