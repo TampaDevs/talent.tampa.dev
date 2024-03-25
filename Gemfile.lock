@@ -103,7 +103,7 @@ GEM
       aws-sigv4 (~> 1.4)
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
-    bcrypt (3.1.18)
+    bcrypt (3.1.20)
     better_html (2.1.1)
       actionview (>= 6.0)
       activesupport (>= 6.0)
@@ -140,8 +140,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.10.1)
-      devise (>= 4.8.0)
+    devise-i18n (1.12.0)
+      devise (>= 4.9.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erb_lint (0.5.0)
@@ -381,7 +381,7 @@ GEM
     redis-client (0.17.0)
       connection_pool
     regexp_parser (2.9.0)
-    responders (3.1.0)
+    responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
