@@ -104,12 +104,11 @@ GEM
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
-    better_html (1.0.16)
-      actionview (>= 4.0)
-      activesupport (>= 4.0)
+    better_html (2.1.1)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
       ast (~> 2.0)
       erubi (~> 1.4)
-      html_tokenizer (~> 0.0.6)
       parser (>= 2.4)
       smart_properties
     builder (3.2.4)
@@ -145,10 +144,9 @@ GEM
       devise (>= 4.8.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    erb_lint (0.1.3)
+    erb_lint (0.5.0)
       activesupport
-      better_html (~> 1.0.7)
-      html_tokenizer
+      better_html (>= 2.0.1)
       parser (>= 2.7.1.4)
       rainbow
       rubocop
@@ -199,7 +197,7 @@ GEM
       activerecord (>= 4.0)
       hashids (~> 1.0)
     hashids (1.0.6)
-    highline (2.0.3)
+    highline (3.0.1)
     honeybadger (5.7.0)
     hotwire-livereload (1.2.0)
       listen (>= 3.0.0)
@@ -208,7 +206,6 @@ GEM
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
-    html_tokenizer (0.0.7)
     http-2 (0.11.0)
     http (4.4.1)
       addressable (~> 2.3)
@@ -222,14 +219,14 @@ GEM
       ffi-compiler (>= 1.0, < 2.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.0.10)
+    i18n-tasks (1.0.13)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
-      better_html (~> 1.0)
+      better_html (>= 1.0, < 3.0)
       erubi
       highline (>= 2.0.0)
       i18n
-      parser (>= 2.2.3.0)
+      parser (>= 3.2.2.1)
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       terminal-table (>= 1.5.1)
@@ -337,7 +334,7 @@ GEM
     pundit (2.2.0)
       activesupport (>= 3.0.0)
     racc (1.7.3)
-    rack (2.2.8.1)
+    rack (2.2.9)
     rack-attack (6.6.1)
       rack (>= 1.0, < 3)
     rack-test (2.1.0)
