@@ -19,7 +19,7 @@ class RenameHiringInvoiceRequestNotificationFormParams < ActiveRecord::Migration
     # 3. Symbolize new key with ActiveRecord
     Notification.where(type: "Admin::Businesses::HiringInvoiceRequestNotification").each do |notification|
       notification.update!(params: notification.params.transform_keys do |key|
-        key == new_param_name ? new_param_name.to_sym : key
+        (key == new_param_name) ? new_param_name.to_sym : key
       end)
     end
   end

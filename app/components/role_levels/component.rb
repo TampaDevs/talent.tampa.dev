@@ -27,7 +27,7 @@ module RoleLevels
 
     def selected_role_levels
       role_level_types.select do |role_level_type|
-        role_level.public_send("#{role_level_type}?")
+        role_level.public_send(:"#{role_level_type}?")
       end
     end
   end
