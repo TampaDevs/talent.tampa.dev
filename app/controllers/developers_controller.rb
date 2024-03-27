@@ -62,7 +62,7 @@ class DevelopersController < ApplicationController
   end
 
   def show
-    require_business_not_invisible!
+    require_developer_and_business_not_invisible! unless own_profile?
 
     @developer = Developer.find_by_hashid!(params[:id])
 
@@ -92,6 +92,10 @@ class DevelopersController < ApplicationController
     if current_user.developer.present?
       redirect_to edit_developer_path(current_user.developer)
     end
+  end
+
+  def own_profile?
+    current_user&.developer&.hashid == params[:id]
   end
 
   def developer_params

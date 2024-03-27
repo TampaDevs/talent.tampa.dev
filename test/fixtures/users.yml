@@ -16,6 +16,12 @@ prospect_developer:
   confirmed_at: <%= DateTime.current %>
   authentication_token: <%= Devise.friendly_token %>
 
+invisible_developer:
+  email: invisible_developer@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  confirmed_at: <%= DateTime.current %>
+  authentication_token: <%= Devise.friendly_token %>
+
 business:
   email: business@example.com
   encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
@@ -24,6 +30,11 @@ business:
 
 subscribed_business:
   email: customer@example.com
+  confirmed_at: <%= DateTime.current %>
+  authentication_token: <%= Devise.friendly_token %>
+
+invisible_business:
+  email: invisible@example.com
   confirmed_at: <%= DateTime.current %>
   authentication_token: <%= Devise.friendly_token %>
 

@@ -11,3 +11,11 @@ subscriber:
   company: Conversation Business
   bio: We are Conversation Business.
   phone_number: "2222222222"
+
+invisible:
+  user: invisible_business
+  contact_name: Invisible Business Owner with Conversation
+  company: Invisible Company
+  bio: We are totally legit.
+  phone_number: "3333333333"
+  invisible: true

@@ -181,6 +181,16 @@ class BusinessesTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "invisible business is redirected to root when trying to access their conversations" do
+    business = businesses(:invisible)
+
+    sign_in business.user
+
+    get conversations_path
+
+    assert_redirected_to root_path
+  end
+
   test "can see own business profile when invisible" do
     business = businesses(:one)
     business.update(invisible: true)

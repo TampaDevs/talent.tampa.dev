@@ -5,12 +5,12 @@ class UserTest < ActiveSupport::TestCase
 
   test "conversations where the user is the developer" do
     user = users(:prospect_developer)
-    assert_equal user.conversations, [conversations(:one)]
+    assert_equal user.conversations, [conversations(:one), conversations(:two)]
   end
 
   test "conversations where the user is the business" do
     user = users(:subscribed_business)
-    assert_equal user.conversations, [conversations(:one)]
+    assert_equal user.conversations, [conversations(:one), conversations(:three)]
   end
 
   test "blocked conversations are ignored" do

@@ -13,6 +13,21 @@ class Conversation < ApplicationRecord
 
   scope :blocked, -> { where.not(developer_blocked_at: nil).or(Conversation.where.not(business_blocked_at: nil)) }
   scope :visible, -> { where(developer_blocked_at: nil, business_blocked_at: nil) }
+  scope :visible_to, ->(user) {
+                       base_scope = where(developer_blocked_at: nil, business_blocked_at: nil)
+
+                       if user&.business&.present?
+                         # Exclude conversations with developers marked as 'invisible'
+                         base_scope.joins(:developer).where.not(developers: {search_status: :invisible})
+                       end
+
+                       if user&.developer&.present?
+                         # Exclude conversations with businesses marked as invisible
+                         base_scope.joins(:business).where.not(businesses: {invisible: true})
+                       end
+
+                       base_scope
+                     }
 
   def self.find_by_inbound_email_token!(token)
     where("lower(inbound_email_token) = ?", token).first!

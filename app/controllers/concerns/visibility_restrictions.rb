@@ -21,6 +21,15 @@ module VisibilityRestrictions
   end
 
   def user_has_invisible_profiles?(user)
-    user&.developer&.invisible? || user&.business&.invisible?
+    case user
+    when User
+      user&.developer&.invisible? || user&.business&.invisible?
+    when Developer
+      user.respond_to?(:invisible?) && user.invisible?
+    when Business
+      user.respond_to?(:invisible?) && user.invisible?
+    else
+      false
+    end
   end
 end

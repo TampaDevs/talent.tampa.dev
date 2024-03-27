@@ -5,3 +5,11 @@ full_time:
   processor_plan: <%= Businesses::Plan.with_identifier(:full_time).stripe_price_id %>
   quantity: 1
   status: active
+
+invisible_subscriber:
+  customer: two
+  name: full_time
+  processor_id: sub_2
+  processor_plan: <%= Businesses::Plan.with_identifier(:full_time).stripe_price_id %>
+  quantity: 1
+  status: active

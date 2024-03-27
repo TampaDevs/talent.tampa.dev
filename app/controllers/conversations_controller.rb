@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   before_action :require_developer_and_business_not_invisible!
 
   def index
-    @conversations = current_user.conversations.order(updated_at: :desc)
+    @conversations = current_user.conversations.visible_to(current_user).order(updated_at: :desc)
   end
 
   def show
@@ -18,6 +18,6 @@ class ConversationsController < ApplicationController
   private
 
   def conversation
-    @conversation ||= Conversation.find(params[:id])
+    @conversation ||= Conversation.visible_to(current_user).find(params[:id])
   end
 end
