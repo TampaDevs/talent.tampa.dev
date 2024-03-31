@@ -63,6 +63,7 @@ class DevelopersController < ApplicationController
 
   def show
     require_developer_and_business_not_invisible! unless own_profile?
+    require_signed_hiring_agreement! if current_user&.business&.present?
 
     @developer = Developer.find_by_hashid!(params[:id])
 
@@ -86,6 +87,13 @@ class DevelopersController < ApplicationController
 
   def pundit_params_for(_record)
     params["developer-filters-mobile"] || params
+  end
+
+  def require_signed_hiring_agreement!
+    if current_user.needs_to_sign_hiring_agreement?
+      store_location!
+      redirect_to new_hiring_agreement_signature_path, notice: I18n.t("errors.hiring_agreements.cold_message")
+    end
   end
 
   def require_new_developer!

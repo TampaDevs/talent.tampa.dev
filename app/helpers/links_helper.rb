@@ -1,10 +1,10 @@
 module LinksHelper
-  def link_to_active(name, options = {}, html_options = {}, &block)
+  def link_to_active(name, options = {}, html_options = {}, &)
     if current_page?(options.to_s)
       html_options[:class] += " " + html_options.delete(:active_class)
     end
 
-    link_to(name, options, html_options, &block)
+    link_to(name, options, html_options, &)
   end
 
   def normalized_href(href)
