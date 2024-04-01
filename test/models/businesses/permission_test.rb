@@ -37,14 +37,22 @@ class Businesses::PermissionTest < ActiveSupport::TestCase
     assert permission.legacy_subscription?
   end
 
-  test "required to pay hiring fee for full-time subscriptions" do
+  test "required to pay hiring fee for all subscription types" do
     customer = pay_customers(:one)
     permission = Businesses::Permission.new(customer.subscriptions)
     assert permission.pays_hiring_fee?
 
     update_subscription(:part_time)
     permission = Businesses::Permission.new(customer.subscriptions)
-    refute permission.pays_hiring_fee?
+    assert permission.pays_hiring_fee?
+
+    update_subscription(:annual)
+    permission = Businesses::Permission.new(customer.subscriptions)
+    assert permission.pays_hiring_fee?
+
+    update_subscription(:free)
+    permission = Businesses::Permission.new(customer.subscriptions)
+    assert permission.pays_hiring_fee?
   end
 
   test "part-time subscriptions can't message developers only looking for full-time roles" do
