@@ -10,13 +10,15 @@ class BusinessSubscriptionCheckout
   end
 
   def url
+    return "/" if @plan == "free"
+
     checkout.url
   end
 
   private
 
   def checkout
-    return if @plan == :free
+    return nil if @plan == "free"
 
     user.set_payment_processor(:stripe)
     user.payment_processor.checkout(
