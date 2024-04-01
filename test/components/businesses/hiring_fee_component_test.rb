@@ -16,12 +16,17 @@ module Businesses
       assert_text "Have you hired"
     end
 
-    test "doesn't render if not on a full-time subscription" do
+    test "renders for all subscription types" do
       @conversation.update!(created_at: 2.weeks.ago - 1.day)
       update_subscription(:part_time)
 
       render_inline HiringFeeComponent.new(@user, @conversation)
-      assert_no_text "Have you hired"
+      assert_text "Have you hired"
+
+      update_subscription(:annual)
+
+      render_inline HiringFeeComponent.new(@user, @conversation)
+      assert_text "Have you hired"
     end
 
     test "doesn't render if the conversation is not eligible for the fee" do
