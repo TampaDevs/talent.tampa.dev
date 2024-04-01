@@ -16,7 +16,7 @@ class BusinessSubscriptionCheckout
   private
 
   def checkout
-    return if @plan == :free 
+    return if @plan == :free
 
     user.set_payment_processor(:stripe)
     user.payment_processor.checkout(
