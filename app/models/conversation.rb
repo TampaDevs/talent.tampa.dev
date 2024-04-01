@@ -23,7 +23,7 @@ class Conversation < ApplicationRecord
   end
 
   def other_recipient(user)
-    developer == user.developer ? business : developer
+    (developer == user.developer) ? business : developer
   end
 
   def business?(user)

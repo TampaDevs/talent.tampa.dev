@@ -1,5 +1,4 @@
 <h2 class="sr-only"><%= t(".title") %></h2>
-
 <div class="px-4 sm:px-6">
   <%= form_with url: developers_path, id: form_id, method: :get do |form| %>
     <div class="pb-6">
@@ -10,37 +9,39 @@
         </div>
       <% end %>
     </div>
-
     <% if Feature.enabled?(:developer_specialties) %>
       <%= render Users::PaywalledComponent.new(user, nil, size: :small, title: t(".paywalled_search.title")) do |component| %>
-        <div data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
-          <div class="border-t border-gray-200 py-6">
-            <h3 class="-mx-2 -my-3 flow-root">
-              <%= render CollapseControlComponent.new(t(".specialties.title"), collapsed: collapse_specialties?) do %>
-                <span aria-hidden="true">
-                  <%= render BadgeComponent.new("New!", color: :purple) %>
-                </span>
-              <% end %>
-            </h3>
-            <%= tag.div id: "specialties-accordion", "data-toggle-target": "element", class: [hidden: collapse_specialties?] do %>
-              <div class="space-y-4 pt-6">
-                <%= form.collection_check_boxes(:specialty_ids, specialties, :id, :name, {include_hidden: false}) do |specialty| %>
-                  <div class="flex items-center">
-                    <%= specialty.check_box checked: specialty_selected?(specialty.object.id), class: "h-4 w-4 border-gray-300 rounded text-blue-950 text-blue-950 focus:ring-blue-500" %>
-                    <%= specialty.label class: "text-blue-950 text-sm ml-3" %>
-                  </div>
-                <% end %>
-              </div>
+        <div class="border-t border-gray-200 py-6">
+          <h3 class="-mx-2 -my-3 flow-root">
+            <%= render CollapseControlComponent.new(t(".specialties.title"), collapsed: false) do %>
+              <span aria-hidden="true">
+                <%= render BadgeComponent.new("New!", color: :purple) %>
+              </span>
             <% end %>
+          </h3>
+          <div data-controller="dropdown-pill" data-toggle-target="element">
+            <template class="when-javascript-enabled">
+              <%= render Developers::SpecialtyDropdownComponent.new(specialty_query: params[:specialty_query]) %>
+            </template>
+            <div class="hide-when-javascript-enabled">
+              <%= tag.div id: "specialties-accordion" do %>
+                <div class="space-y-4 pt-6">
+                  <%= form.collection_check_boxes(:specialty_ids, specialties, :id, :name, {include_hidden: false}) do |specialty| %>
+                    <div class="flex items-center">
+                      <%= specialty.check_box checked: specialty_selected?(specialty.object.id), class: "h-4 w-4 border-gray-300 rounded text-gray-600 text-gray-600 focus:ring-gray-500", data: {"dropdown-pill-target": "checkbox"} %>
+                      <%= specialty.label class: "text-gray-500 text-sm ml-3" %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-
         <% component.custom_paywall do %>
           <%# Intentionally render nothing for now. %>
         <% end %>
       <% end %>
     <% end %>
-
     <% if Feature.enabled?(:badge_filter) %>
       <div data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
         <div class="border-t border-gray-200 py-6">
@@ -60,7 +61,6 @@
         </div>
       </div>
     <% end %>
-
     <div data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
       <div class="border-t border-gray-200 py-6">
         <h3 class="-mx-2 -my-3 flow-root">
@@ -78,7 +78,6 @@
         </div>
       </div>
     </div>
-
     <div data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
       <div class="border-t border-gray-200 py-6">
         <h3 class="-mx-2 -my-3 flow-root">
@@ -93,9 +92,7 @@
               </div>
             <% end %>
           </div>
-
           <hr class="py-2 mt-6">
-
           <div class="flex items-top">
             <%= form.check_box :include_not_interested, include_hidden: false, checked: include_not_interested?, class: "mt-1 h-4 w-4 border-gray-300 rounded text-blue-950 focus:ring-blue-500" %>
             <%= form.label :include_not_interested, t(".include_not_interested"), class: "ml-3 text-sm text-blue-950" %>
@@ -103,7 +100,6 @@
         </div>
       </div>
     </div>
-
     <div data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
       <div class="border-t border-gray-200 py-6">
         <h3 class="-mx-2 -my-3 flow-root">
@@ -118,7 +114,6 @@
               </div>
             <% end %>
           </div>
-
           <div data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
             <div class="pt-6">
               <h5 class="-mx-2 -my-3 flow-root">
@@ -139,7 +134,6 @@
         <% end %>
       </div>
     </div>
-
     <div data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
       <div class="border-t border-gray-200 py-6">
         <h3 class="-mx-2 -my-3 flow-root">
@@ -157,7 +151,6 @@
         <% end %>
       </div>
     </div>
-
     <div class="flex justify-start space-x-2 pb-8">
       <%= link_to t(".clear"), developers_path, class: "bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-blue-950 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
       <%= submit_tag t(".apply"), name: nil, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer" %>

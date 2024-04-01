@@ -24,6 +24,7 @@ class BusinessPolicy < ApplicationPolicy
       :bio,
       :avatar,
       :website,
+      :phone_number,
       :contact_role,
       :survey_request_notifications
     ]

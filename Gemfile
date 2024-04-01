@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
-gem "rails", "~> 7.0.4.3"
+gem "rails", "~> 7.0.8.1"
 
 gem "cssbundling-rails"
 gem "hotwire-rails"
@@ -65,6 +65,7 @@ gem "rails-i18n"
 gem "redcarpet"
 gem "rexml", ">= 3.2.5"
 gem "scout_apm"
+gem "sendgrid-ruby"
 gem "sidekiq"
 gem "sitemap_generator"
 gem "stripe"

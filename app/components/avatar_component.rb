@@ -12,7 +12,7 @@ class AvatarComponent < ViewComponent::Base
 
   def classes
     [
-      (@classes || "h-24 w-24 sm:h-32 sm:w-32 ring-4 ring-white"),
+      @classes || "h-24 w-24 sm:h-32 sm:w-32 ring-4 ring-white",
       "object-cover rounded-full",
       "bg-navy": Feature.enabled?(:redesign),
       "bg-blue-300": !Feature.enabled?(:redesign)
@@ -26,7 +26,7 @@ class AvatarComponent < ViewComponent::Base
 
   def avatar_image_2x_url
     return image_path(DEFAULT_AVATAR) unless avatarable&.avatar&.attached?
-    url_for variant ? avatarable.avatar.variant("#{variant}_2x".to_sym) : avatarable.avatar
+    url_for variant ? avatarable.avatar.variant(:"#{variant}_2x") : avatarable.avatar
   end
 
   def name

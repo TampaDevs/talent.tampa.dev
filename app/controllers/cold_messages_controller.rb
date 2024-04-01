@@ -4,6 +4,7 @@ class ColdMessagesController < ApplicationController
   before_action :require_new_conversation!
   before_action :require_active_subscription!
   before_action :require_signed_hiring_agreement!
+  before_action :require_business_phone_number!
 
   def new
     message = Message.new(conversation:)
@@ -49,6 +50,13 @@ class ColdMessagesController < ApplicationController
     if current_user.needs_to_sign_hiring_agreement?
       store_location!
       redirect_to new_hiring_agreement_signature_path, notice: I18n.t("errors.hiring_agreements.cold_message")
+    end
+  end
+
+  def require_business_phone_number!
+    if current_user.needs_to_provide_phone_number?
+      store_location!
+      redirect_to edit_business_path(current_user.business), alert: t("errors.business_no_phone_number")
     end
   end
 
