@@ -2,8 +2,10 @@ module Admin
   module Businesses
     class InvisiblizesController < ApplicationController
       def create
-        Business.find(params[:business_id]).invisiblize_and_notify!
-        redirect_to root_path, notice: t(".created")
+        business = Business.find(params[:business_id])
+        business.toggle_visibility_and_notify!
+
+        redirect_to business_path(business), notice: business.invisible? ? t(".created") : t(".destroyed")
       end
     end
   end

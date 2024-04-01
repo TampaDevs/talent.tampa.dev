@@ -2,3 +2,13 @@ one:
   developer: prospect
   business: subscriber
   inbound_email_token: EMAIL-TOKEN
+
+two:
+  developer: prospect
+  business: invisible
+  inbound_email_token: EMAIL-TOKEN-TWO
+
+three: 
+  developer: invisible
+  business: subscriber
+  inbound_email_token: EMAIL-TOKEN-THREE

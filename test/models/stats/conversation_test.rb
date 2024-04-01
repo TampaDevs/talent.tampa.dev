@@ -7,12 +7,12 @@ class Stats::ConversationTest < ActiveSupport::TestCase
 
   test "#sent counts all conversations" do
     stats = Stats::Conversation.new(Conversation.all)
-    assert_equal 2, stats.sent
+    assert_equal 4, stats.sent
   end
 
   test "#replied counts conversations with a developer response" do
     stats = Stats::Conversation.new(Conversation.all)
-    assert_equal 1, stats.replied
+    assert_equal 2, stats.replied
   end
 
   test "#replied_rate calcualtes the percentage of replied conversations" do

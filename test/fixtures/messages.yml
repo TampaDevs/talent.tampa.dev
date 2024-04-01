@@ -16,3 +16,15 @@ from_developer:
   body: Two message.
   body_html: <p>Two message.</p>
   sender: prospect (Developer)
+
+from_invisible_developer:
+  conversation: three
+  body: Hi i'm invisible
+  body_html: <p>Hi i'm invisible</p>
+  sender: invisible (Developer)
+
+from_invisible_business:
+  conversation: two
+  body: Hi i'm invisible
+  body_html: <p>Hi i'm invisible</p>
+  sender: invisible (Business)
