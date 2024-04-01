@@ -756,7 +756,7 @@ en:
       title: Ready to get started?
     faq:
       annual:
-        a_html: Yes! Email the Tampa Devs Talent team to set up discounted annual billing at <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
+        a_html: Yes! We offer a monthly plan at $99/mo and an annual plan at $1,010/year (a 15% savings)
         q: Can I pay annually or yearly?
       cancellation:
         a_html: Yes! You can cancel your subscription from the Billing link in the user drop-down. You will lose access to all paid features at the end of your billing period.
@@ -778,6 +778,8 @@ en:
       description: Directly connect with hundreds of local developers in Tampa Bay looking for their next job.
       title: Hire developers in Tampa Bay
     plan:
+      cta_annual: Go Annual and Save 15%
+      cta_monthly: Go Monthly. Cancel Anytime
       description: Hire directly from a pool of local developers in Tampa Bay, at all levels of experience.
       features:
         climate_html: We donate 1% of revenue to fight climate change. <a style="text-decoration:underline" href="https://climate.stripe.com/nxdibE">Learn more</a>
@@ -789,6 +791,7 @@ en:
         warranty: 90 day placement warranty
       hiring_fee: "+ 5% first year salary"
       per_month: "/month"
+      per_year: "/year"
       title_html: For your 1<sup>st</sup> hire and beyond
     purchase_button:
       title: Get started today

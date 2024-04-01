@@ -1,4 +1,4 @@
-<%= button_to t(".title"),
+<%= button_to title || t(".title"),
       stripe_checkout_path(plan: plan),
       method: :post,
       data: {
