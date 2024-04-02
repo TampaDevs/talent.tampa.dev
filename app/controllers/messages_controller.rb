@@ -1,10 +1,12 @@
 class MessagesController < ApplicationController
+  include VisibilityRestrictions
   before_action :authenticate_user!
   before_action :require_active_subscription!
 
   def create
     @message = Message.new(message_params.merge(conversation:, sender:))
     authorize @message
+    return if user_has_invisible_profiles?(current_user)
 
     if @message.save_and_notify
       Analytics::Event.message_created(current_user, cookies, @message)

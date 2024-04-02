@@ -31,7 +31,19 @@
           </p>
           <div class="mt-6">
             <div class="rounded-md shadow">
-              <%= render "pricing/purchase_button", plan: :full_time, classes: "block w-full flex items-center justify-center rounded-md border border-transparent bg-blue-800 px-5 py-3 text-base font-medium text-white hover:bg-blue-900" %>
+              <%= render "pricing/purchase_button", title: t(".cta_monthly"), plan: :full_time, classes: "block w-full flex items-center justify-center rounded-md border border-transparent bg-blue-800 px-5 py-3 text-base font-medium text-white hover:bg-blue-900" %>
+            </div>
+          </div>
+          <div class="mt-10 flex items-center justify-center text-5xl font-bold tracking-tight text-blue-900">
+            <span>$999</span>
+            <span class="ml-2 text-xl font-medium tracking-normal text-blue-950"><%= t(".per_year") %></span>
+          </div>
+          <p class="mt-4 text-sm">
+            <a href="#hiring-fee" class="font-medium text-blue-950 underline"><%= t(".hiring_fee") %></a>
+          </p>
+          <div class="mt-6">
+            <div class="rounded-md shadow">
+              <%= render "pricing/purchase_button", title: t(".cta_annual"), plan: :annual, classes: "block w-full flex items-center justify-center rounded-md border border-transparent bg-blue-800 px-5 py-3 text-base font-medium text-white hover:bg-blue-900" %>
             </div>
           </div>
         </div>
