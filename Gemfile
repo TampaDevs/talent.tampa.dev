@@ -74,3 +74,5 @@ gem "timezone_finder"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "analytics-ruby", "~> 2.4"
+
+gem "packwerk", "~> 3.2"
