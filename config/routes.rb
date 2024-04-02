@@ -19,8 +19,9 @@ Rails.application.routes.draw do
     resources :businesses, except: :destroy
     resources :specialties, only: :index
 
+    resources :jobs, controller: :job_posts, except: :destroy
+
     namespace :businesses do
-      resources :job_posts, only: [:index, :show, :create]
       resources :hiring_invoice_requests, only: [:new, :create]
     end
 
