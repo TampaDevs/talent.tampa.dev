@@ -8,6 +8,8 @@ module Businesses
     has_one :role_level, dependent: :destroy, autosave: true
     has_one :role_type, dependent: :destroy, autosave: true
 
+    validates :title, presence: true
+
     enum status: {open: 1, closed: 2}
     enum role_location: {remote: 1, in_office: 2, hybrid: 3}
 
