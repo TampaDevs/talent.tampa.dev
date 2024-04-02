@@ -5,7 +5,7 @@ module Developers
     test "renders if the user's developer profile is invisible" do
       developers(:one).update!(search_status: "invisible")
       render_inline InvisibleBannerComponent.new(users(:developer))
-      assert_text I18n.t("developers.invisible_banner_component.title")
+      assert_text ActionController::Base.helpers.strip_tags(I18n.t("developers.invisible_banner_component.title_html"))
     end
 
     test "doesn't render if the developer profile is not invisible" do

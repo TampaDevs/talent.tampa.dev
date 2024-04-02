@@ -1,10 +1,12 @@
 class ColdMessagesController < ApplicationController
+  include VisibilityRestrictions
   before_action :authenticate_user!
   before_action :require_business!
   before_action :require_new_conversation!
   before_action :require_active_subscription!
   before_action :require_signed_hiring_agreement!
   before_action :require_business_phone_number!
+  before_action :require_developer_and_business_not_invisible!
 
   def new
     message = Message.new(conversation:)

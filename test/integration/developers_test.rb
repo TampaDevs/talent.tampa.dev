@@ -266,6 +266,39 @@ class DevelopersTest < ActionDispatch::IntegrationTest
     assert_response :ok
   end
 
+  test "admin can turn developer profile invisible" do
+    developer = create_developer(search_status: :open)
+    user = users(:admin)
+    sign_in user
+
+    post admin_developer_invisiblizes_path(developer)
+
+    assert_redirected_to developer_path(developer)
+    assert_equal "invisible", developer.reload.search_status
+  end
+
+  test "invisible developer is redirected to root when trying to access their conversations" do
+    developer = create_developer(search_status: :invisible)
+    sign_in developer.user
+
+    get conversations_path
+
+    assert_redirected_to root_path
+  end
+
+  test "developer cannot update their search status to non-invisible" do
+    developer = create_developer(search_status: :invisible)
+    sign_in developer.user
+
+    patch developer_path(developer), params: {
+      developer: {
+        search_status: :open
+      }
+    }
+
+    assert_redirected_to developer_path(developer)
+    assert_equal "invisible", developer.reload.search_status
+  end
   test "developer hidden profile information is rendered with public profile key" do
     sign_in users(:empty)
     developer = developers(:one)

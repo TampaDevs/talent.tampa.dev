@@ -48,7 +48,7 @@ class ConversationTest < ActiveSupport::TestCase
     assert conversation.deleted_business_or_developer?
   end
 
-  test "other recipient is the business when the user is the developer" do
+  test "other recipient is the business when the user /home/malexander15/tampadevs/talent.tampa.dev/test/models/statsis the developer" do
     user = users(:prospect_developer)
     conversation = conversations(:one)
     assert_equal conversation.other_recipient(user), conversation.business

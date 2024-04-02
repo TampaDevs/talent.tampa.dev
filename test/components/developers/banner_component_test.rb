@@ -17,7 +17,7 @@ module Developers
       invisible_banner_component = InvisibleBannerComponent.new(users(:developer))
       unseeded_warning_component = UnseededWarningComponent.new(seedable: true)
       render_inline BannerComponent.new([unseeded_warning_component, invisible_banner_component, new_fields_component])
-      assert_text I18n.t("developers.invisible_banner_component.title")
+      assert_text ActionController::Base.helpers.strip_tags(I18n.t("developers.invisible_banner_component.title_html"))
     end
 
     test "doesn't render any banner if none of the banners can be rendered" do

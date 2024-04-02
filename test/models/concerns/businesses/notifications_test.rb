@@ -30,7 +30,7 @@ class Businesses::NotificationsTest < ActiveSupport::TestCase
 
   test "notifies the business when they are invisibilized" do
     assert_sends_notification Businesses::InvisiblizeNotification, to: users(:business) do
-      businesses(:one).invisiblize_and_notify!
+      businesses(:one).toggle_visibility_and_notify!
     end
   end
 end

@@ -1,4 +1,4 @@
-module Developers
+module Businesses
   class InvisibleBannerComponent < ApplicationComponent
     include ComponentWithIcon
 
@@ -16,11 +16,11 @@ module Developers
     private
 
     def persisted?
-      user.developer.persisted?
+      user.business.persisted?
     end
 
     def invisible?
-      user&.developer&.invisible?
+      user&.business&.invisible?
     end
   end
 end

@@ -15,9 +15,13 @@ module Developers
       end
     end
 
-    def invisiblize_and_notify!
-      invisible!
-      send_invisiblize_notification
+    def toggle_visibility_and_notify!
+      if invisible?
+        update!(search_status: :not_interested)
+      else
+        update!(search_status: :invisible)
+        send_invisiblize_notification
+      end
     end
 
     def notify_as_stale

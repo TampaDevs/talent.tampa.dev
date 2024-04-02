@@ -77,6 +77,24 @@ class MessagesTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
+  test "does not send email notification for conversation with invisible developer" do
+    @developer.update!(search_status: :invisible)
+    post conversation_messages_path(@conversation), params: message_params
+    assert_no_emails
+
+    @developer.update!(search_status: :open)
+  end
+
+  test "if a visible business sends a message to an invisible developer it does not send email notification about the message." do
+    sign_in @business.user
+
+    assert_difference "Message.count" do
+      assert_no_enqueued_emails do
+        post conversation_messages_path(conversations(:three)), params: message_params
+      end
+    end
+  end
+
   test "part-time plan subscribers can't message full-time seekers" do
     sign_in @business.user
     update_subscription(:part_time)
