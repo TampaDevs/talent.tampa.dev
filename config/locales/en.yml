@@ -623,6 +623,7 @@ en:
       developers: Developers
       home: Home
       pricing: Pricing
+      jobposts: Job Posts
     guest_component:
       register: Register
       sign_in: Sign in

@@ -1,0 +1,38 @@
+<%= form_with(model: job_post) do |form| %>
+
+<div class="field">
+  <%= form.label :title %> <%= form.text_field :title %>
+</div>
+
+<div class="field">
+  <%= form.label :employment_type %> <%= form.text_field :employment_type %>
+</div>
+
+<div class="field">
+  <%= form.label :role_type %> <%= form.text_field :role_type %>
+</div>
+
+<div class="field">
+  <%= form.label :location %> <%= form.text_field :location %>
+</div>
+
+<div class="field">
+  <%= form.label :salary_min %> <%= form.number_field :salary_min %>
+</div>
+
+<div class="field">
+  <%= form.label :salary_max %> <%= form.number_field :salary_max %>
+</div>
+
+<div class="field">
+  <%= form.label :description %> <%= form.text_area :description %>
+</div>
+
+<div class="field">
+  <%= form.label :status %> <%= form.select :status, ['draft', 'published'] %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>

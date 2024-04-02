@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :specialties, only: :index
 
     namespace :businesses do
+      resources :job_posts, only: [:index, :show, :create]
       resources :hiring_invoice_requests, only: [:new, :create]
     end
 

@@ -13,7 +13,7 @@ class Business < ApplicationRecord
   has_one :referring_user, through: :user
   has_many :conversations, -> { visible }
 
-  has_many :job_posts, dependent: :destroy
+  has_many :job_posts, class_name: "Businesses::JobPost", dependent: :destroy
 
   has_noticed_notifications
 
