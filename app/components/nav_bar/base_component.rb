@@ -23,7 +23,7 @@ module NavBar
       links << Link.new(t(".pricing"), pricing_path)
       links << Link.new(t(".bootcamps"), bootcamps_path)
       links << Link.new(t(".affiliates"), affiliates_path)
-      links << Link.new(t(".jobposts"), businesses_job_posts_path)
+      links << Link.new(t(".jobposts"), jobs_path)
       links
     end
   end
