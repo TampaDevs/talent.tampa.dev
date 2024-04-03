@@ -42,6 +42,26 @@ module SeedsHelper
       end
     end
 
+    def create_job_posts!(business)
+      5.times do |i|
+        Businesses::JobPost.find_or_create_by!(title: "An Awesome Job #{i + 1}", business:) do |job_post|
+          job_post.assign_attributes(
+            role_level: RoleLevel.new(junior: [true, false].sample),
+            role_type: RoleType.new(full_time_employment: true), 
+            status: 1,
+            role_location: 1,
+            description: "This is an awesome position in a great location at a good company.",
+            city: "Tampa, Florida",
+            salary_range_min: 80000,
+            salary_range_max: 100000
+          )
+          job_post.save! # Assuming you have a similar save_and_notify method, you might want to use that instead
+        end
+      end
+    end
+
+
+
     def create_message!(conversation:, sender:, body:, cold_message: false)
       Message.find_or_create_by!(conversation:, sender:, body:) do |message|
         message.save_and_notify(cold_message:)
