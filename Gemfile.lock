@@ -428,7 +428,7 @@ GEM
     ruby2_keywords (0.0.5)
     ruby_http_client (3.5.5)
     rubyzip (2.3.2)
-    scout_apm (5.1.1)
+    scout_apm (5.3.8)
       parser
     selenium-webdriver (4.19.0)
       base64 (~> 0.2)
