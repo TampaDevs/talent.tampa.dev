@@ -1,71 +1,80 @@
 class JobPostsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
   before_action :require_business!, only: %i[new create edit update]
-  before_action :set_job_post, only: %i[show edit update]
-  before_action :authorize_edit!, only: %i[edit update]
+  before_action :set_job_post, only: [:edit, :update, :show]
 
   def new
-    @form = Businesses::JobPost.new(business: current_user.business)
+    @job_post = current_user.business.job_posts.new
+    build_associations
   end
 
   def create
-    @form = Businesses::JobPost.new(form_params)
-    if @form.save_and_notify
-      Analytics::Event.job_post_created(current_user, cookies, @form)
-      redirect_to job_posts_path, notice: t(".success")
+    @job_post = current_user.business.job_posts.new(job_post_params)
+    build_associations
+
+    set_role_level_and_type
+    if @job_post.save
+      redirect_to jobs_path, notice: t(".success")
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
-  if @job_post.update(job_post_params)
-    redirect_to @job_post, notice: 'Job post was successfully updated.'
-  else
-    render :edit, status: :unprocessable_entity
+    authorize @job_post
+    set_role_level_and_type
+    if @job_post.update(job_post_params)
+      redirect_to jobs_path, notice: t(".updated")
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
-end
 
-  def edit; end
+  def edit
+    authorize @job_post
+  end
 
   def index
-    @job_posts = Businesses::JobPost.all()
+    @job_post = Businesses::JobPost.all # Use @job_posts for the collection
   end
 
   def show
-    @job_post = Businesses::JobPost.find(params[:id])
+    # @job_post is set by before_action
   end
 
   private
-
-  def business
-    @business = current_user.business
-  end
-
-  def require_business!
-    unless business.present?
-      store_location!
-      redirect_to new_business_path, notice: I18n.t("errors.business_blank")
-    end
-  end
 
   def set_job_post
     @job_post = Businesses::JobPost.find(params[:id])
   end
 
-  def authorize_edit!
-    unless @job_post.business == current_user.business
-      redirect_to job_path, alert: I18n.t("errors.unauthorized")
+  def build_associations
+    @job_post.build_role_level unless @job_post.role_level
+    @job_post.build_role_type unless @job_post.role_type
+  end
+
+  def set_role_level_and_type
+    role_level_choice = params[:businesses_job_post][:role_level_choice]
+    role_type_choice = params[:businesses_job_post][:role_type_choice]
+
+    if role_level_choice.present? && RoleLevel::TYPES.include?(role_level_choice.to_sym)
+      RoleLevel::TYPES.each { |type| @job_post.role_level.send("#{type}=", false) }
+      @job_post.role_level.update!(role_level_choice.to_sym => true)
+    end
+
+    if role_type_choice.present? && RoleType::TYPES.include?(role_type_choice.to_sym)
+      RoleType::TYPES.each { |type| @job_post.role_type.send("#{type}=", false) }
+      @job_post.role_type.update!(role_type_choice.to_sym => true)
     end
   end
 
-  def form_params
+  def require_business!
+    redirect_to new_business_path, notice: t("errors.business_blank") unless current_user.business.present?
+  end
+
+  def job_post_params
     params.require(:businesses_job_post).permit(
-      :annual_salary,
-      :position,
-      :start_date,
-      :employment_type,
-      :description
-    ).merge(business: business)
+      :title, :salary_range_min, :salary_range_max, :description, :status, :role_location, :city
+    )
   end
 end

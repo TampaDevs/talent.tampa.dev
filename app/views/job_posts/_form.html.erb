@@ -1,35 +1,64 @@
-<%= form_with(model: job_post) do |form| %>
+<%= form_with(model: job_post, url: job_post.persisted? ? job_path(job_post) : jobs_path, local: true) do |form| %>
+
 
 <div class="field">
   <%= form.label :title %> <%= form.text_field :title %>
 </div>
 
 <div class="field">
-  <%= form.label :employment_type %> <%= form.text_field :employment_type %>
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+</div>
+
+
+<div class="field">
+  <%= form.label :role_level, "Role Level" %><br>
+  <% RoleLevel::TYPES.each do |type| %>
+    <%= radio_button_tag 'job_post[role_level_choice]', type, @job_post.role_level&.send("#{type}?") %>
+    <%= label_tag "job_post_role_level_choice_#{type}", type.to_s.humanize %><br>
+  <% end %>
 </div>
 
 <div class="field">
-  <%= form.label :role_type %> <%= form.text_field :role_type %>
+  <%= form.label :role_type, "Role Type" %><br>
+  <% RoleType::TYPES.each do |type| %>
+    <%= radio_button_tag 'job_post[role_type_choice]', type, @job_post.role_type&.send("#{type}?") %>
+    <%= label_tag "job_post_role_type_choice_#{type}", type.to_s.humanize %><br>
+  <% end %>
 </div>
 
 <div class="field">
-  <%= form.label :location %> <%= form.text_field :location %>
+  <%= form.label :role_location, "Location" %><br>
+  <% Businesses::JobPost.role_locations.each do |key, value| %>
+    <%= form.radio_button :role_location, key, checked: @job_post.role_location == key %>
+    <%= form.label "role_location_#{key}", key.humanize %><br>
+  <% end %>
 </div>
 
-<div class="field">
-  <%= form.label :salary_min %> <%= form.number_field :salary_min %>
-</div>
+<% if @job_post.contract_role? %>
+  <div class="field">
+    <%= form.label :fixed_fee %>
+    <%= form.number_field :fixed_fee %>
+  </div>
+<% else %>
+  <div class="field">
+    <%= form.label :salary_min %> 
+    <%= form.number_field :salary_range_min %>
+  </div>
 
-<div class="field">
-  <%= form.label :salary_max %> <%= form.number_field :salary_max %>
-</div>
+  <div class="field">
+    <%= form.label :salary_max %>
+    <%= form.number_field :salary_range_max %>
+  </div>
+<% end %>
 
 <div class="field">
   <%= form.label :description %> <%= form.text_area :description %>
 </div>
 
 <div class="field">
-  <%= form.label :status %> <%= form.select :status, ['draft', 'published'] %>
+  <%= form.label :status %> 
+  <%= form.select :status, Businesses::JobPost.statuses.keys.map { |status| [status.humanize, status] } %>
 </div>
 
 <div class="actions">

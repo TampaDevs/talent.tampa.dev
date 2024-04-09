@@ -44,22 +44,44 @@ module SeedsHelper
 
     def create_job_posts!(business)
       5.times do |i|
-        Businesses::JobPost.find_or_create_by!(title: "An Awesome Job #{i + 1}", business:) do |job_post|
-          job_post.assign_attributes(
-            role_level: RoleLevel.new(junior: [true, false].sample),
-            role_type: RoleType.new(full_time_employment: true), 
-            status: 1,
-            role_location: 1,
+        ActiveRecord::Base.transaction do
+          job_post = Businesses::JobPost.new(
+            title: "An Awesome Job #{i + 1}",
+            business: business,
+            status: :open,
+            role_location: :remote,
             description: "This is an awesome position in a great location at a good company.",
-            city: "Tampa, Florida",
-            salary_range_min: 80000,
-            salary_range_max: 100000
+            city: "Tampa, Florida"
           )
-          job_post.save! # Assuming you have a similar save_and_notify method, you might want to use that instead
+
+          # Randomly decide the role type
+          role_type_option = [:full_time_employment, :part_time_contract, :full_time_contract].sample
+
+          # Adjust financials based on role type
+          case role_type_option
+          when :full_time_employment
+            job_post.salary_range_min = 80000
+            job_post.salary_range_max = 100000
+          when :part_time_contract, :full_time_contract
+            job_post.fixed_fee = [20000, 50000, 80000].sample # Example fixed fees
+          end
+
+          # Build and save role level
+          role_level = job_post.build_role_level
+          RoleLevel::TYPES.each { |type| role_level.send("#{type}=", false) }
+          role_level.send("#{RoleLevel::TYPES.sample}=", true)
+
+          # Build and save role type
+          role_type = job_post.build_role_type
+          RoleType::TYPES.each { |type| role_type.send("#{type}=", type == role_type_option) }
+
+          # Save job post and associated objects
+          job_post.save!
         end
+      rescue ActiveRecord::RecordInvalid => e
+        puts "Failed to create job post: #{e.record.errors.full_messages.join(', ')}"
       end
     end
-
 
 
     def create_message!(conversation:, sender:, body:, cold_message: false)

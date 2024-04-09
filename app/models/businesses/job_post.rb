@@ -20,7 +20,14 @@ module Businesses
     validate :validate_salary_range_for_full_time_employment
     validate :validate_fixed_fee_for_contract
 
+    accepts_nested_attributes_for :role_level
+    accepts_nested_attributes_for :role_type
+
     scope :open, -> { where(status: :open) }
+
+    def contract_role?
+      role_type&.part_time_contract? || role_type&.full_time_contract?
+    end
 
     private
 

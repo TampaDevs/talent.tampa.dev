@@ -611,6 +611,11 @@ en:
       title_2: Tampa Bay's Developer Community
       title_og: "The nonprofit job board for Tampa Bay's Developer Community"
       turbo_native_title: Tampa Devs Talent
+  job_posts:
+    update:
+      updated: "Job post successfully updated."
+    create:
+      success: "Job post successfully created."
   impersonating_banner_component:
     cta: Sign out
     title: Signed in as %{email}

@@ -38,7 +38,12 @@ class ApplicationPolicy
     user&.admin?
   end
 
-  def record_owner?
+def record_owner?
+  if record.is_a?(Businesses::JobPost)
+    user == record.business.user
+  else
     user == record.user
   end
+end
+
 end
