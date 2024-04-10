@@ -3,6 +3,9 @@
 
 import { application } from "./application"
 
+import ContractTypeController from "./contract_type_controller.js"
+application.register("contract-type", ContractTypeController)
+
 import AccessibilityController from "./accessibility_controller.js"
 application.register("accessibility", AccessibilityController)
 
@@ -11,9 +14,6 @@ application.register("analytics--events", Analytics__EventsController)
 
 import Analytics__PageViewsController from "./analytics/page_views_controller.js"
 application.register("analytics--page-views", Analytics__PageViewsController)
-
-import JavascriptEnabledController from "./javascript_enabled_controller.js"
-application.register("javascript-enabled", JavascriptEnabledController)
 
 import ClipboardController from "./clipboard_controller.js"
 application.register("clipboard", ClipboardController)
@@ -29,6 +29,9 @@ application.register("forms--autosubmit", Forms__AutosubmitController)
 
 import Forms__KeyboardSubmitController from "./forms/keyboard_submit_controller.js"
 application.register("forms--keyboard-submit", Forms__KeyboardSubmitController)
+
+import JavascriptEnabledController from "./javascript_enabled_controller.js"
+application.register("javascript-enabled", JavascriptEnabledController)
 
 import KeyboardShortcutController from "./keyboard_shortcut_controller.js"
 application.register("keyboard-shortcut", KeyboardShortcutController)

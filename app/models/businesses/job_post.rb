@@ -4,7 +4,7 @@ module Businesses
     include ::Businesses::JobPosts::Notifications
 
     belongs_to :business
-    has_many :job_applications, dependent: :destroy
+    has_many :job_applications, dependent: :destroy, class_name: "Developers::JobApplication"
     has_one :role_level, dependent: :destroy, autosave: true
     has_one :role_type, dependent: :destroy, autosave: true
 

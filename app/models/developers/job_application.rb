@@ -1,5 +1,6 @@
 module Developers
   class JobApplication < ApplicationRecord
+    self.table_name = "job_applications"
     belongs_to :job_post
     belongs_to :developer
 

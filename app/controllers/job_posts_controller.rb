@@ -54,19 +54,20 @@ class JobPostsController < ApplicationController
   end
 
   def set_role_level_and_type
-    role_level_choice = params[:businesses_job_post][:role_level_choice]
-    role_type_choice = params[:businesses_job_post][:role_type_choice]
+    role_level_choice = params[:job_post][:role_level_choice]
+    role_type_choice = params[:job_post][:role_type_choice]
 
-    if role_level_choice.present? && RoleLevel::TYPES.include?(role_level_choice.to_sym)
-      RoleLevel::TYPES.each { |type| @job_post.role_level.send("#{type}=", false) }
-      @job_post.role_level.update!(role_level_choice.to_sym => true)
+    if role_level_choice.present?
+      RoleLevel::TYPES.each { |type| @job_post.role_level.update("#{type}" => false) }
+      @job_post.role_level.update("#{role_level_choice}" => true)
     end
 
-    if role_type_choice.present? && RoleType::TYPES.include?(role_type_choice.to_sym)
-      RoleType::TYPES.each { |type| @job_post.role_type.send("#{type}=", false) }
-      @job_post.role_type.update!(role_type_choice.to_sym => true)
+    if role_type_choice.present?
+      RoleType::TYPES.each { |type| @job_post.role_type.update("#{type}" => false) }
+      @job_post.role_type.update("#{role_type_choice}" => true)
     end
   end
+
 
   def require_business!
     redirect_to new_business_path, notice: t("errors.business_blank") unless current_user.business.present?
@@ -74,7 +75,7 @@ class JobPostsController < ApplicationController
 
   def job_post_params
     params.require(:businesses_job_post).permit(
-      :title, :salary_range_min, :salary_range_max, :description, :status, :role_location, :city
+      :title, :salary_range_min, :salary_range_max, :description, :status, :role_location, :city, :fixed_fee
     )
   end
 end
