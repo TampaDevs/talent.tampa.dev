@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     resources :businesses, except: :destroy
     resources :specialties, only: :index
 
+    resources :jobs, controller: :job_posts, except: :destroy do
+      post :apply, on: :member
+      get 'applicants', on: :member
+    end
+
     namespace :businesses do
       resources :hiring_invoice_requests, only: [:new, :create]
     end

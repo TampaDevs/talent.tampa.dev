@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_12_161157) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_02_195345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -193,6 +193,35 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_161157) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["message_id"], name: "index_inbound_emails_on_message_id"
+  end
+
+  create_table "job_applications", force: :cascade do |t|
+    t.bigint "job_post_id", null: false
+    t.bigint "developer_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_job_applications_on_developer_id"
+    t.index ["job_post_id"], name: "index_job_applications_on_job_post_id"
+    t.index ["status"], name: "index_job_applications_on_status"
+  end
+
+  create_table "job_posts", force: :cascade do |t|
+    t.bigint "business_id", null: false
+    t.integer "status", default: 1, null: false
+    t.integer "role_location", null: false
+    t.integer "salary_range_min"
+    t.integer "salary_range_max"
+    t.integer "fixed_fee"
+    t.string "description", null: false
+    t.string "city", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.index ["business_id"], name: "index_job_posts_on_business_id"
+    t.index ["city"], name: "index_job_posts_on_city"
+    t.index ["role_location"], name: "index_job_posts_on_role_location"
+    t.index ["status"], name: "index_job_posts_on_status"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -415,7 +444,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_161157) do
     t.boolean "c_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_post_id"
     t.index ["developer_id"], name: "index_role_levels_on_developer_id", unique: true
+    t.index ["job_post_id"], name: "index_role_levels_on_job_post_id"
   end
 
   create_table "role_types", force: :cascade do |t|
@@ -425,7 +456,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_161157) do
     t.boolean "full_time_employment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "job_post_id"
     t.index ["developer_id"], name: "index_role_types_on_developer_id", unique: true
+    t.index ["job_post_id"], name: "index_role_types_on_job_post_id"
   end
 
   create_table "specialties", force: :cascade do |t|
@@ -474,6 +507,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_161157) do
   add_foreign_key "developers_celebration_package_requests", "developers"
   add_foreign_key "hiring_agreements_signatures", "hiring_agreements_terms"
   add_foreign_key "hiring_agreements_signatures", "users"
+  add_foreign_key "job_applications", "developers"
+  add_foreign_key "job_applications", "job_posts"
+  add_foreign_key "job_posts", "businesses"
   add_foreign_key "notification_tokens", "users"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
@@ -481,7 +517,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_161157) do
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
   add_foreign_key "referrals", "users", column: "referred_user_id"
   add_foreign_key "role_levels", "developers"
+  add_foreign_key "role_levels", "job_posts"
   add_foreign_key "role_types", "developers"
+  add_foreign_key "role_types", "job_posts"
   add_foreign_key "specialty_tags", "developers"
   add_foreign_key "specialty_tags", "specialties"
 end

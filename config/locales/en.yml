@@ -607,10 +607,15 @@ en:
       subtitle_1: Tampa Devs Talent
       subtitle_2: empowers local developers and supports social good.
       subtitle_3: Stop combing through job listings and kick back while companies reach out to you!
-      title_1: The reverse job board for
+      title_1: "The nonprofit job board for"
       title_2: Tampa Bay's Developer Community
-      title_og: The reverse job board for Tampa Bay's Developer Community
+      title_og: "The nonprofit job board for Tampa Bay's Developer Community"
       turbo_native_title: Tampa Devs Talent
+  job_posts:
+    update:
+      updated: "Job post successfully updated."
+    create:
+      success: "Job post successfully created."
   impersonating_banner_component:
     cta: Sign out
     title: Signed in as %{email}
@@ -635,6 +640,7 @@ en:
       developers: Developers
       home: Home
       pricing: Pricing
+      jobposts: Job Posts
     guest_component:
       register: Register
       sign_in: Sign in
@@ -670,6 +676,8 @@ en:
       businesses:
         hiring_invoice_request_notification:
           title: "%{business} hired a developer"
+        job_post_notification:
+          title: "%{business} posted a new job"
       developers:
         celebration_package_request:
           title: "%{developer} requested a celebration package"
@@ -816,7 +824,7 @@ en:
       new_devs: New devs a month
       rails_developers: Developers in Tampa Bay
       response_rate: Response rate
-      title: Built By and For Tampa's Developers
+      title: Built By and For Local Developers
   public_profiles:
     new:
       cancel: Cancel

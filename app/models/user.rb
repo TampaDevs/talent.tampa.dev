@@ -4,7 +4,6 @@ class User < ApplicationRecord
   include PayCustomer
   include Referrable
   include Analytics::Profile
-
   devise :confirmable,
     :database_authenticatable,
     :recoverable,
