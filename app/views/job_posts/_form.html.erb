@@ -20,7 +20,7 @@
       <% end %>
     </div>
 
-    <div class="mb-6">
+    <div class="mb-6" data-contract-type-target="roleType">
       <%= form.label :role_type, "Role Type", class: "block text-sm font-medium text-gray-700" %>
       <% RoleType::TYPES.each do |type| %>
         <div class="mt-2">
@@ -32,19 +32,19 @@
 
     <div class="mb-6" data-contract-type-target="salaryRange">
       <div>
-        <%= form.label :salary_min, class: "block text-sm font-medium text-gray-700" %> 
-        <%= form.number_field :salary_range_min, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+        <%= form.label :salary_range_min, class: "block text-sm font-medium text-gray-700" %> 
+        <%= form.number_field :salary_range_min, value: @job_post.salary_range_min, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
       </div>
 
       <div>
-        <%= form.label :salary_max, class: "block text-sm font-medium text-gray-700" %> 
-        <%= form.number_field :salary_range_max, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+        <%= form.label :salary_range_max, class: "block text-sm font-medium text-gray-700" %> 
+        <%= form.number_field :salary_range_max, value: @job_post.salary_range_max, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
       </div>
     </div>
 
     <div class="mb-6 hidden" data-contract-type-target="fixedFee">
       <%= form.label :fixed_fee, class: "block text-sm font-medium text-gray-700" %> 
-      <%= form.number_field :fixed_fee, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      <%= form.number_field :fixed_fee, value: @job_post.fixed_fee, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
     </div>
 
     <div class="mb-6">

@@ -2,15 +2,24 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["fixedFee", "salaryRange", "roleType"]
-  
+
   connect() {
-  console.log("ContractType controller connected");
-}
+    this.updateFields();
+  }
 
-  toggle(event) {
-    const isContract = event.target.value.includes("contract");
-
+  updateFields() {
+    const roleTypeValue = this.roleTypeTarget.querySelector('input[type="radio"]:checked').value;
+    console.log(roleTypeValue);
+    const isContract = roleTypeValue === "part_time_contract" || roleTypeValue === "full_time_contract";
     this.fixedFeeTarget.classList.toggle("hidden", !isContract);
     this.salaryRangeTarget.classList.toggle("hidden", isContract);
   }
+
+  toggle() {
+    this.updateFields();
+  }
 }
+
+
+
+
