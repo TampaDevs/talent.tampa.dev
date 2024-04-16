@@ -1,61 +1,64 @@
 <%= form_with(model: job_post, url: job_post.persisted? ? job_path(job_post) : jobs_path, local: true, data: { controller: "contract-type" }) do |form| %>
+  <div class="max-w-4xl mx-auto px-4 py-8 bg-white shadow rounded-lg">
+    <div class="mb-6">
+      <%= form.label :title, class: "block text-sm font-medium text-gray-700" %> 
+      <%= form.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
 
-<div class="field">
-  <%= form.label :title %> <%= form.text_field :title %>
-</div>
+    <div class="mb-6">
+      <%= form.label :city, class: "block text-sm font-medium text-gray-700" %> 
+      <%= form.text_field :city, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
 
-<div class="field">
-  <%= form.label :city %> <%= form.text_field :city %>
-</div>
+    <div class="mb-6">
+      <%= form.label :role_level, "Role Level", class: "block text-sm font-medium text-gray-700" %>
+      <% RoleLevel::TYPES.each do |type| %>
+        <div class="mt-2">
+          <%= radio_button_tag 'job_post[role_level_choice]', type, @job_post.role_level&.send("#{type}?"), class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" %>
+          <%= label_tag "job_post_role_level_choice_#{type}", type.to_s.humanize, class: "ml-3 text-sm font-medium text-gray-700" %>
+        </div>
+      <% end %>
+    </div>
 
-<div class="field">
-  <%= form.label :role_level, "Role Level" %><br>
-  <% RoleLevel::TYPES.each do |type| %>
-    <%= radio_button_tag 'job_post[role_level_choice]', type, @job_post.role_level&.send("#{type}?") %>
-    <%= label_tag "job_post_role_level_choice_#{type}", type.to_s.humanize %><br>
-  <% end %>
-</div>
+    <div class="mb-6">
+      <%= form.label :role_type, "Role Type", class: "block text-sm font-medium text-gray-700" %>
+      <% RoleType::TYPES.each do |type| %>
+        <div class="mt-2">
+          <%= radio_button_tag 'job_post[role_type_choice]', type, @job_post.role_type&.send("#{type}?"), data: { action: "contract-type#toggle" }, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" %>
+          <%= label_tag "job_post_role_type_choice_#{type}", type.to_s.humanize, class: "ml-3 text-sm font-medium text-gray-700" %>
+        </div>
+      <% end %>
+    </div>
 
-<div class="field">
-  <%= form.label :role_type, "Role Type" %><br>
-  <% RoleType::TYPES.each do |type| %>
-    <%= radio_button_tag 'job_post[role_type_choice]', type, @job_post.role_type&.send("#{type}?"), data: { action: "contract-type#toggle" } %>
-    <%= label_tag "job_post_role_type_choice_#{type}", type.to_s.humanize %><br>
-  <% end %>
-</div>
+    <div class="mb-6" data-contract-type-target="salaryRange">
+      <div>
+        <%= form.label :salary_min, class: "block text-sm font-medium text-gray-700" %> 
+        <%= form.number_field :salary_range_min, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      </div>
 
-<div class="field">
-  <%= form.label :role_location, "Location" %><br>
-  <% Businesses::JobPost.role_locations.each do |key, value| %>
-    <%= form.radio_button :role_location, key, checked: @job_post.role_location == key %>
-    <%= form.label "role_location_#{key}", key.humanize %><br>
-  <% end %>
-</div>
+      <div>
+        <%= form.label :salary_max, class: "block text-sm font-medium text-gray-700" %> 
+        <%= form.number_field :salary_range_max, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+      </div>
+    </div>
 
-<div class="field" data-contract-type-target="salaryRange">
-  <div>
-    <%= form.label :salary_min %> <%= form.number_field :salary_range_min %>
+    <div class="mb-6 hidden" data-contract-type-target="fixedFee">
+      <%= form.label :fixed_fee, class: "block text-sm font-medium text-gray-700" %> 
+      <%= form.number_field :fixed_fee, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :description, class: "block text-sm font-medium text-gray-700" %> 
+      <%= form.text_area :description, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :status, class: "block text-sm font-medium text-gray-700" %> 
+      <%= form.select :status, Businesses::JobPost.statuses.keys.map { |status| [status.humanize, status] }, {}, {class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"} %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Update Job Post', class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+    </div>
   </div>
-
-  <div>
-    <%= form.label :salary_max %> <%= form.number_field :salary_range_max %>
-  </div>
-</div>
-
-<div class="field hidden" data-contract-type-target="fixedFee">
-  <%= form.label :fixed_fee %> <%= form.number_field :fixed_fee %>
-</div>
-
-<div class="field">
-  <%= form.label :description %> <%= form.text_area :description %>
-</div>
-
-<div class="field">
-  <%= form.label :status %> <%= form.select :status, Businesses::JobPost.statuses.keys.map { |status| [status.humanize, status] } %>
-</div>
-
-<div class="actions">
-  <%= form.submit %>
-</div>
-
 <% end %>

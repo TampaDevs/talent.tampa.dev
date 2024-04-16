@@ -1,1 +1,66 @@
-<h1><%= @job_post.title %></h1>
+<div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+  <div class="text-center">
+    <%= render AvatarComponent.new(avatarable: @job_post.business, variant: :medium, classes: "h-24 w-24 mx-auto rounded-full") %>
+    <h1 class="text-3xl font-bold mt-4"><%= @job_post.title %></h1>
+    <h2 class="text-xl font-semibold text-gray-700"><%= @job_post.business.company %></h2>
+  </div>
+
+  <div class="grid grid-cols-2 gap-6 mt-6">
+    <div>
+      <strong>City:</strong>
+      <p><%= @job_post.city %></p>
+    </div>
+
+    <div>
+      <strong>Location:</strong>
+      <p><%= @job_post.role_location.humanize %></p>
+    </div>
+
+    <div>
+      <strong>Job Type:</strong>
+      <p>
+        <% if @job_post.role_type.full_time_employment? %>
+          Full-time Employment
+        <% elsif @job_post.role_type.part_time_contract? %>
+          Part-time Contract
+        <% elsif @job_post.role_type.full_time_contract? %>
+          Full-time Contract
+        <% end %>
+      </p>
+    </div>
+
+    <% if @job_post.fixed_fee.present? %>
+      <div>
+        <strong>Fixed Fee:</strong>
+        <p><%= number_to_currency(@job_post.fixed_fee) %></p>
+      </div>
+    <% else %>
+      <div>
+        <strong>Salary Range:</strong>
+        <p><%= number_to_currency(@job_post.salary_range_min) %> - <%= number_to_currency(@job_post.salary_range_max) %></p>
+      </div>
+    <% end %>
+
+    <div>
+      <strong>Role Level:</strong>
+      <p>
+        <% RoleLevel::TYPES.each do |type| %>
+          <% if @job_post.role_level.send("#{type}?") %>
+            <%= type.to_s.humanize %>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="col-span-2">
+      <strong>Description:</strong>
+      <p class="text-gray-700 mt-2"><%= @job_post.description %></p>
+    </div>
+
+    <div class="col-span-2 text-center mt-6">
+      <% if user_signed_in? && current_user&.developer.present? && !@job_post.job_applications.where(developer: current_user.developer).exists? %>
+        <%= button_to 'Apply Now', apply_job_path(@job_post), method: :post, class: "inline-flex items-center px-6 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+      <% end %>
+    </div>
+  </div>
+</div>

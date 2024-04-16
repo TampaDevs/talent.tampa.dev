@@ -1,29 +1,33 @@
-<h2>Job Posts</h2>
-<%= link_to 'Create Job Post', new_job_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+<h2 class="text-2xl font-bold mb-4">Job Posts</h2>
+<%= link_to 'Create Job Post', new_job_path, class: "mb-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
 
 <% @job_post.each do |job_post| %>
-  <%= tag.div class: "relative border-b border-gray-100" do %>
-    <%= link_to jobs_path(job_post), class: "bg-white hover:bg-blue-50 py-6 px-8 flex justify-between" do %>
-      <div class="flex space-x-4">
-        <div class="self-start flex-1 min-w-0 space-y-4">
-          <div class="flex items-baseline space-x-4">
-            <h2 class="text-lg sm:text-xl font-medium text-blue-900 line-clamp-2 break-words" title="<%= job_post.title %>">
-              <%= job_post.title %>
-            </h2>
-            <span class="text-sm sm:text-base text-gray-600">
-              <%= job_post.business.company %>
-            </span>
-          </div>
-        </div>
+  <div class="flex justify-between items-center bg-white hover:bg-blue-50 py-4 px-6 border-b border-gray-100">
+    <div class="flex items-center space-x-4">
+      <div class="flex-shrink-0">
+        <%= render AvatarComponent.new(avatarable: job_post.business, variant: :medium, classes: "h-12 w-12 rounded-full") %>
       </div>
+      <div class="flex-1 min-w-0 pr-4">
+        <h3 class="text-lg font-medium text-blue-900 truncate" title="<%= job_post.title %>">
+          <%= link_to job_post.title, job_path(job_post) %>
+        </h3>
+        <span class="text-sm font-normal text-gray-600">
+          <%= job_post.business.company %>
+        </span>
+      </div>
+    </div>
 
-      <div class="flex space-x-2">
-        <% if job_post.business == current_user.business %>
-          <%= link_to "Applications",  class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
-          <%= link_to "Edit", edit_job_path(job_post), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
+    <div class="flex space-x-2">
+      <% if job_post.business == current_user.business %>
+        <%= link_to "Applications", applicants_job_path(job_post), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+        <%= link_to "Edit", edit_job_path(job_post), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+      <% end %>
+      <% if user_signed_in? && current_user&.developer.present? && !job_post.job_applications.where(developer: current_user.developer).exists? %>
+        <%= link_to "Apply", job_path(job_post), method: :post, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
+
+
 

@@ -1,7 +1,7 @@
 class JobPostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update]
+  before_action :authenticate_user!, only: %i[new create edit update apply]
   before_action :require_business!, only: %i[new create edit update]
-  before_action :set_job_post, only: [:edit, :update, :show]
+  before_action :set_job_post, only: [:edit, :update, :show, :apply, :applicants]
 
   def new
     @job_post = current_user.business.job_posts.new
@@ -35,11 +35,41 @@ class JobPostsController < ApplicationController
   end
 
   def index
-    @job_post = Businesses::JobPost.all # Use @job_posts for the collection
+    @job_post = Businesses::JobPost.all
   end
 
   def show
-    # @job_post is set by before_action
+  end
+
+  def apply
+    # Redirects with an alert if there's no associated developer profile
+    unless current_user&.developer.present?
+      return redirect_to job_path(@job_post), alert: "You must be a developer to apply."
+    end
+
+    # Check if the developer has already applied
+    if @job_post.job_applications.where(developer: current_user.developer).exists?
+      redirect_to job_path(@job_post), alert: "You have already applied to this job."
+    else
+      # Logic to handle the application process
+      application = @job_post.job_applications.create(developer: current_user.developer, status: 'unread')
+
+      if application.persisted?
+        redirect_to job_path(@job_post), notice: "Application submitted successfully."
+      else
+        redirect_to job_path(@job_post), alert: "Failed to submit the application."
+      end
+    end
+  end
+
+  def applicants
+    if current_user.business != @job_post.business
+      redirect_to root_path, alert: "You are not authorized to view this page."
+      return
+    end
+
+    # Fetching applications with developers' details preloaded
+    @applications = @job_post.job_applications.includes(:developer)
   end
 
   private
