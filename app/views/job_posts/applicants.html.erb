@@ -3,26 +3,40 @@
 
   <% if @applications.any? %>
     <div class="mt-6">
-      <ul class="list-none space-y-4">
-        <% @applications.each do |application| %>
-          <li class="flex items-center space-x-4">
-            <div>
-              <%= render AvatarComponent.new(avatarable: application.developer, variant: :thumb, classes: "h-12 w-12 rounded-full") %>
+      <% @applications.each do |application| %>
+        <%= tag.div class: "relative border-b border-gray-100" do %>
+          <%= link_to developer_path(application.developer), class: "bg-white hover:bg-blue-50 py-6 px-8 flex space-x-4 sm:space-x-8" do %>
+            <div class="shrink-0">
+              <%= render AvatarComponent.new(avatarable: application.developer, variant: :medium) %>
             </div>
-            <div class="flex-1 min-w-0">
-              <%= link_to application.developer.name, developer_path(application.developer), class: "text-lg font-medium text-blue-600 hover:text-blue-800" %>
+
+            <div class="self-start flex-1 min-w-0 space-y-4">
+              <div class="flex items-baseline">
+                <h2 class="text-lg sm:text-xl font-medium text-blue-900 line-clamp-2 break-word" title="<%= application.developer.hero %>">
+                  <%= application.developer.name %>
+                </h2>
+
+                <div class="text-right flex-1">
+                  <span class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1">
+                    Status: <%= application.status.humanize %>
+                  </span>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <%= render Developers::BadgesComponent.new(application.developer) %>
+                <%= render Developers::SpecialtiesComponent.new(application.developer.specialties) %>
+              </div>
+
+              <div class="text-sm sm:text-base text-blue-950 space-y-4">
+                <p class="line-clamp-3 break-words"><%= application.developer.bio %></p>
+              </div>
             </div>
-            <div class="text-right">
-              <span class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1">
-                Status: <%= application.status.humanize %>
-              </span>
-            </div>
-          </li>
+          <% end %>
         <% end %>
-      </ul>
+      <% end %>
     </div>
   <% else %>
     <p class="text-center mt-6 text-gray-600">No applications yet.</p>
   <% end %>
 </div>
-
