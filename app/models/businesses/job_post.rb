@@ -27,6 +27,7 @@ module Businesses
     accepts_nested_attributes_for :role_type
 
     scope :open, -> { where(status: :open) }
+    scope :newest_first, -> { order(created_at: :desc) }
 
     def contract_role?
       role_type&.part_time_contract? || role_type&.full_time_contract?

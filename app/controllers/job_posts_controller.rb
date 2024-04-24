@@ -36,7 +36,8 @@ class JobPostsController < ApplicationController
 
   def index
     @query = JobPostQuery.new(params.permit(:role_level, :role_location, :role_type, :fixed_fee, :salary_range_min, :salary_range_max))
-    @pagy, @job_posts = @query.pagy_and_records
+    @pagy = @query.pagy
+    @job_posts = @query.records
   end
 
 
