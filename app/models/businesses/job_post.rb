@@ -3,6 +3,9 @@ module Businesses
     self.table_name = "job_posts"
     include ::Businesses::JobPosts::Notifications
 
+    include PgSearch::Model
+    pg_search_scope :filter_by_search_query, against: [:title, :description], using: {tsearch: {tsvector_column: :textsearchable_index_col, prefix: true}}
+
     belongs_to :business
     has_many :job_applications, dependent: :destroy, class_name: "Developers::JobApplication"
     has_one :role_level, dependent: :destroy, autosave: true

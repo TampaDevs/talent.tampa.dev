@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_02_195345) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_24_162720) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -218,10 +218,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_02_195345) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
+    t.virtual "textsearchable_index_col", type: :tsvector, as: "to_tsvector('simple'::regconfig, (((COALESCE(title, ''::character varying))::text || ' '::text) || (COALESCE(description, ''::character varying))::text))", stored: true
     t.index ["business_id"], name: "index_job_posts_on_business_id"
     t.index ["city"], name: "index_job_posts_on_city"
     t.index ["role_location"], name: "index_job_posts_on_role_location"
     t.index ["status"], name: "index_job_posts_on_status"
+    t.index ["textsearchable_index_col"], name: "textsearchable_index_job_posts", using: :gin
   end
 
   create_table "locations", force: :cascade do |t|
