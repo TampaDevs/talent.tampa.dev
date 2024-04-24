@@ -1,0 +1,41 @@
+<div class="px-4 sm:px-6">
+  <%= form_with url: jobs_path, id: form_id, method: :get do |form| %>
+    
+    <!-- Role Level -->
+    <div class="pb-6">
+      <%= form.label :role_level, "Role Level", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.select :role_level, role_levels, include_blank: true, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    </div>
+    
+    <!-- Location -->
+    <div class="pb-6">
+      <%= form.label :location, "Location", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.select :location, locations, include_blank: true, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    </div>
+
+        <!-- Role Type with Stimulus controller for dynamic field display -->
+    <div data-controller="role-type" class="pb-6">
+      <%= form.label :role_type, "Job Type", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.select :role_type, role_types, {include_blank: true}, { data: { "role-type-target" => "roleTypeSelect", action: "change->role-type#toggleFields" } } %>
+
+      <div data-role-type-target="fixedFee" class="hidden">
+        <%= form.label :fixed_fee, "Fixed Fee", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.number_field :fixed_fee, min: 0, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+      </div>
+      
+      <div data-role-type-target="salaryRange" class="hidden">
+        <%= form.label :salary_range_min, "Minimum Salary", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.number_field :salary_range_min, min: 0, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+        <%= form.label :salary_range_max, "Maximum Salary", class: "block text-sm font-medium text-gray-700" %>
+        <%= form.number_field :salary_range_max, min: 0, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex justify-end space-x-2 pb-8">
+      <%= form.submit "Filter", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      <%= link_to "Clear", jobs_path, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
+    </div>
+
+  <% end %>
+</div>

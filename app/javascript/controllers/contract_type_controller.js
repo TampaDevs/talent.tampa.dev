@@ -9,7 +9,6 @@ export default class extends Controller {
 
   updateFields() {
     const roleTypeValue = this.roleTypeTarget.querySelector('input[type="radio"]:checked').value;
-    console.log(roleTypeValue);
     const isContract = roleTypeValue === "part_time_contract" || roleTypeValue === "full_time_contract";
     this.fixedFeeTarget.classList.toggle("hidden", !isContract);
     this.salaryRangeTarget.classList.toggle("hidden", isContract);

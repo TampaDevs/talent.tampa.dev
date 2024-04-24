@@ -35,23 +35,22 @@ class JobPostsController < ApplicationController
   end
 
   def index
-    @job_post = Businesses::JobPost.all
+    @query = JobPostQuery.new(params.permit(:role_level, :role_location, :role_type, :fixed_fee, :salary_range_min, :salary_range_max))
+    @pagy, @job_posts = @query.pagy_and_records
   end
+
 
   def show
   end
 
   def apply
-    # Redirects with an alert if there's no associated developer profile
     unless current_user&.developer.present?
       return redirect_to job_path(@job_post), alert: "You must be a developer to apply."
     end
 
-    # Check if the developer has already applied
     if @job_post.job_applications.where(developer: current_user.developer).exists?
       redirect_to job_path(@job_post), alert: "You have already applied to this job."
     else
-      # Logic to handle the application process
       application = @job_post.job_applications.create(developer: current_user.developer, status: 'unread')
 
       if application.persisted?
@@ -97,7 +96,6 @@ class JobPostsController < ApplicationController
       @job_post.role_type.update("#{role_type_choice}" => true)
     end
   end
-
 
   def require_business!
     redirect_to new_business_path, notice: t("errors.business_blank") unless current_user.business.present?

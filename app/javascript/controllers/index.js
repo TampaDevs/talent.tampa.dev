@@ -6,6 +6,9 @@ import { application } from "./application"
 import ContractTypeController from "./contract_type_controller.js"
 application.register("contract-type", ContractTypeController)
 
+import RoleTypeController from "./role_type_controller.js"
+application.register("role-type", RoleTypeController)
+
 import AccessibilityController from "./accessibility_controller.js"
 application.register("accessibility", AccessibilityController)
 
