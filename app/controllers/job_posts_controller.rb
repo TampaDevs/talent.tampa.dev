@@ -35,8 +35,9 @@ class JobPostsController < ApplicationController
   end
 
   def index
-    @query = JobPostQuery.new(params.permit(:role_level, :role_location, :role_type, :fixed_fee, :salary_range_min, :salary_range_max))
-    @pagy, @job_posts = @query.pagy_and_records
+    # @query = JobPostQuery.new(params.permit(:role_level, :role_location, :role_type, :fixed_fee, :salary_range_min, :salary_range_max))
+    # @pagy, @job_posts = @query.pagy_and_records
+    @job_posts = Businesses::JobPost.all
   end
 
 
@@ -66,10 +67,20 @@ class JobPostsController < ApplicationController
       redirect_to root_path, alert: "You are not authorized to view this page."
       return
     end
-
-    # Fetching applications with developers' details preloaded
     @applications = @job_post.job_applications.includes(:developer)
   end
+
+  def update_application_status
+    application = Developers::JobApplication.find(params[:application_id])
+    if current_user.business == application.job_post.business
+      application.update(status: params[:status])
+      redirect_back(fallback_location: applicants_job_path(application.job_post), notice: 'Status updated successfully.')
+    else
+      redirect_back(fallback_location: applicants_job_path(application.job_post), alert: 'You are not authorized to perform this action.')
+    end
+  end
+
+
 
   private
 

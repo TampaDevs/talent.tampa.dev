@@ -5,10 +5,18 @@ module Developers
     belongs_to :developer
 
     enum status: {
-      unread: 0,
-      accepted: 1,
-      ignored: 2
+      new_status: 0, #new
+      considered: 1, #considered
+      other: 2 #other
     }
+
+    def human_status
+      {
+        'new_status' => 'New',
+        'considered' => 'Considered',
+        'other' => 'Other'
+      }[status]
+    end
 
     # Validations
     validates :job_post, :developer, presence: true

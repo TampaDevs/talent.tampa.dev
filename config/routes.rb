@@ -22,7 +22,10 @@ Rails.application.routes.draw do
     resources :jobs, controller: :job_posts, except: :destroy do
       post :apply, on: :member
       get 'applicants', on: :member
+      post 'update_application_status', on: :member
     end
+
+
 
     namespace :businesses do
       resources :hiring_invoice_requests, only: [:new, :create]
