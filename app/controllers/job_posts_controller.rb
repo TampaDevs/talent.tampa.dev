@@ -52,7 +52,7 @@ class JobPostsController < ApplicationController
     if @job_post.job_applications.where(developer: current_user.developer).exists?
       redirect_to job_path(@job_post), alert: "You have already applied to this job."
     else
-      application = @job_post.job_applications.create(developer: current_user.developer, status: 'unread')
+      application = @job_post.job_applications.create(developer: current_user.developer, status: 'new_status')
 
       if application.persisted?
         redirect_to job_path(@job_post), notice: "Application submitted successfully."
@@ -67,7 +67,16 @@ class JobPostsController < ApplicationController
       redirect_to root_path, alert: "You are not authorized to view this page."
       return
     end
-    @applications = @job_post.job_applications.includes(:developer)
+    @applications = case params[:filter]
+                    when 'new_status'
+                      @job_post.job_applications.new_status.includes(:developer)
+                    when 'considered'
+                      @job_post.job_applications.considered.includes(:developer)
+                    when 'other'
+                      @job_post.job_applications.other.includes(:developer)
+                    else
+                      @job_post.job_applications.includes(:developer)
+                    end
   end
 
   def update_application_status

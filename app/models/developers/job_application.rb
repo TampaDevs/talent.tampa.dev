@@ -29,6 +29,9 @@ module Developers
     # end
 
     # Scopes
+    scope :new_status, -> { where(status: :new_status) }
+    scope :considered, -> { where(status: :considered) }
+    scope :other, -> { where(status: :other) }
     scope :for_job_post, ->(job_post_id) { where(job_post_id: job_post_id) }
     scope :from_developer, ->(developer_id) { where(developer_id: developer_id) }
   end

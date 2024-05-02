@@ -1,6 +1,15 @@
 <div class="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
   <h1 class="text-3xl font-bold text-center">Applicants for <%= @job_post.title %></h1>
 
+  <!-- Tabs for filtering -->
+  <div class="flex justify-center space-x-4 my-4">
+    <%= link_to "All", applicants_job_path(@job_post, filter: :all), class: "tab #{'bg-gray-200' if params[:filter].blank? || params[:filter] == 'all'} px-3 py-2 rounded-md text-sm font-medium" %>
+    <%= link_to "New", applicants_job_path(@job_post, filter: :new_status), class: "tab #{'bg-gray-200' if params[:filter] == 'new_status'} px-3 py-2 rounded-md text-sm font-medium" %>
+    <%= link_to "Considered", applicants_job_path(@job_post, filter: :considered), class: "tab #{'bg-gray-200' if params[:filter] == 'considered'} px-3 py-2 rounded-md text-sm font-medium" %>
+    <%= link_to "Other", applicants_job_path(@job_post, filter: :other), class: "tab #{'bg-gray-200' if params[:filter] == 'other'} px-3 py-2 rounded-md text-sm font-medium" %>
+  </div>
+
+
   <% if @applications.any? %>
     <div class="mt-6">
       <% @applications.each do |application| %>
@@ -34,12 +43,17 @@
             </div>
           <% end %>
 
-          <div class="flex justify-center space-x-4 mt-4">
-            <%= form_with url: update_application_status_job_path(application.job_post, application_id: application.id, status: 'considered'), method: :post do |form| %>
-              <%= form.submit "Considered", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+          <div class="flex justify-end space-x-4 mt-4">
+            <% unless application.status == 'considered' %>
+              <%= form_with url: update_application_status_job_path(application.job_post, application_id: application.id, status: 'considered'), method: :post do |form| %>
+                <%= form.submit "Considering", class: "inline-flex items-center px-4 mb-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+              <% end %>
             <% end %>
-            <%= form_with url: update_application_status_job_path(application.job_post, application_id: application.id, status: 'other'), method: :post do |form| %>
-              <%= form.submit "Other", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-gray-600 bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
+
+            <% unless application.status == 'other' %>
+              <%= form_with url: update_application_status_job_path(application.job_post, application_id: application.id, status: 'other'), method: :post do |form| %>
+                <%= form.submit "Other", class: "inline-flex items-center px-4 mb-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-gray-600 bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
+              <% end %>
             <% end %>
           </div>
 
