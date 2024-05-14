@@ -35,11 +35,11 @@ class JobPostsController < ApplicationController
   end
 
   def index
-    # @query = JobPostQuery.new(params.permit(:role_level, :role_location, :role_type, :fixed_fee, :salary_range_min, :salary_range_max))
-    # @pagy, @job_posts = @query.pagy_and_records
-    @job_posts = Businesses::JobPost.all
+    Rails.logger.debug "Received params: #{params.inspect}"
+    @query = JobPostQuery.new(permitted_params)
+    Rails.logger.debug "Query options: #{@query.options}"
+    @pagy, @job_posts = @query.query_and_paginate
   end
-
 
   def show
   end
@@ -89,8 +89,6 @@ class JobPostsController < ApplicationController
     end
   end
 
-
-
   private
 
   def set_job_post
@@ -122,8 +120,18 @@ class JobPostsController < ApplicationController
   end
 
   def job_post_params
-    params.require(:businesses_job_post).permit(
-      :title, :salary_range_min, :salary_range_max, :description, :status, :role_location, :city, :fixed_fee
+    params.require(:job_post).permit(:title, :description, :role_location,:role_level, :role_type, :fixed_fee_min, :fixed_fee_max,:salary_range_min, :salary_range_max)
+  end
+
+  def permitted_params
+    params.permit(
+      :role_type,
+      role_level: [],
+      role_location: [],
+      fixed_fee_min: nil,
+      fixed_fee_max: nil,
+      salary_range_min: nil,
+      salary_range_max: nil
     )
   end
 end

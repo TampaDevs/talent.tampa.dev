@@ -1,41 +1,83 @@
 <div class="px-4 sm:px-6">
   <%= form_with url: jobs_path, id: form_id, method: :get do |form| %>
-    
-    <!-- Role Level -->
-    <div class="pb-6">
-      <%= form.label :role_level, "Role Level", class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :role_level, role_levels, include_blank: true, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-    </div>
-    
-    <!-- Location -->
-    <div class="pb-6">
-      <%= form.label :location, "Location", class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :location, locations, include_blank: true, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-    </div>
+    <h1 class="text-lg leading-6 font-medium text-blue-900 border-b border-gray-200 py-2">Filter Job Posts</h1>
 
-        <!-- Role Type with Stimulus controller for dynamic field display -->
-    <div data-controller="role-type" class="pb-6">
-      <%= form.label :role_type, "Job Type", class: "block text-sm font-medium text-gray-700" %>
-      <%= form.select :role_type, role_types, {include_blank: true}, { data: { "role-type-target" => "roleTypeSelect", action: "change->role-type#toggleFields" } } %>
-
-      <div data-role-type-target="fixedFee" class="hidden">
-        <%= form.label :fixed_fee, "Fixed Fee", class: "block text-sm font-medium text-gray-700" %>
-        <%= form.number_field :fixed_fee, min: 0, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-      </div>
-      
-      <div data-role-type-target="salaryRange" class="hidden">
-        <%= form.label :salary_range_min, "Minimum Salary", class: "block text-sm font-medium text-gray-700" %>
-        <%= form.number_field :salary_range_min, min: 0, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-        <%= form.label :salary_range_max, "Maximum Salary", class: "block text-sm font-medium text-gray-700" %>
-        <%= form.number_field :salary_range_max, min: 0, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+    <!-- Role Level with Collapse -->
+    <div class="py-6" data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
+      <div class="pt-6">
+        <h3 class="-mx-2 -my-3 flow-root">
+          <%= render CollapseControlComponent.new("Role Level", collapsed: false) %>
+        </h3>
+        <div data-toggle-target="element">
+          <div class="space-y-4 pt-6">
+            <%= form.collection_check_boxes :role_level, role_levels, :last, :first, include_hidden: false do |b| %>
+              <div class="flex items-center">
+                <%= b.check_box checked: role_level_selected?(b.value), class: "h-4 w-4 border-gray-300 rounded text-blue-950 focus:ring-blue-500" %>
+                <%= b.label(class: "ml-3 text-blue-950 text-sm") { b.text } %>
+              </div>
+            <% end %>
+          </div>
+        </div>  
       </div>
     </div>
+
+    <!-- Location with Collapse -->
+    <div class="border-t border-gray-200 py-6" data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
+      <h3 class="-mx-2 -my-3 flow-root">
+        <%= render CollapseControlComponent.new("Location", collapsed: false) %>
+      </h3>
+      <div data-toggle-target="element">
+        <div class="space-y-4 pt-6">
+          <%= form.collection_check_boxes :role_location, locations, :first, :last, include_hidden: false do |b| %>
+            <div class="flex items-center">
+              <%= b.check_box checked: location_selected?(b.value), class: "h-4 w-4 border-gray-300 rounded text-blue-950 focus:ring-blue-500" %>
+              <%= b.label(class: "ml-3 text-blue-950 text-sm") { b.text } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job Type with Collapse -->
+    <div class="border-t border-gray-200 py-6" data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
+      <div>
+        <h3 class="-mx-2 -my-3 flow-root">
+          <%= render CollapseControlComponent.new("Role Type", collapsed: false) %>
+        </h3>
+        <div data-toggle-target="element">
+          <div class="space-y-4 pt-6" data-controller="role-type">
+            <%= form.collection_radio_buttons :role_type, role_types, :last, :first, include_hidden: false do |b| %>
+              <div class="flex items-center">
+                <%= b.radio_button checked: role_type_selected?(b.value), data: { action: "change->role-type#toggleFields", role_type_target: "roleTypeSelect" } %>
+                <%= b.label(class: "ml-3 text-blue-950 text-sm") { b.text } %>
+              </div>
+            <% end %>
+
+            <!-- Fixed Fee Section -->
+            <div data-role-type-target="fixedFee" class="hidden">
+              <%= form.label :fixed_fee_min, "Fixed Fee Minimum", class: "block text-sm font-medium text-gray-700" %>
+              <%= form.number_field :fixed_fee_min, min: 0, value: params[:fixed_fee_min] || @query.options.dig(:fixed_fee, :min), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+              <%= form.label :fixed_fee_max, "Fixed Fee Maximum", class: "block text-sm font-medium text-gray-700" %>
+              <%= form.number_field :fixed_fee_max, min: 0, value: params[:fixed_fee_max] || @query.options.dig(:fixed_fee, :max), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+            </div>
+
+            <!-- Salary Range Section -->
+            <div data-role-type-target="salaryRange" class="hidden">
+              <%= form.label :salary_range_min, "Minimum Salary", class: "block text-sm font-medium text-gray-700" %>
+              <%= form.number_field :salary_range_min, min: 0, value: params[:salary_range_min] || @query.options.dig(:salary_range, :min), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+              <%= form.label :salary_range_max, "Maximum Salary", class: "block text-sm font-medium text-gray-700" %>
+              <%= form.number_field :salary_range_max, min: 0, value: params[:salary_range_max] || @query.options.dig(:salary_range, :max), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Submit Button -->
     <div class="flex justify-end space-x-2 pb-8">
       <%= form.submit "Filter", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
       <%= link_to "Clear", jobs_path, class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" %>
     </div>
-
   <% end %>
 </div>

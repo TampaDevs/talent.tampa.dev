@@ -1,84 +1,65 @@
 class JobPostQuery
   include Pagy::Backend
+  attr_reader :options
 
   alias_method :build_pagy, :pagy
 
-  attr_reader :options
-
   def initialize(options = {})
-    @options = options
-    @role_level = options.delete(:role_level)
-    @role_location = options.delete(:role_location)
-    @role_type = options.delete(:role_type)
-    @fixed_fee = options.delete(:fixed_fee)
-    @pay_range_min = options.delete(:pay_range_min)
-    @pay_range_max = options.delete(:pay_range_max)
-    @user = options.delete(:user)
+    @options = options.to_h.symbolize_keys
+    setup_defaults
   end
 
-  def filters
-    @filters = {search_query:, role_level:, role_location:, role_type:, pay_range_min:, pay_range_max:}
-  end
-
-  def pagy
-    @pagy ||= query_and_paginate.first
-  end
-
-  def records
-    @records ||= query_and_paginate.last
-  end
-
-  def search_query
-    @search_query.to_s.strip
+  def query_and_paginate
+    if @options.empty?
+      @records = Businesses::JobPost.open
+    else
+      @records = Businesses::JobPost.open.includes(:role_level, :role_type)
+      apply_filters
+    end
+    @pagy, @records = build_pagy(@records, items: items_per_page)
   end
 
   private
 
-  def query_and_paginate
-    @_records = Businesses::JobPost.includes(:role_level, :role_type).open
-    apply_filters
-    @pagy, @records = build_pagy(@_records, items: items_per_page)
-  end
-
-  def sort_records
-    @_records.merge!(Businesses::JobPost.newest_first)
-  end
-
-  def items_per_page
-    @items_per_page || Pagy::DEFAULT[:items]
-  end
-
   def apply_filters
-    filter_by_role_level
-    filter_by_role_type
-    filter_by_role_location
-    filter_by_pay_range
+    apply_role_level_filters if @role_level.present?
+    @records = @records.with_role_locations(@role_location) if @role_location.present? && Businesses::JobPost.valid_role_locations?(@role_location)
+    @records = @records.with_role_type(@role_type) if @role_type.present?
+    filter_by_payment_terms if @role_type.present?
   end
 
-  def filter_by_role_level
-    @_records = @_records.joins(:role_level).where(role_levels: { @role_level.downcase.to_sym => true }) if @role_level.present?
+  def apply_role_level_filters
+    level_conditions = @role_level.reject(&:blank?).map do |level|
+      "role_levels.#{level} = true"
+    end.join(' OR ')
+    @records = @records.joins(:role_level).where(level_conditions) if level_conditions.present?
   end
 
-  def filter_by_role_location
-    @_records = @_records.where(role_location: @role_location) if @role_location.present?
-  end
-
-  def filter_by_pay_range
-    return unless @role_type.present?
-
-    case @role_type
-    when 'full_time_employment'
-        @_records = @_records.where('salary_range_min >= ? AND salary_range_max <= ?', @pay_range_min, @pay_range_max)
-    when 'part_time_contract', 'full_time_contract'
-        @_records = @_records.where('fixed_fee >= ? AND fixed_fee <= ?', @pay_range_min, @pay_range_max)
+  def filter_by_payment_terms
+    Rails.logger.debug "Current records: #{@records}"
+    if @fixed_fee[:min].present? && @fixed_fee[:max].present?
+      @records = @records.where("fixed_fee >= ? AND fixed_fee <= ?", @fixed_fee[:min], @fixed_fee[:max])
     end
+    if @salary_range[:min].present? && @salary_range[:max].present?
+      @records = @records.where("salary_range_min >= ? AND salary_range_max <= ?", @salary_range[:min], @salary_range[:max])
+    end
+    Rails.logger.debug "Filtered records: #{@records}"
+  end
+
+  def setup_defaults
+    @role_level = options.fetch(:role_level, nil)
+    @role_type = options.fetch(:role_type, nil)
+    @role_location = options.fetch(:role_location, nil)
+    @fixed_fee = { min: options.fetch(:fixed_fee_min, nil), max: options.fetch(:fixed_fee_max, nil) }
+    @salary_range = { min: options.fetch(:salary_range_min, nil), max: options.fetch(:salary_range_max, nil) }
+    @items_per_page = options.fetch(:items_per_page, Pagy::DEFAULT[:items])
+    Rails.logger.debug "Initialized query with options: #{@fixed_fee}, #{@salary_range}"
   end
 
   def items_per_page
-    @options[:items_per_page] || Pagy::DEFAULT[:items]
+    @items_per_page
   end
 
-  # Needed for #pagy (aliased to #build_pagy) helper.
   def params
     options
   end

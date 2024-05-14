@@ -1,4 +1,5 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+
   <!-- Heading and Create Job Post button -->
   <div class="bg-white shadow px-6 py-4 mb-4 rounded-lg">
     <div class="flex justify-between items-center">
@@ -15,9 +16,8 @@
 
   <!-- Filter and Job Posts Columns -->
   <div class="grid grid-cols-4 gap-4">
-    <!-- Assuming there is a filter component -->
     <div class="col-span-1 bg-white shadow px-6 py-4 rounded-lg">
-      <%= render JobPosts::JobPostsFilterComponent.new(job_post_query: @query, user: current_user) %>
+      <%= render JobPosts::JobPostsFilterComponent.new(query: @query, user: current_user) %>
     </div>
 
     <!-- Job posts list in the second column (3/4th width) -->

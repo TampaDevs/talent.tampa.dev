@@ -1,28 +1,31 @@
-# app/components/job_posts/job_posts_filter_component.rb
 module JobPosts
   class JobPostsFilterComponent < ViewComponent::Base
-    attr_reader :form_id, :job_post_query, :user
+    attr_reader :form_id, :query, :user
 
-    def initialize(job_post_query:, user:, form_id: 'job-filter-form')
-      @job_post_query = job_post_query
+    def initialize(query:, user:, form_id: 'job-filter-form')
+      @query = query
       @user = user
       @form_id = form_id
     end
 
+    def role_level_selected?(level)
+      query.options[:role_level]&.include?(level.to_s)
+    end
+
+    def role_type_selected?(type)
+      query.options[:role_type]&.include?(type.to_s)
+    end
+
+    def location_selected?(location)
+      query.options[:role_location]&.include?(location)
+    end
+
     def role_levels
-      RoleLevel::TYPES.filter_map { |type|
-      type if RoleLevel.where(type => true).exists?
-      }.map { |type| [type, type.to_s.humanize] }
+      RoleLevel::TYPES.map { |type| [type.to_s.humanize, type] }
     end
 
     def role_types
-      RoleType::TYPES.filter_map { |type|
-      type if RoleType.where(type => true).exists?
-      }.map { |type| [type.to_s.humanize, type] }
-    end
-
-    def reimbursement_types
-      ['fixed_fee', 'salary_range']
+      RoleType::TYPES.map { |type| [type.to_s.humanize, type] }
     end
 
     def locations

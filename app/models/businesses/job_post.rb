@@ -28,9 +28,40 @@ module Businesses
 
     scope :open, -> { where(status: :open) }
     scope :newest_first, -> { order(created_at: :desc) }
+    scope :with_role_level, ->(levels) {
+      joins(:role_level).where("role_levels.level = ANY (ARRAY[?]::text[])", levels) if levels.present?
+    }
+
+
+    scope :with_role_type, ->(type) {
+      joins(:role_type).where(role_types: { type.to_sym => true }) if 
+      RoleType::TYPES.include?(type.to_sym)
+    }
+    scope :with_role_locations, ->(locations) {
+      where(role_location: locations)
+    }
+
+def self.valid_role_locations?(locations)
+  locations.all? { |location| role_locations.keys.include?(location) }
+end
+
 
     def contract_role?
       role_type&.part_time_contract? || role_type&.full_time_contract?
+    end
+
+    def self.with_role_type(type)
+      case type
+      when 'part_time_contract'
+        joins(:role_type).where(role_types: { part_time_contract: true })
+      when 'full_time_contract'
+        joins(:role_type).where(role_types: { full_time_contract: true })
+      when 'full_time_employment'
+        joins(:role_type).where(role_types: { full_time_employment: true })
+      else
+        # Handle the case where type is not recognized
+        all
+      end
     end
 
     private
