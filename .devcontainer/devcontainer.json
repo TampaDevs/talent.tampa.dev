@@ -2,9 +2,10 @@
     "name": "Tampa Devs Talent",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
-    "workspaceFolder": "/workspace",
     "remoteUser": "vscode",
     "runArgs": ["--platform=linux/amd64" ],
+    "workspaceFolder": "/talent.tampa.dev",
+    "postCreateCommand": ".devcontainer/boot.sh",
     "forwardPorts": [
       3000,
       5432,
@@ -12,8 +13,11 @@
     ],
     "features": {
       "ghcr.io/devcontainers/features/github-cli:1": {},
-      "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+      "ghcr.io/devcontainers/features/node:1": {
+        "version": "latest"
+      }
     },
+
     "customizations": {
       "vscode": {
         "settings": {
