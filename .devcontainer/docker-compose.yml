@@ -26,7 +26,7 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile
     volumes:
-      - ..:/workspace:cached
+      - ..:/talent.tampa.dev:cached
     command: sleep infinity
     links:
       - postgres
