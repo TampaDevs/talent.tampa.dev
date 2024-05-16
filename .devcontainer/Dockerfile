@@ -1,4 +1,4 @@
-FROM ruby:3.2.2
+FROM --platform=linux/amd64 ruby:3.2.2
 
 RUN set -xe \
     && apt update && apt -y upgrade
@@ -28,13 +28,13 @@ RUN set -xe \
 
 RUN set -xe \
     && curl -s https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor | tee /usr/share/keyrings/google.gpg >/dev/null \
-    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list.d/google.list \
+    && echo "deb [signed-by=/usr/share/keyrings/google.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list \
     && apt update \
     && apt -y install --no-install-recommends google-chrome-stable
 
 # Create a User
 RUN set -xe \
-    && useradd -u 1000 -g 100 -G sudo --shell /bin/bash --no-create-home --home-dir /tmp user \
+    && useradd -u 1000 -g 100 -G sudo --shell /bin/bash --no-create-home --home-dir /tmp vscode \
     && echo 'ALL ALL = (ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Install NodeJS
@@ -48,21 +48,4 @@ RUN set -xe \
 
 # Install Application Dependencies
 RUN set -xe \ 
-    && apt -y install --no-install-recommends libpq-dev imagemagick libvips-dev libvips-tools libvips42 chromium-driver
-
-# TEMPORARY: Install Redis & Postgres 
-RUN set -xe \ 
-    && apt -y install --no-install-recommends postgresql redis
-
-RUN set -xe \ 
-    && rm -rf /var/lib/apt/lists/*
-
-COPY . /app
-
-# Install Application Gems and Yarn Packages
-RUN set -xe \
-    && cd /app \
-    && gem install bundler --conservative \ 
-    && bundle check || bundle install \ 
-    && yarn install \
-    && gem install foreman
+    && apt -y install --no-install-recommends libpq-dev imagemagick libvips-dev libvips-tools libvips42 ruby-chromedriver-helper ruby-foreman
