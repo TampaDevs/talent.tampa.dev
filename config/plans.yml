@@ -17,9 +17,15 @@ shared:
     stripe_price_id: <%= stripe_price_id(:full_time) %>
     #revenue_cat_product_identifier: <%= revenue_cat_product_identifier(:full_time) %>
     revenue_cat_product_identifier: "EMPTY"
+  annual:
+    name: Annual Subscription
+    price: 999
+    stripe_price_id: <%= stripe_price_id(:annual) %>
+    #revenue_cat_product_identifier: free
+    revenue_cat_product_identifier: "EMPTY"
   free:
     name: Free
     price: 0
-    stripe_price_id: free
+    stripe_price_id: <%= stripe_price_id(:free) %>
     #revenue_cat_product_identifier: free
     revenue_cat_product_identifier: "EMPTY"

@@ -6,6 +6,7 @@ module Developers
 
     def initialize(user)
       @user = user
+      @support_email = Rails.configuration.emails.support!
     end
 
     def render?

@@ -78,6 +78,7 @@ class ConversationsTest < ActionDispatch::IntegrationTest
   test "viewing conversations with a deleted sender" do
     conversation = conversations(:one)
     conversation.developer.destroy
+
     sign_in conversation.business.user
 
     get conversations_path

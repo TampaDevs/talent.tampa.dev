@@ -85,6 +85,7 @@ en:
       invisiblizes:
         create:
           created: Profile set to invisible.
+          destroyed: Profile set to visible.
     conversations:
       blocks:
         index:
@@ -127,6 +128,7 @@ en:
       invisiblizes:
         create:
           created: Profile set to invisible.
+          destroyed: Profile set to visible.
     features:
       create:
         created: Profile featured for one week.
@@ -252,8 +254,11 @@ en:
       subject: "Welcome to Tampa Devs Talent 👋"
   businesses:
     admin_component:
+      confirm_make_invisible: Are you sure you want to make this business invisible?
+      confirm_make_visible: Are you sure you want to make this business visible?
       conversations: Conversations
       invisiblize: Invisiblize
+      make_visible: Visibilize
       title: Admin
     create:
       can_continue: All set! You can now continue setting up your subscription.
@@ -304,6 +309,9 @@ en:
         requesting: Requesting...
         submit: Submit
         title: Did you hire through Tampa Devs Talent?
+    invisible_banner_component:
+      cta: Contact Us
+      title_html: Your business profile is invisible. Please contact <a href="mailto:jobs@tampadevs.com">jobs@tampadevs.com</a> to reinstate your access.
     primary_action_component:
       edit: Edit
     scheduling_link_component:
@@ -366,10 +374,13 @@ en:
       subject: "Welcome to Tampa Devs Talent 👋"
   developers:
     admin_component:
+      confirm_make_invisible: Are you sure you want to make this developer invisible?
+      confirm_make_visible: Are you sure you want to make this developer visible?
       conversations: Conversations
       copy: Copy
       feature: Feature
       invisiblize: Invisiblize
+      make_visible: Visibilize
       source_contributor: Source contributor
       title: Admin
     badges_component:
@@ -455,7 +466,6 @@ en:
         title: Scheduling
       search_status:
         actively_looking_help_text: Your profile can get featured on the homepage.
-        invisible_help_text: Your profile is hidden and can only be seen by yourself.
         not_interested_help_text: Your profile will not appear in search results.
         open_help_text: Companies can still find you, but you won't appear on the homepage.
         title: Search status
@@ -479,8 +489,8 @@ en:
         title: No developers found
       title: Tampa Bay developers
     invisible_banner_component:
-      cta: Edit my profile
-      title: Your developer profile is invisible – only you can see it.
+      cta: Contact us
+      title_html: Your developer profile is invisible. Please contact <a href="mailto:jobs@tampadevs.com">jobs@tampadevs.com</a> to reinstate your access.
     meta:
       description: "%{count}+ local developers looking for their next gig. For all stacks, experience levels, and working arrangements, you'll find them all here."
       freelance: freelance
@@ -551,10 +561,12 @@ en:
   dir: ltr
   errors:
     business_blank: Fill out your business profile to message developers.
+    business_invisible: Your business profile is invisible, and its ability to interact wth developers is restricted. Please reach out to jobs@tampadevs.com to reinstate your access.
     business_no_phone_number: Please provide your business phone number.
     business_subscription_inactive: Sign up for a business subscription to message developers.
     business_subscription_no_profile: Before subscribing, fill out your business profile.
     developer_blank: Please create a developer profile first.
+    developer_invisible: Your developer profile is invisible, and its ability to interact wth businesses is restricted. Please reach out to jobs@tampadevs.com to reinstate your access.
     hiring_agreements:
       cold_message: Please sign the hiring agreement to message developers.
       payment: Please sign the hiring agreement before subscribing.
@@ -756,7 +768,7 @@ en:
       title: Ready to get started?
     faq:
       annual:
-        a_html: Yes! Email the Tampa Devs Talent team to set up discounted annual billing at <a href='mailto:jobs@tampadevs.com' class='underline'>jobs@tampadevs.com</a>.
+        a_html: Yes! We offer a monthly plan at $99/mo and an annual plan at $999/year (a 16% savings)
         q: Can I pay annually or yearly?
       cancellation:
         a_html: Yes! You can cancel your subscription from the Billing link in the user drop-down. You will lose access to all paid features at the end of your billing period.
@@ -778,6 +790,8 @@ en:
       description: Directly connect with hundreds of local developers in Tampa Bay looking for their next job.
       title: Hire developers in Tampa Bay
     plan:
+      cta_annual: Go Annual. Save 16%
+      cta_monthly: Go Monthly. Cancel Anytime
       description: Hire directly from a pool of local developers in Tampa Bay, at all levels of experience.
       features:
         climate_html: We donate 1% of revenue to fight climate change. <a style="text-decoration:underline" href="https://climate.stripe.com/nxdibE">Learn more</a>
@@ -786,9 +800,10 @@ en:
         oss: 100% nonprofit. Supports educational and community programs at Tampa Devs, Tampa's fastest-growing nonprofit developer community
         support: Direct, personal support from the Talent Team at Tampa Devs
         title: Tampa Devs Talent exclusives
-        warranty: 90 day placement warranty
+        warranty: 90 day placement fee warranty
       hiring_fee: "+ 5% first year salary"
       per_month: "/month"
+      per_year: "/year"
       title_html: For your 1<sup>st</sup> hire and beyond
     purchase_button:
       title: Get started today

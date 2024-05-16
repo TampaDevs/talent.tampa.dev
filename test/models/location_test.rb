@@ -108,8 +108,8 @@ class LocationTest < ActiveSupport::TestCase
     Location.create!(options.merge(developer: developers(:one)))
   end
 
-  def raise_on_geocoding(&block)
+  def raise_on_geocoding(&)
     raises_exception = ->(query) { raise StandardError.new }
-    Geocoder.stub(:search, raises_exception, &block)
+    Geocoder.stub(:search, raises_exception, &)
   end
 end

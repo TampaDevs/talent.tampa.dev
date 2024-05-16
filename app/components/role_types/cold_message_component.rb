@@ -12,7 +12,7 @@ module RoleTypes
 
     def role_types
       RoleType::TYPES.map do |type|
-        [localized(type), role_type.send("#{type}?")]
+        [localized(type), role_type.send(:"#{type}?")]
       end
     end
 

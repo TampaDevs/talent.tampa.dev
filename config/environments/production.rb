@@ -3,6 +3,8 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.session_store :cookie_store, key: "_tampadevs_talent_session", domain: :all, tld_length: 3
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

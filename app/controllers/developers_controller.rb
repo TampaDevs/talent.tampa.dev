@@ -1,4 +1,5 @@
 class DevelopersController < ApplicationController
+  include VisibilityRestrictions
   before_action :authenticate_user!, only: %i[new create edit update]
   before_action :require_new_developer!, only: %i[new create]
 
@@ -42,11 +43,14 @@ class DevelopersController < ApplicationController
     @developer = Developer.find_by_hashid!(params[:id])
     @specialties = Specialty.visible
     authorize @developer
+    enforce_admin_visibility_controls!
   end
 
   def update
     @developer = Developer.find_by_hashid!(params[:id])
     authorize @developer
+
+    enforce_admin_visibility_controls!
 
     if @developer.update_and_notify(developer_params)
       Analytics::Event.developer_profile_updated(current_user, cookies, developer_params)
@@ -58,6 +62,9 @@ class DevelopersController < ApplicationController
   end
 
   def show
+    require_developer_and_business_not_invisible! unless own_profile?
+    require_signed_hiring_agreement! if current_user&.business&.present?
+
     @developer = Developer.find_by_hashid!(params[:id])
 
     @public_key = params[:key]
@@ -68,14 +75,35 @@ class DevelopersController < ApplicationController
 
   private
 
+  def enforce_admin_visibility_controls!
+    return if params[:developer].nil? || params[:developer][:search_status].blank?
+
+    developer = Developer.find_by_hashid!(params[:id])
+
+    if !current_user.admin? && developer.invisible?
+      params[:developer][:search_status] = "invisible"
+    end
+  end
+
   def pundit_params_for(_record)
     params["developer-filters-mobile"] || params
+  end
+
+  def require_signed_hiring_agreement!
+    if current_user.needs_to_sign_hiring_agreement?
+      store_location!
+      redirect_to new_hiring_agreement_signature_path, notice: I18n.t("errors.hiring_agreements.cold_message")
+    end
   end
 
   def require_new_developer!
     if current_user.developer.present?
       redirect_to edit_developer_path(current_user.developer)
     end
+  end
+
+  def own_profile?
+    current_user&.developer&.hashid == params[:id]
   end
 
   def developer_params

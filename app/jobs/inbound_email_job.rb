@@ -48,7 +48,7 @@ class InboundEmailJob < ApplicationJob
   end
 
   def email
-    payload.dig("FromFull", "Email")
+    payload&.dig("FromFull", "Email")
   end
 
   def conversation_token

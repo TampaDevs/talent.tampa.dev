@@ -1,13 +1,21 @@
 module Messages
   module Notifications
+    include VisibilityRestrictions
+
     def save_and_notify(cold_message: false)
+      return false if user_has_invisible_profiles?(sender)
+
       if save
-        send_recipient_notification
-        send_first_message_email if first_message?
+        send_recipient_notification unless user_has_invisible_profiles?(recipient)
+
+        send_first_message_email if first_message? && !user_has_invisible_profiles?(conversation.developer)
+        schedule_celebration_promotion if first_reply? && !user_has_invisible_profiles?(conversation.developer)
+
         send_admin_notification if cold_message
-        schedule_celebration_promotion if first_reply?
         update_developer_response_rate if cold_message
         true
+      else
+        false
       end
     end
 

@@ -15,11 +15,11 @@ module Businesses
     end
 
     def pays_hiring_fee?
-      full_time_subscription?
+      full_time_subscription? || part_time_subscription? || annual_subscription? || free_subscription?
     end
 
     def can_message_developer?(role_type:)
-      if legacy_subscription? || full_time_subscription? || free_subscription?
+      if legacy_subscription? || full_time_subscription? || annual_subscription? || free_subscription?
         true
       elsif part_time_subscription? && !role_type.only_full_time_employment?
         true
@@ -43,6 +43,10 @@ module Businesses
 
     def part_time_subscription?
       active_subscriptions(:part_time).any?
+    end
+
+    def annual_subscription?
+      active_subscriptions(:annual).any?
     end
 
     def free_subscription?
