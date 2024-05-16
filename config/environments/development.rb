@@ -86,7 +86,8 @@ Rails.application.configure do
   config.hosts << /.*\.ngrok-free\.app/
   config.hosts << /.*\.ngrok\.io/
   config.hosts << /.*\.github\.dev/
-  
+
+
   # Set the developer response grace period to 1 second to makes sure the delay is working
   # but short enough that a human wouldn't even notice it.
   config.developer_response_grace_period = 1.second
