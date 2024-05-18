@@ -83,7 +83,9 @@ Rails.application.configure do
   config.hotwire_livereload.listen_paths += directories.map { |p| Rails.root.join(p) }
 
   # Enable local development exposed via ngrok for webhook testing.
+  config.hosts << /.*\.ngrok-free\.app/
   config.hosts << /.*\.ngrok\.io/
+  config.hosts << /.*\.github\.dev/
 
   # Set the developer response grace period to 1 second to makes sure the delay is working
   # but short enough that a human wouldn't even notice it.
