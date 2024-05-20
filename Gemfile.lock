@@ -123,6 +123,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    childprocess (5.0.0)
     classy-yaml (0.7.0)
       actionpack (>= 6)
       activesupport (>= 6)
@@ -222,12 +223,11 @@ GEM
     http-form_data (2.3.0)
     http-parser (1.2.3)
       ffi-compiler (>= 1.0, < 2.0)
-    i18n (1.14.4)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.0.13)
+    i18n-tasks (1.0.14)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
-      better_html (>= 1.0, < 3.0)
       erubi
       highline (>= 2.0.0)
       i18n
@@ -248,14 +248,15 @@ GEM
       railties (>= 6.0.0)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
-    launchy (2.5.2)
+    launchy (3.0.1)
       addressable (~> 2.8)
-    letter_opener (1.9.0)
-      launchy (>= 2.2, < 3)
-    letter_opener_web (2.0.0)
-      actionmailer (>= 5.2)
-      letter_opener (~> 1.7)
-      railties (>= 5.2)
+      childprocess (~> 5.0)
+    letter_opener (1.10.0)
+      launchy (>= 2.2, < 4)
+    letter_opener_web (3.0.0)
+      actionmailer (>= 6.1)
+      letter_opener (~> 1.9)
+      railties (>= 6.1)
       rexml
     lint_roller (1.1.0)
     listen (3.9.0)
@@ -275,7 +276,7 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
-    minitest (5.22.3)
+    minitest (5.23.0)
     minitest-reporters (1.6.1)
       ansi
       builder
@@ -287,7 +288,7 @@ GEM
     multipart-post (2.1.1)
     net-http2 (0.18.5)
       http-2 (~> 0.11)
-    net-imap (0.4.10)
+    net-imap (0.4.11)
       date
       net-protocol
     net-pop (0.1.2)
@@ -297,10 +298,10 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.4)
+    nokogiri (1.16.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.4-x86_64-darwin)
+    nokogiri (1.16.5-x86_64-darwin)
       racc (~> 1.4)
     noticed (1.5.9)
       http (>= 4.0.0)
@@ -319,7 +320,7 @@ GEM
       zeitwerk (>= 2.6.1)
     pagy (7.0.11)
     parallel (1.24.0)
-    parser (3.3.0.5)
+    parser (3.3.1.0)
       ast (~> 2.4.1)
       racc
     pay (7.1.1)
@@ -348,12 +349,12 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (5.0.4)
+    public_suffix (5.0.5)
     puma (6.4.2)
       nio4r (~> 2.0)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
-    racc (1.7.3)
+    racc (1.8.0)
     rack (2.2.9)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
@@ -430,7 +431,7 @@ GEM
     rubyzip (2.3.2)
     scout_apm (5.3.8)
       parser
-    selenium-webdriver (4.20.1)
+    selenium-webdriver (4.21.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -503,7 +504,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.13)
+    zeitwerk (2.6.14)
 
 PLATFORMS
   ruby
