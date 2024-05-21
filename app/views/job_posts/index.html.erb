@@ -14,6 +14,12 @@
     </div>
   </div>
 
+  <div class="tabs">
+    <%= link_to "All", jobs_path, class: "tab #{'bg-gray-200' if params[:filter].blank? || params[:filter] == 'all'} px-3 py-2 rounded-md text-sm font-medium" %>
+    <%= link_to "New", jobs_path(filter: :new), class: "tab #{'bg-gray-200' if params[:filter] == 'new'} px-3 py-2 rounded-md text-sm font-medium" %>
+    <%= link_to "Applied", jobs_path(filter: :applied), class: "tab #{'bg-gray-200' if params[:filter] == 'applied'} px-3 py-2 rounded-md text-sm font-medium" %>
+  </div>
+
   <!-- Filter and Job Posts Columns -->
   <div class="grid grid-cols-4 gap-4">
     <div class="col-span-1 bg-white shadow px-6 py-4 rounded-lg">
@@ -22,8 +28,18 @@
 
     <!-- Job posts list in the second column (3/4th width) -->
     <div class="col-span-3">
-      <% @job_posts.each do |job_post| %>
-        <%= render JobPosts::JobPostComponent.new(job_post: job_post, current_user: current_user, user_signed_in: user_signed_in?) %>
+      <% if @pagy %>
+        <%= render PagyPaginatorComponent.new(id: "job_posts", pagy: @pagy, url_array: [:jobs], container_classes: "divide-y divide-gray-200") do |component| %>
+          <% @job_posts.each do |job_post| %>
+            <%= render JobPosts::JobPostComponent.new(job_post: job_post, current_user: current_user, user_signed_in: user_signed_in?) %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% if @no_job_posts %>
+          <div class="bg-white shadow px-6 py-4 mb-4 rounded-lg">
+            <p class="text-gray-600">No job posts found.</p>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

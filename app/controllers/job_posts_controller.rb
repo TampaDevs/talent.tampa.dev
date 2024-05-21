@@ -35,11 +35,15 @@ class JobPostsController < ApplicationController
   end
 
   def index
-    Rails.logger.debug "Received params: #{params.inspect}"
     @query = JobPostQuery.new(permitted_params)
-    Rails.logger.debug "Query options: #{@query.options}"
     @pagy, @job_posts = @query.query_and_paginate
+    @no_job_posts = @job_posts.empty?
+    if params[:filter] == "applied" && user_signed_in? && current_user.developer.present?
+      @applied_job_posts = current_user.developer.job_applications.map(&:job_post)
+    end
+    Rails.logger.debug "Job posts: #{@no_job_posts}"
   end
+
 
   def show
   end
@@ -120,18 +124,19 @@ class JobPostsController < ApplicationController
   end
 
   def job_post_params
-    params.require(:job_post).permit(:title, :description, :role_location,:role_level, :role_type, :fixed_fee_min, :fixed_fee_max,:salary_range_min, :salary_range_max)
+    params.require(:job_post).permit(:title, :description, :role_location, :role_level, :role_type, :fixed_fee_min, :fixed_fee_max, :salary_range_min, :salary_range_max, :page)
   end
 
   def permitted_params
     params.permit(
       :role_type,
+      :fixed_fee_min,
+      :fixed_fee_max,
+      :salary_range_min,
+      :salary_range_max,
       role_level: [],
-      role_location: [],
-      fixed_fee_min: nil,
-      fixed_fee_max: nil,
-      salary_range_min: nil,
-      salary_range_max: nil
+      role_location: []
     )
   end
+
 end

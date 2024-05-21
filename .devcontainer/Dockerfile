@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ruby:3.2.2
+FROM --platform=linux/amd64 ghcr.io/rails/devcontainer/images/ruby:3.2.2
 
 RUN set -xe \
     && apt update && apt -y upgrade
@@ -9,6 +9,7 @@ RUN echo "America/New_York" > /etc/timezone
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Base Dependencies 
+
 RUN set -xe \
     && apt -y install --no-install-recommends curl gnupg2 
 
@@ -34,7 +35,6 @@ RUN set -xe \
 
 # Create a User
 RUN set -xe \
-    && useradd -u 1000 -g 100 -G sudo --shell /bin/bash --no-create-home --home-dir /tmp vscode \
     && echo 'ALL ALL = (ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 # Install NodeJS

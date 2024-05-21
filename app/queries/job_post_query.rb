@@ -35,23 +35,30 @@ class JobPostQuery
     @records = @records.joins(:role_level).where(level_conditions) if level_conditions.present?
   end
 
-  def filter_by_payment_terms
-    Rails.logger.debug "Current records: #{@records}"
-    if @fixed_fee[:min].present? && @fixed_fee[:max].present?
-      @records = @records.where("fixed_fee >= ? AND fixed_fee <= ?", @fixed_fee[:min], @fixed_fee[:max])
-    end
-    if @salary_range[:min].present? && @salary_range[:max].present?
-      @records = @records.where("salary_range_min >= ? AND salary_range_max <= ?", @salary_range[:min], @salary_range[:max])
-    end
-    Rails.logger.debug "Filtered records: #{@records}"
+def filter_by_payment_terms
+  Rails.logger.debug "Current records: #{@records.inspect}"
+  if @fixed_fee[:min].present? || @fixed_fee[:max].present?
+    @records = @records.where("fixed_fee >= ?", @fixed_fee[:min]) if @fixed_fee[:min].present?
+    @records = @records.where("fixed_fee <= ?", @fixed_fee[:max]) if @fixed_fee[:max].present?
   end
+  if @salary_range[:min].present? || @salary_range[:max].present?
+    @records = @records.where("salary_range_min >= ?", @salary_range[:min]) if @salary_range[:min].present?
+    @records = @records.where("salary_range_max <= ?", @salary_range[:max]) if @salary_range[:max].present?
+  end
+  Rails.logger.debug "Filtered records: #{@records.inspect}"
+end
 
   def setup_defaults
     @role_level = options.fetch(:role_level, nil)
     @role_type = options.fetch(:role_type, nil)
     @role_location = options.fetch(:role_location, nil)
-    @fixed_fee = { min: options.fetch(:fixed_fee_min, nil), max: options.fetch(:fixed_fee_max, nil) }
-    @salary_range = { min: options.fetch(:salary_range_min, nil), max: options.fetch(:salary_range_max, nil) }
+    
+    fixed_fee_options = options.slice(:fixed_fee_min, :fixed_fee_max)
+    @fixed_fee = fixed_fee_options.any? ? { min: fixed_fee_options[:fixed_fee_min], max: fixed_fee_options[:fixed_fee_max] } : {}
+
+    salary_range_options = options.slice(:salary_range_min, :salary_range_max)
+    @salary_range = salary_range_options.any? ? { min: salary_range_options[:salary_range_min], max: salary_range_options[:salary_range_max] } : {}
+
     @items_per_page = options.fetch(:items_per_page, Pagy::DEFAULT[:items])
     Rails.logger.debug "Initialized query with options: #{@fixed_fee}, #{@salary_range}"
   end
