@@ -32,7 +32,6 @@ module Businesses
       joins(:role_level).where("role_levels.level = ANY (ARRAY[?]::text[])", levels) if levels.present?
     }
 
-
     scope :with_role_type, ->(type) {
       joins(:role_type).where(role_types: { type.to_sym => true }) if 
       RoleType::TYPES.include?(type.to_sym)
@@ -41,10 +40,21 @@ module Businesses
       where(role_location: locations)
     }
 
-def self.valid_role_locations?(locations)
-  locations.all? { |location| role_locations.keys.include?(location) }
-end
+    scope :filter_by_payment_terms, ->(payment_terms) {
+  if payment_terms[:min].present? && payment_terms[:max].present?
+    where(fixed_fee: payment_terms[:min]..payment_terms[:max])
+  elsif payment_terms[:min].present?
+    where('fixed_fee >= ?', payment_terms[:min])
+  elsif payment_terms[:max].present?
+    where('fixed_fee <= ?', payment_terms[:max])
+  else
+    all
+  end
+}
 
+    def self.valid_role_locations?(locations)
+      locations.all? { |location| role_locations.keys.include?(location) }
+    end
 
     def contract_role?
       role_type&.part_time_contract? || role_type&.full_time_contract?

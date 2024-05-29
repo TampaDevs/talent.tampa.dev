@@ -6,6 +6,7 @@ module JobPosts
       @query = query
       @user = user
       @form_id = form_id
+      @developer_signed_in = user.developer.present?
     end
 
     def role_level_selected?(level)
@@ -30,6 +31,14 @@ module JobPosts
 
     def locations
       Businesses::JobPost.role_locations.keys.map { |type| [type, type.humanize] }
+    end
+
+    def applied_filter_active?
+      params[:filter] == 'applied'
+    end
+
+    def all_filter_active?
+      params[:filter].blank? || params[:filter] == 'all'
     end
   end
 end

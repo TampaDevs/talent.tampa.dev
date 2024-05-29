@@ -38,8 +38,20 @@ class JobPostsController < ApplicationController
     @query = JobPostQuery.new(permitted_params)
     @pagy, @job_posts = @query.query_and_paginate
     @no_job_posts = @job_posts.empty?
-    if params[:filter] == "applied" && user_signed_in? && current_user.developer.present?
-      @applied_job_posts = current_user.developer.job_applications.map(&:job_post)
+    if current_user.developer.present?
+      if params[:filter].blank?
+        # If filter parameter is blank, redirect to 'all' by default
+        query_params = permitted_params.merge(filter: :all)
+        @query.options.merge!(query_params) # Merge additional query params into the JobPostQuery instance
+        redirect_to jobs_path(@query.options)
+        return
+      elsif params[:filter] == 'applied'
+        # Filter job posts by applied status
+        @job_posts = @job_posts.joins(:job_applications).where(job_applications: { developer_id: current_user.developer.id })
+      elsif params[:filter] == 'all'
+        # Filter job posts by not applied status
+        @job_posts = @job_posts.where.not(id: Developers::JobApplication.where(developer_id: current_user.developer.id).pluck(:job_post_id))
+      end
     end
     Rails.logger.debug "Job posts: #{@no_job_posts}"
   end

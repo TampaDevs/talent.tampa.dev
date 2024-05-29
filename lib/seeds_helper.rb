@@ -83,7 +83,6 @@ module SeedsHelper
       end
     end
 
-
     def create_message!(conversation:, sender:, body:, cold_message: false)
       Message.find_or_create_by!(conversation:, sender:, body:) do |message|
         message.save_and_notify(cold_message:)

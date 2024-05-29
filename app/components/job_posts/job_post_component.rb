@@ -14,4 +14,3 @@ class JobPosts::JobPostComponent < ViewComponent::Base
     end
   end
 end
-

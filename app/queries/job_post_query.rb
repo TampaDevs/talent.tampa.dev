@@ -19,14 +19,38 @@ class JobPostQuery
     @pagy, @records = build_pagy(@records, items: items_per_page)
   end
 
+  def self.filter_by_query_params(params)
+    records = Businesses::JobPost.open.includes(:role_level, :role_type)
+    # Apply filters based on query parameters
+    records = records.with_role_locations(params[:role_location]) if params[:role_location].present?
+    records = records.with_role_type(params[:role_type]) if params[:role_type].present?
+    # Check if role type is present and invoke filter_by_payment_terms accordingly
+    if params[:role_type].present?
+      case params[:role_type]
+      when 'part_time_contract', 'full_time_contract'
+        records = records.filter_by_payment_terms(params.slice(:fixed_fee_min, :fixed_fee_max))
+      when 'full_time_employment'
+        records = records.filter_by_payment_terms(params.slice(:salary_range_min, :salary_range_max))
+      end
+    end
+    records
+  end  
+
   private
 
   def apply_filters
     apply_role_level_filters if @role_level.present?
     @records = @records.with_role_locations(@role_location) if @role_location.present? && Businesses::JobPost.valid_role_locations?(@role_location)
-    @records = @records.with_role_type(@role_type) if @role_type.present?
-    filter_by_payment_terms if @role_type.present?
-  end
+    if @role_type.present?
+      @records = @records.with_role_type(@role_type)
+      if @role_type.include?('part_time_contract') || @role_type.include?('full_time_contract')
+        @records = Businesses::JobPost.filter_by_payment_terms(@options)
+      elsif @role_type.include?('full_time_employment')
+        @records = Businesses::JobPost.filter_by_payment_terms(@options)
+      end
+    end
+    @records = JobPostQuery.filter_by_query_params(@options)
+  end  
 
   def apply_role_level_filters
     level_conditions = @role_level.reject(&:blank?).map do |level|
@@ -34,19 +58,6 @@ class JobPostQuery
     end.join(' OR ')
     @records = @records.joins(:role_level).where(level_conditions) if level_conditions.present?
   end
-
-def filter_by_payment_terms
-  Rails.logger.debug "Current records: #{@records.inspect}"
-  if @fixed_fee[:min].present? || @fixed_fee[:max].present?
-    @records = @records.where("fixed_fee >= ?", @fixed_fee[:min]) if @fixed_fee[:min].present?
-    @records = @records.where("fixed_fee <= ?", @fixed_fee[:max]) if @fixed_fee[:max].present?
-  end
-  if @salary_range[:min].present? || @salary_range[:max].present?
-    @records = @records.where("salary_range_min >= ?", @salary_range[:min]) if @salary_range[:min].present?
-    @records = @records.where("salary_range_max <= ?", @salary_range[:max]) if @salary_range[:max].present?
-  end
-  Rails.logger.debug "Filtered records: #{@records.inspect}"
-end
 
   def setup_defaults
     @role_level = options.fetch(:role_level, nil)
