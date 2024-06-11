@@ -58,8 +58,8 @@ class JobPostQuery
     @role_level = options.fetch(:role_level, nil)
     @role_type = options.fetch(:role_type, nil)
     @role_location = options.fetch(:role_location, nil)
-    @reimbursement_min = options.fetch(:reimbursement_min, nil)
-    @reimbursement_max = options.fetch(:reimbursement_max, nil)
+    @reimbursement_min = options.fetch(:reimbursement_min, '')
+    @reimbursement_max = options.fetch(:reimbursement_max, '')
   end
 
   def params

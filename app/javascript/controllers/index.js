@@ -3,6 +3,9 @@
 
 import { application } from "./application"
 
+import ReimbursementFilterController from "./reimbursement_filter_controller.js"
+application.register("reimbursement-filter", ReimbursementFilterController)
+
 import ContractTypeController from "./contract_type_controller.js"
 application.register("contract-type", ContractTypeController)
 

@@ -22,6 +22,14 @@ module JobPosts
       query.options[:role_location]&.include?(location)
     end
 
+    def reimbursement_min_selected?
+      query.options[:reimbursement_min].present?
+    end
+
+    def reimbursement_max_selected?
+      query.options[:reimbursement_max].present?
+    end
+
     def role_levels
       RoleLevel::TYPES.map { |type| [type.to_s.humanize, type] }
     end
@@ -33,6 +41,15 @@ module JobPosts
     def locations
       Businesses::JobPost.role_locations.keys.map { |type| [type, type.humanize] }
     end
+
+    def reimbursement_min_value
+      query.options[:reimbursement_min]
+    end
+
+    def reimbursement_max_value
+      query.options[:reimbursement_max]
+    end
+    
 
     def applied_filter_active?
       params[:filter] == 'applied'
