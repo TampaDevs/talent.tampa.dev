@@ -28,29 +28,40 @@ module Businesses
 
     scope :open, -> { where(status: :open) }
     scope :newest_first, -> { order(created_at: :desc) }
+
     scope :with_role_level, ->(levels) {
       joins(:role_level).where("role_levels.level = ANY (ARRAY[?]::text[])", levels) if levels.present?
     }
 
-    scope :with_role_type, ->(type) {
-      joins(:role_type).where(role_types: { type.to_sym => true }) if 
-      RoleType::TYPES.include?(type.to_sym)
+    scope :with_role_type, ->(types) {
+      types = types.map(&:underscore)
+      conditions = types.map { |type| "role_types.#{type} = true" }.join(' OR ')
+      joins(:role_type).where(conditions) if conditions.present?
     }
     scope :with_role_locations, ->(locations) {
       where(role_location: locations)
     }
 
     scope :filter_by_payment_terms, ->(payment_terms) {
-  if payment_terms[:min].present? && payment_terms[:max].present?
-    where(fixed_fee: payment_terms[:min]..payment_terms[:max])
-  elsif payment_terms[:min].present?
-    where('fixed_fee >= ?', payment_terms[:min])
-  elsif payment_terms[:max].present?
-    where('fixed_fee <= ?', payment_terms[:max])
-  else
-    all
-  end
-}
+      min = payment_terms[:min]
+      max = payment_terms[:max]
+
+      if min.present? && max.present?
+        where("fixed_fee BETWEEN ? AND ?", min, max)
+          .or(where("salary_range_min BETWEEN ? AND ?", min, max))
+          .or(where("salary_range_max BETWEEN ? AND ?", min, max))
+      elsif min.present?
+        where("fixed_fee >= ?", min)
+          .or(where("salary_range_min >= ?", min))
+          .or(where("salary_range_max >= ?", min))
+      elsif max.present?
+        where("fixed_fee <= ?", max)
+          .or(where("salary_range_min <= ?", max))
+          .or(where("salary_range_max <= ?", max))
+      else
+        all
+      end
+    }
 
     def self.valid_role_locations?(locations)
       locations.all? { |location| role_locations.keys.include?(location) }

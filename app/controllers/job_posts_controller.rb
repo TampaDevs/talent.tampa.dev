@@ -11,7 +11,6 @@ class JobPostsController < ApplicationController
   def create
     @job_post = current_user.business.job_posts.new(job_post_params)
     build_associations
-
     set_role_level_and_type
     if @job_post.save
       redirect_to jobs_path, notice: t(".success")
@@ -35,41 +34,30 @@ class JobPostsController < ApplicationController
   end
 
   def index
+    Rails.logger.debug "Query parameters: #{permitted_params}"
     @query = JobPostQuery.new(permitted_params)
-    @pagy, @job_posts = @query.query_and_paginate
-    @no_job_posts = @job_posts.empty?
+    Rails.logger.debug "Query options: #{@query.inspect}"
+    @job_posts = @query.query
+    Rails.logger.debug "Job posts: #{@job_posts.inspect}"
     if current_user.developer.present?
-      if params[:filter].blank?
-        # If filter parameter is blank, redirect to 'all' by default
-        query_params = permitted_params.merge(filter: :all)
-        @query.options.merge!(query_params) # Merge additional query params into the JobPostQuery instance
-        redirect_to jobs_path(@query.options)
-        return
-      elsif params[:filter] == 'applied'
-        # Filter job posts by applied status
-        @job_posts = @job_posts.joins(:job_applications).where(job_applications: { developer_id: current_user.developer.id })
-      elsif params[:filter] == 'all'
-        # Filter job posts by not applied status
-        @job_posts = @job_posts.where.not(id: Developers::JobApplication.where(developer_id: current_user.developer.id).pluck(:job_post_id))
-      end
+      handle_developer_filters
     end
-    Rails.logger.debug "Job posts: #{@no_job_posts}"
+    @no_job_posts = @job_posts.empty?
+    Rails.logger.debug "No job posts: #{@no_job_posts.inspect}"
   end
-
 
   def show
   end
 
   def apply
     unless current_user&.developer.present?
-      return redirect_to job_path(@job_post), alert: "You must be a developer to apply."
+      redirect_to job_path(@job_post), alert: "You must be a developer to apply." and return
     end
 
     if @job_post.job_applications.where(developer: current_user.developer).exists?
-      redirect_to job_path(@job_post), alert: "You have already applied to this job."
+      redirect_to job_path(@job_post), alert: "You have already applied to this job." and return
     else
       application = @job_post.job_applications.create(developer: current_user.developer, status: 'new_status')
-
       if application.persisted?
         redirect_to job_path(@job_post), notice: "Application submitted successfully."
       else
@@ -80,8 +68,7 @@ class JobPostsController < ApplicationController
 
   def applicants
     if current_user.business != @job_post.business
-      redirect_to root_path, alert: "You are not authorized to view this page."
-      return
+      redirect_to root_path, alert: "You are not authorized to view this page." and return
     end
     @applications = case params[:filter]
                     when 'new_status'
@@ -141,14 +128,26 @@ class JobPostsController < ApplicationController
 
   def permitted_params
     params.permit(
-      :role_type,
-      :fixed_fee_min,
-      :fixed_fee_max,
-      :salary_range_min,
-      :salary_range_max,
+      :commit,
+      :filter,
+      :reimbursement_min,
+      :reimbursement_max,
+      role_type: [],
       role_level: [],
       role_location: []
-    )
+    ).reject { |_, v| v.blank? }
   end
 
+  def handle_developer_filters
+    if params[:filter].blank?
+      query_params = permitted_params.merge(filter: :all)
+      Rails.logger.debug "Query params: #{query_params}"
+      @query.options.merge!(query_params)
+      redirect_to jobs_path(@query.options) and return
+    elsif params[:filter] == 'applied'
+      @job_posts = @job_posts.joins(:job_applications).where(job_applications: { developer_id: current_user.developer.id })
+    elsif params[:filter] == 'all'
+      @job_posts = @job_posts.where.not(id: Developers::JobApplication.where(developer_id: current_user.developer.id).pluck(:job_post_id))
+    end
+  end
 end

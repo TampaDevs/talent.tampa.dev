@@ -40,38 +40,37 @@
 
     <!-- Job Type with Collapse -->
     <div class="border-t border-gray-200 py-6" data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
-      <div>
-        <h3 class="-mx-2 -my-3 flow-root">
-          <%= render CollapseControlComponent.new("Role Type", collapsed: false) %>
-        </h3>
-        <div data-toggle-target="element">
-          <div class="space-y-4 pt-6" data-controller="role-type">
-            <%= form.collection_radio_buttons :role_type, role_types, :last, :first, include_hidden: false do |b| %>
-              <div class="flex items-center">
-                <%= b.radio_button checked: role_type_selected?(b.value), data: { action: "change->role-type#toggleFields", role_type_target: "roleTypeSelect" } %>
-                <%= b.label(class: "ml-3 text-blue-950 text-sm") { b.text } %>
-              </div>
-            <% end %>
-
-            <!-- Fixed Fee Section -->
-            <div data-role-type-target="fixedFee" class="hidden">
-              <%= form.label :fixed_fee_min, "Fixed Fee Minimum", class: "block text-sm font-medium text-gray-700" %>
-              <%= form.number_field :fixed_fee_min, min: 0, value: params[:fixed_fee_min] || @query.options.dig(:fixed_fee, :min), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-              <%= form.label :fixed_fee_max, "Fixed Fee Maximum", class: "block text-sm font-medium text-gray-700" %>
-              <%= form.number_field :fixed_fee_max, min: 0, value: params[:fixed_fee_max] || @query.options.dig(:fixed_fee, :max), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+      <h3 class="-mx-2 -my-3 flow-root">
+        <%= render CollapseControlComponent.new("Role Type", collapsed: false) %>
+      </h3>
+      <div data-toggle-target="element">
+        <div class="space-y-4 pt-6">
+          <%= form.collection_check_boxes :role_type, role_types, :first, :last, include_hidden: false do |b| %>
+            <div class="flex items-center">
+              <%= b.check_box checked: role_type_selected?(b.value), class: "h-4 w-4 border-gray-300 rounded text-blue-950 focus:ring-blue-500" %>
+              <%= b.label(class: "ml-3 text-blue-950 text-sm") { b.text } %>
             </div>
-
-            <!-- Salary Range Section -->
-            <div data-role-type-target="salaryRange" class="hidden">
-              <%= form.label :salary_range_min, "Minimum Salary", class: "block text-sm font-medium text-gray-700" %>
-              <%= form.number_field :salary_range_min, min: 0, value: params[:salary_range_min] || @query.options.dig(:salary_range, :min), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-              <%= form.label :salary_range_max, "Maximum Salary", class: "block text-sm font-medium text-gray-700" %>
-              <%= form.number_field :salary_range_max, min: 0, value: params[:salary_range_max] || @query.options.dig(:salary_range, :max), class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
-            </div>
-          </div>
+          <% end %>
         </div>
       </div>
     </div>
+          
+
+          <!-- Reimbursement Terms Filter -->
+    <div class="border-t border-gray-200 py-6" data-controller="toggle accessibility" data-toggle-visibility-class="hidden">
+      <h3 class="-mx-2 -my-3 flow-root">
+        <%= render CollapseControlComponent.new("Reimbursement", collapsed: false) %>
+      </h3>
+        <div data-toggle-target="element">
+          <div class="space-y-4 pt-6">
+            <%= form.label :reimbursement_min, "Reimbursement Minimum", class: "block text-sm font-medium text-gray-700" %>
+            <%= form.number_field :reimbursement_min, min: 0, placeholder: "Min", value: params[:reimbursement_min], class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+            <%= form.label :reimbursement_max, "Reimbursement Maximum", class: "block text-sm font-medium text-gray-700" %>
+            <%= form.number_field :reimbursement_max, min: 0, placeholder: "Max", value: params[:reimbursement_max], class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md" %>
+          </div>
+        </div>
+      </div>
+
 
 
     <!-- Submit Button -->

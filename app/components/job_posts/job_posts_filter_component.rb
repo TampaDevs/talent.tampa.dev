@@ -7,6 +7,7 @@ module JobPosts
       @user = user
       @form_id = form_id
       @developer_signed_in = user.developer.present?
+      Rails.logger.debug "Initial query parameters inside component: #{@query.options.inspect}"
     end
 
     def role_level_selected?(level)
