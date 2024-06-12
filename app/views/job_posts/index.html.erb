@@ -29,8 +29,8 @@
       <% if current_user.developer.present? %>
         <div class="tabs-container mt-4">
           <div class="flex justify-center">
-            <%= link_to "All", jobs_path(filter: :all), class: "tab #{'bg-blue-500 text-white' if params[:filter] == 'all'} #{'bg-gray-200 text-gray-700' unless params[:filter] == 'all'} px-3 py-2 rounded-tl-md rounded-tr-md border-b-2 border-transparent text-sm font-medium" %>
-            <%= link_to "Applied", jobs_path(filter: :applied), class: "tab #{'bg-blue-500 text-white' if params[:filter] == 'applied'} #{'bg-gray-200 text-gray-700' unless params[:filter] == 'applied'} px-3 py-2 rounded-tl-md rounded-tr-md border-b-2 border-transparent text-sm font-medium" %>
+            <%= link_to "All", jobs_path(@permitted_params.merge(filter: :all)), class: "tab #{'bg-blue-500 text-white' if params[:filter] == 'all'} #{'bg-gray-200 text-gray-700' unless params[:filter] == 'all'} px-3 py-2 rounded-tl-md rounded-tr-md border-b-2 border-transparent text-sm font-medium" %>
+            <%= link_to "Applied", jobs_path(@permitted_params.merge(filter: :applied)), class: "tab #{'bg-blue-500 text-white' if params[:filter] == 'applied'} #{'bg-gray-200 text-gray-700' unless params[:filter] == 'applied'} px-3 py-2 rounded-tl-md rounded-tr-md border-b-2 border-transparent text-sm font-medium" %>
           </div>
         </div>
       <% end %>

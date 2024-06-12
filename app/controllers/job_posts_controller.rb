@@ -34,16 +34,14 @@ class JobPostsController < ApplicationController
   end
 
   def index
-    Rails.logger.debug "Query parameters: #{permitted_params}"
-    @query = JobPostQuery.new(permitted_params)
-    Rails.logger.debug "Query options: #{@query.inspect}"
+    params[:filter] ||= 'all' if current_user.developer.present?
+    @permitted_params = permitted_params
+    @query = JobPostQuery.new(@permitted_params)
     @job_posts = @query.query
-    Rails.logger.debug "Job posts: #{@job_posts.inspect}"
     if current_user.developer.present?
       handle_developer_filters
     end
     @no_job_posts = @job_posts.empty?
-    Rails.logger.debug "No job posts: #{@no_job_posts.inspect}"
   end
 
   def show
@@ -139,14 +137,14 @@ class JobPostsController < ApplicationController
   end
 
   def handle_developer_filters
-    if params[:filter].blank?
-      query_params = permitted_params.merge(filter: :all)
-      Rails.logger.debug "Query params: #{query_params}"
-      @query.options.merge!(query_params)
-      redirect_to jobs_path(@query.options) and return
-    elsif params[:filter] == 'applied'
+    filter_type = params[:filter] || 'all'
+    query_params = permitted_params.merge(filter: filter_type)
+    Rails.logger.debug "Query params: #{query_params}"
+
+    case filter_type
+    when 'applied'
       @job_posts = @job_posts.joins(:job_applications).where(job_applications: { developer_id: current_user.developer.id })
-    elsif params[:filter] == 'all'
+    when 'all'
       @job_posts = @job_posts.where.not(id: Developers::JobApplication.where(developer_id: current_user.developer.id).pluck(:job_post_id))
     end
   end
