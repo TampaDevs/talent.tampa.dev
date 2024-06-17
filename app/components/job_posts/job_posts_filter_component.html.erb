@@ -1,5 +1,6 @@
 <div class="px-4 sm:px-6" data-controller="reimbursement-filter">
   <%= form_with url: jobs_path, id: form_id, method: :get do |form| %>
+    <%= hidden_field_tag :filter, params[:filter] %>
     <h1 class="text-lg leading-6 font-medium text-blue-900 border-b border-gray-200 py-2">Filter Job Posts</h1>
 
     <!-- Role Level with Collapse -->
@@ -59,13 +60,13 @@
     <!-- Reimbursement Terms Filter -->
     <div class="border-t border-gray-200 py-6">
       <h3 class="-mx-2 -my-3 flow-root">
-        <%= render CollapseControlComponent.new("Reimbursement", collapsed: false) %>
+        <%= render CollapseControlComponent.new("Payment", collapsed: false) %>
       </h3>
       <div data-toggle-target="element">
         <div class="space-y-4 pt-6">
-          <%= form.label :reimbursement_min, "Reimbursement Minimum", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.label :reimbursement_min, "Payment Minimum", class: "block text-sm font-medium text-gray-700" %>
           <%= form.number_field :reimbursement_min, min: 0, placeholder: "Min", value: reimbursement_min_value, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md", data: { reimbursement_filter_target: "reimbursementMin" } %>
-          <%= form.label :reimbursement_max, "Reimbursement Maximum", class: "block text-sm font-medium text-gray-700" %>
+          <%= form.label :reimbursement_max, "Payment Maximum", class: "block text-sm font-medium text-gray-700" %>
           <%= form.number_field :reimbursement_max, min: 0, placeholder: "Max", value: reimbursement_max_value, class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md", data: { reimbursement_filter_target: "reimbursementMax" } %>
         </div>
       </div>

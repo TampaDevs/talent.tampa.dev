@@ -1,4 +1,4 @@
-<%= form_with(model: job_post, url: job_post.persisted? ? job_path(job_post) : jobs_path, local: true, data: { controller: "contract-type" }) do |form| %>
+<%= form_with(model: @job_post, url: job_post.persisted? ? job_path(job_post) : jobs_path, local: true, data: { controller: "contract-type" }) do |form| %>
   <div class="max-w-4xl mx-auto px-3 py-8 bg-white shadow rounded-lg">
     <div class="mb-6">
       <%= form.label :title, class: "block text-sm font-medium text-gray-700" %> 

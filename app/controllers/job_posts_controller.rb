@@ -21,7 +21,7 @@ class JobPostsController < ApplicationController
 
   def update
     authorize @job_post
-    set_role_level_and_type
+    set_role_level_and_type if params[:job_post][:role_level_choice].present? || params[:job_post][:role_type_choice].present?
     if @job_post.update(job_post_params)
       redirect_to jobs_path, notice: t(".updated")
     else
@@ -34,7 +34,14 @@ class JobPostsController < ApplicationController
   end
 
   def index
-    params[:filter] ||= 'all' if current_user.developer.present?
+    if current_user.developer.present?
+      @filter = params[:filter] || 'all'
+      if params[:filter].blank?
+        redirect_to jobs_path(filter: 'all') and return
+      end
+    else
+      @filter = params[:filter]
+    end
     @permitted_params = permitted_params
     @query = JobPostQuery.new(@permitted_params)
     @job_posts = @query.query
@@ -43,6 +50,7 @@ class JobPostsController < ApplicationController
     end
     @no_job_posts = @job_posts.empty?
   end
+  
 
   def show
   end
@@ -121,7 +129,15 @@ class JobPostsController < ApplicationController
   end
 
   def job_post_params
-    params.require(:job_post).permit(:title, :description, :role_location, :role_level, :role_type, :fixed_fee_min, :fixed_fee_max, :salary_range_min, :salary_range_max, :page)
+    params.require(:businesses_job_post).permit(
+      :title, :description, :role_location, :fixed_fee, :salary_range_min, :salary_range_max, :status, :city,
+      role_level_attributes: RoleLevel::TYPES,
+      role_type_attributes: RoleType::TYPES,
+      job_post: [
+        :role_level_choice,
+        :role_type_choice
+      ]
+    )
   end
 
   def permitted_params
@@ -137,11 +153,7 @@ class JobPostsController < ApplicationController
   end
 
   def handle_developer_filters
-    filter_type = params[:filter] || 'all'
-    query_params = permitted_params.merge(filter: filter_type)
-    Rails.logger.debug "Query params: #{query_params}"
-
-    case filter_type
+    case @filter
     when 'applied'
       @job_posts = @job_posts.joins(:job_applications).where(job_applications: { developer_id: current_user.developer.id })
     when 'all'
