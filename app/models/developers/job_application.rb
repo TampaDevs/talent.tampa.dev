@@ -14,7 +14,7 @@ module Developers
       {
         'new_status' => 'New',
         'considered' => 'Considered',
-        'other' => 'Other'
+        'other' => 'Not Considered'
       }[status]
     end
 

@@ -91,12 +91,16 @@ class JobPostsController < ApplicationController
   def update_application_status
     application = Developers::JobApplication.find(params[:application_id])
     if current_user.business == application.job_post.business
-      application.update(status: params[:status])
-      redirect_back(fallback_location: applicants_job_path(application.job_post), notice: 'Status updated successfully.')
+      if application.update(status: params[:status])
+        render json: { success: true }
+      else
+        render json: { success: false, error: application.errors.full_messages.join(", ") }
+      end
     else
-      redirect_back(fallback_location: applicants_job_path(application.job_post), alert: 'You are not authorized to perform this action.')
+      render json: { success: false, error: 'You are not authorized to perform this action.' }
     end
   end
+  
 
   private
 
