@@ -1,0 +1,5 @@
+.bg-primary {
+    background-color: rgba(207, 67, 57, 0.9);
+    mix-blend-mode: multiply;
+    background-blend-mode: multiply;
+}

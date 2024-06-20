@@ -21,7 +21,7 @@ class AttachSignedHiringAgreementJob < ApplicationJob
   def attach_pdf(pdf)
     @signature.signed_pdf.attach(
       io: StringIO.new(pdf),
-      filename: "Tampa Devs Talent hiring agreement.pdf",
+      filename: "Quebec Dev hiring agreement.pdf",
       content_type: "application/pdf"
     )
   end

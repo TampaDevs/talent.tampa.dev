@@ -6,4 +6,4 @@ These guidelines help increase your chance of getting a response.
 1. Bring up compensation, budget, and experience level as soon as possible.
 1. This is an organic conversation between two real people. Treat it like such.
 
-Questions? Email the Tampa Devs Talent team at [jobs@tampadevs.com](mailto:jobs@tampadevs.com).
+Questions? Email the Quebec Dev team at [jobs@tampadevs.com](mailto:jobs@tampadevs.com).

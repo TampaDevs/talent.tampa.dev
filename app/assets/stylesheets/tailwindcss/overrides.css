@@ -1,7 +1,9 @@
-.prose {
-  code::before, code::after {
-    display: none;
-  }
+body {
+  font-family: "PT Mono", monospace;
+}
+
+.prose code::before, .prose code::after {
+  display: none;
 }
 
 #next-event-widget {
