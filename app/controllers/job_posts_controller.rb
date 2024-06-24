@@ -35,9 +35,9 @@ class JobPostsController < ApplicationController
 
   def index
     if current_user.developer.present?
-      @filter = params[:filter] || 'all'
+      @filter = params[:filter] || "all"
       if params[:filter].blank?
-        redirect_to jobs_path(filter: 'all') and return
+        redirect_to jobs_path(filter: "all") and return
       end
     else
       @filter = params[:filter]
@@ -50,7 +50,6 @@ class JobPostsController < ApplicationController
     end
     @no_job_posts = @job_posts.empty?
   end
-  
 
   def show
   end
@@ -63,7 +62,7 @@ class JobPostsController < ApplicationController
     if @job_post.job_applications.where(developer: current_user.developer).exists?
       redirect_to job_path(@job_post), alert: "You have already applied to this job." and return
     else
-      application = @job_post.job_applications.create(developer: current_user.developer, status: 'new_status')
+      application = @job_post.job_applications.create(developer: current_user.developer, status: "new_status")
       if application.persisted?
         redirect_to job_path(@job_post), notice: "Application submitted successfully."
       else
@@ -77,30 +76,29 @@ class JobPostsController < ApplicationController
       redirect_to root_path, alert: "You are not authorized to view this page." and return
     end
     @applications = case params[:filter]
-                    when 'new_status'
-                      @job_post.job_applications.new_status.includes(:developer)
-                    when 'considered'
-                      @job_post.job_applications.considered.includes(:developer)
-                    when 'other'
-                      @job_post.job_applications.other.includes(:developer)
-                    else
-                      @job_post.job_applications.includes(:developer)
-                    end
+    when "new_status"
+      @job_post.job_applications.new_status.includes(:developer)
+    when "considered"
+      @job_post.job_applications.considered.includes(:developer)
+    when "other"
+      @job_post.job_applications.other.includes(:developer)
+    else
+      @job_post.job_applications.includes(:developer)
+    end
   end
 
   def update_application_status
     application = Developers::JobApplication.find(params[:application_id])
     if current_user.business == application.job_post.business
       if application.update(status: params[:status])
-        render json: { success: true }
+        render json: {success: true}
       else
-        render json: { success: false, error: application.errors.full_messages.join(", ") }
+        render json: {success: false, error: application.errors.full_messages.join(", ")}
       end
     else
-      render json: { success: false, error: 'You are not authorized to perform this action.' }
+      render json: {success: false, error: "You are not authorized to perform this action."}
     end
   end
-  
 
   private
 
@@ -158,9 +156,9 @@ class JobPostsController < ApplicationController
 
   def handle_developer_filters
     case @filter
-    when 'applied'
-      @job_posts = @job_posts.joins(:job_applications).where(job_applications: { developer_id: current_user.developer.id })
-    when 'all'
+    when "applied"
+      @job_posts = @job_posts.joins(:job_applications).where(job_applications: {developer_id: current_user.developer.id})
+    when "all"
       @job_posts = @job_posts.where.not(id: Developers::JobApplication.where(developer_id: current_user.developer.id).pluck(:job_post_id))
     end
   end

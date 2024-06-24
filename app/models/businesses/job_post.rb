@@ -35,7 +35,7 @@ module Businesses
 
     scope :with_role_type, ->(types) {
       types = types.map(&:underscore)
-      conditions = types.map { |type| "role_types.#{type} = true" }.join(' OR ')
+      conditions = types.map { |type| "role_types.#{type} = true" }.join(" OR ")
       joins(:role_type).where(conditions) if conditions.present?
     }
     scope :with_role_locations, ->(locations) {
@@ -73,12 +73,12 @@ module Businesses
 
     def self.with_role_type(type)
       case type
-      when 'part_time_contract'
-        joins(:role_type).where(role_types: { part_time_contract: true })
-      when 'full_time_contract'
-        joins(:role_type).where(role_types: { full_time_contract: true })
-      when 'full_time_employment'
-        joins(:role_type).where(role_types: { full_time_employment: true })
+      when "part_time_contract"
+        joins(:role_type).where(role_types: {part_time_contract: true})
+      when "full_time_contract"
+        joins(:role_type).where(role_types: {full_time_contract: true})
+      when "full_time_employment"
+        joins(:role_type).where(role_types: {full_time_employment: true})
       else
         # Handle the case where type is not recognized
         all

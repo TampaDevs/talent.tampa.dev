@@ -2,7 +2,7 @@ module JobPosts
   class JobPostsFilterComponent < ViewComponent::Base
     attr_reader :form_id, :query, :user
 
-    def initialize(query:, user:, form_id: 'job-filter-form')
+    def initialize(query:, user:, form_id: "job-filter-form")
       @query = query
       @user = user
       @form_id = form_id
@@ -49,14 +49,13 @@ module JobPosts
     def reimbursement_max_value
       query.options[:reimbursement_max]
     end
-    
 
     def applied_filter_active?
-      params[:filter] == 'applied'
+      params[:filter] == "applied"
     end
 
     def all_filter_active?
-      params[:filter].blank? || params[:filter] == 'all'
+      params[:filter].blank? || params[:filter] == "all"
     end
   end
 end

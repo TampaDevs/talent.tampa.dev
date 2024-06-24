@@ -68,18 +68,18 @@ module SeedsHelper
 
           # Build and save role level
           role_level = job_post.build_role_level
-          RoleLevel::TYPES.each { |type| role_level.send("#{type}=", false) }
+          RoleLevel::TYPES.each { |type| role_level.send(:"#{type}=", false) }
           role_level.send("#{RoleLevel::TYPES.sample}=", true)
 
           # Build and save role type
           role_type = job_post.build_role_type
-          RoleType::TYPES.each { |type| role_type.send("#{type}=", type == role_type_option) }
+          RoleType::TYPES.each { |type| role_type.send(:"#{type}=", type == role_type_option) }
 
           # Save job post and associated objects
           job_post.save!
         end
       rescue ActiveRecord::RecordInvalid => e
-        puts "Failed to create job post: #{e.record.errors.full_messages.join(', ')}"
+        puts "Failed to create job post: #{e.record.errors.full_messages.join(", ")}"
       end
     end
 

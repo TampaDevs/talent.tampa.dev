@@ -5,16 +5,16 @@ module Developers
     belongs_to :developer
 
     enum status: {
-      new_status: 0, #new
-      considered: 1, #considered
-      other: 2 #other
+      new_status: 0, # new
+      considered: 1, # considered
+      other: 2 # other
     }
 
     def human_status
       {
-        'new_status' => 'New',
-        'considered' => 'Considered',
-        'other' => 'Not Considered'
+        "new_status" => "New",
+        "considered" => "Considered",
+        "other" => "Not Considered"
       }[status]
     end
 

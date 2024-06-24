@@ -26,14 +26,14 @@ class JobPostQuery
   def apply_role_level_filters
     level_conditions = @role_level.reject(&:blank?).map do |level|
       "role_levels.#{level} = true"
-    end.join(' OR ')
+    end.join(" OR ")
     @records = @records.joins(:role_level).where(level_conditions) if level_conditions.present?
   end
 
   def apply_role_type_filters
     role_type_conditions = @role_type.reject(&:blank?).map do |type|
-      "role_types.#{type.parameterize(separator: '_')} = true"
-    end.join(' OR ')
+      "role_types.#{type.parameterize(separator: "_")} = true"
+    end.join(" OR ")
     @records = @records.joins(:role_type).where(role_type_conditions) if role_type_conditions.present?
   end
 
@@ -58,8 +58,8 @@ class JobPostQuery
     @role_level = options.fetch(:role_level, nil)
     @role_type = options.fetch(:role_type, nil)
     @role_location = options.fetch(:role_location, nil)
-    @reimbursement_min = options.fetch(:reimbursement_min, '')
-    @reimbursement_max = options.fetch(:reimbursement_max, '')
+    @reimbursement_min = options.fetch(:reimbursement_min, "")
+    @reimbursement_max = options.fetch(:reimbursement_max, "")
   end
 
   def params

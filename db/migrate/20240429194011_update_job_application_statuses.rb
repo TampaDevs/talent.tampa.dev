@@ -13,4 +13,3 @@ class UpdateJobApplicationStatuses < ActiveRecord::Migration[7.0]
     Developers::JobApplication.where(status: :other).update_all(status: 2)
   end
 end
-
