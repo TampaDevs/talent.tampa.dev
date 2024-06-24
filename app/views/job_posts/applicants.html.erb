@@ -32,26 +32,26 @@
             <div class="self-start flex-1 min-w-0 space-y-4">
               <div class="flex items-baseline">
                 <h2 class="text-lg sm:text-xl font-medium text-blue-900 line-clamp-2 break-word" title="<%= application.developer.hero %>">
-                  <%= application.developer.name %>
+                  <%= link_to application.developer.name, developer_path(application.developer) %>
+                </h2>
                 </h2>
 
                 <div class="text-right flex-1">
                   <span class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 inline-flex items-center">
                     Status:
-<select id="status-select" class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 custom-select ml-2" data-controller="status" data-action="change->status#update" data-status-job-post-id-param="<%= application.job_post.id %>" data-status-application-id-param="<%= application.id %>">
-  <% if application.human_status == 'New' %>
-    <option value="new_status" selected>New</option>
-    <option value="considered">Considered</option>
-    <option value="other">Not Considered</option>
-  <% elsif application.human_status == 'Considered' %>
-    <option value="considered" selected>Considered</option>
-    <option value="other">Not Considered</option>
-  <% else %>
-    <option value="other" selected>Not Considered</option>
-    <option value="considered">Considered</option>
-  <% end %>
-</select>
-
+                    <select id="status-select" class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 custom-select ml-2" data-controller="status" data-action="change->status#update" data-status-job-post-id-param="<%= application.job_post.id %>" data-status-application-id-param="<%= application.id %>">
+                      <% if application.human_status == 'New' %>
+                        <option value="new_status" selected>New</option>
+                        <option value="considered">Considered</option>
+                        <option value="other">Not Considered</option>
+                      <% elsif application.human_status == 'Considered' %>
+                        <option value="considered" selected>Considered</option>
+                        <option value="other">Not Considered</option>
+                      <% else %>
+                        <option value="other" selected>Not Considered</option>
+                        <option value="considered">Considered</option>
+                      <% end %>
+                    </select>
                   </span>
                 </div>
               </div>
