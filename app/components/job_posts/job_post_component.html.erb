@@ -30,7 +30,7 @@
 
   <div class="mt-4 flex justify-end space-x-2">
     <% if @current_user.present? && @job_post.business == @current_user.business %>
-      <%= link_to "Applications", applicants_job_path(@job_post), class: "px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+      <%= link_to "Applications", applicants_job_path(@job_post, filter: :new_status), class: "px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
       <%= link_to "Edit", edit_job_path(@job_post), class: "px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
     <% end %>
     <% if @user_signed_in && @current_user&.developer.present? && !@job_post.job_applications.where(developer: @current_user.developer).exists? %>

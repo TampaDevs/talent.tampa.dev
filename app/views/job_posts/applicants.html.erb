@@ -17,7 +17,7 @@
   <div class="flex justify-center space-x-4 my-4">
     <%= link_to "New", applicants_job_path(@job_post, filter: :new_status), class: "tab #{'bg-gray-200' if params[:filter] == 'new_status'} px-3 py-2 rounded-md text-sm font-medium" %>
     <%= link_to "Considered", applicants_job_path(@job_post, filter: :considered), class: "tab #{'bg-gray-200' if params[:filter] == 'considered'} px-3 py-2 rounded-md text-sm font-medium" %>
-    <%= link_to "Other", applicants_job_path(@job_post, filter: :other), class: "tab #{'bg-gray-200' if params[:filter] == 'other'} px-3 py-2 rounded-md text-sm font-medium" %>
+    <%= link_to "Not Considered", applicants_job_path(@job_post, filter: :other), class: "tab #{'bg-gray-200' if params[:filter] == 'other'} px-3 py-2 rounded-md text-sm font-medium" %>
   </div>
 
   <% if @applications.any? %>
@@ -38,19 +38,20 @@
                 <div class="text-right flex-1">
                   <span class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 inline-flex items-center">
                     Status:
-                    <select id="status-select-<%= application.id %>" class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 custom-select ml-2" data-controller="status" data-action="change->status#update" data-status-application-id-param="<%= application.id %>" data-status-job-post-id-param="<%= @job_post.id %>">
-                      <% if application.status == 'new_status' %>
-                        <option value="new_status" selected>New</option>
-                        <option value="considered">Considered</option>
-                        <option value="other">Other</option>
-                      <% elsif application.status == 'considered' %>
-                        <option value="considered" selected>Considered</option>
-                        <option value="other">Other</option>
-                      <% elsif application.status == 'other' %>
-                        <option value="other" selected>Other</option>
-                        <option value="considered">Considered</option>
-                      <% end %>
-                    </select>
+<select id="status-select" class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 custom-select ml-2" data-controller="status" data-action="change->status#update" data-status-job-post-id-param="<%= application.job_post.id %>" data-status-application-id-param="<%= application.id %>">
+  <% if application.human_status == 'New' %>
+    <option value="new_status" selected>New</option>
+    <option value="considered">Considered</option>
+    <option value="other">Not Considered</option>
+  <% elsif application.human_status == 'Considered' %>
+    <option value="considered" selected>Considered</option>
+    <option value="other">Not Considered</option>
+  <% else %>
+    <option value="other" selected>Not Considered</option>
+    <option value="considered">Considered</option>
+  <% end %>
+</select>
+
                   </span>
                 </div>
               </div>
