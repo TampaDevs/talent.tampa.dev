@@ -9,7 +9,7 @@ class JobPostQuery
   end
 
   def query
-    @records = Businesses::JobPost.open.includes(:role_level, :role_type)
+    @records = Businesses::JobPost.open.includes(:role_level, :role_type).order(created_at: :desc)
     apply_filters unless @options.empty?
     @records || Businesses::JobPost.none
   end
