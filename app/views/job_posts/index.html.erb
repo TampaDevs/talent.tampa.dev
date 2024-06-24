@@ -35,7 +35,9 @@
         </div>
       <% end %>
           <% @job_posts.each do |job_post| %>
-            <%= render JobPosts::JobPostComponent.new(job_post: job_post, current_user: current_user, user_signed_in: user_signed_in?) %>
+            <% if job_post.open? %>
+              <%= render JobPosts::JobPostComponent.new(job_post: job_post, current_user: current_user, user_signed_in: user_signed_in?) %>
+            <% end %>
           <% end %>
         <% if @no_job_posts %>
           <div class="bg-white shadow px-6 py-4 mb-4 rounded-lg">

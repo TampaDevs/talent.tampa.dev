@@ -72,6 +72,8 @@ gem "stripe"
 gem "tarpon"
 gem "timezone_finder"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'whenever', require: false
+
 
 gem "analytics-ruby", "~> 2.4"
 
