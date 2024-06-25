@@ -2,16 +2,12 @@
   <h1 class="text-3xl font-bold text-center">Applicants for <%= @job_post.title %></h1>
 
     <style>
-    .custom-select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      background: none;
-      border: none;
-      padding-right: 1rem; /* Adjust padding for the dropdown arrow */
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="%23343a40"><path d="M10 12.5l-5-5h10l-5 5z"/></svg>') no-repeat right 0.5rem center/8px 10px; /* Adjust position and size of the arrow */
-    }
-  </style>
+      .custom-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+      }
+    </style>
 
   <!-- Tabs for filtering -->
   <div class="flex justify-center space-x-4 my-4">
@@ -37,9 +33,9 @@
                 </h2>
 
                 <div class="text-right flex-1">
-                  <span class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 inline-flex items-center">
+                  <span class="text-sm font-medium bg-gray-100 rounded-full px-3 py-1 inline-flex items-center">
                     Status:
-                    <select id="status-select" class="text-sm font-medium bg-gray-100 rounded-full px-4 py-1 custom-select ml-2" data-controller="status" data-action="change->status#update" data-status-job-post-id-param="<%= application.job_post.id %>" data-status-application-id-param="<%= application.id %>">
+                    <select id="status-select" class="text-sm font-medium bg-gray-100 rounded-full py-1 custom-select " data-controller="status" data-action="change->status#update" data-status-job-post-id-param="<%= application.job_post.id %>" data-status-application-id-param="<%= application.id %>">
                       <% if application.human_status == 'New' %>
                         <option value="new_status" selected>New</option>
                         <option value="considered">Considered</option>
