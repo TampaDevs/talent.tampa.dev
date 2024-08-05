@@ -75,8 +75,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.6)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     analytics-ruby (2.4.0)
     ansi (1.5.0)
     apnotic (1.7.2)
@@ -113,7 +113,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bigdecimal (3.1.7)
-    builder (3.2.4)
+    builder (3.3.0)
     capybara (3.40.0)
       addressable
       matrix
@@ -128,7 +128,7 @@ GEM
       activesupport (>= 6)
       railties (>= 6)
     coderay (1.1.3)
-    concurrent-ruby (1.2.3)
+    concurrent-ruby (1.3.3)
     connection_pool (2.4.1)
     constant_resolver (0.2.0)
     crack (1.0.0)
@@ -146,8 +146,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.12.0)
       devise (>= 4.9.0)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
+    domain_name (0.6.20240107)
     erb_lint (0.5.0)
       activesupport
       better_html (>= 2.0.1)
@@ -155,7 +154,7 @@ GEM
       rainbow
       rubocop
       smart_properties
-    erubi (1.12.0)
+    erubi (1.13.0)
     faker (3.3.1)
       i18n (>= 1.8.11, < 2)
     faraday (1.9.3)
@@ -186,9 +185,10 @@ GEM
     fathom_api (0.1.2)
       faraday (~> 1.7)
       faraday_middleware (~> 1.1)
-    ffi (1.16.3)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
+    ffi (1.17.0)
+    ffi (1.17.0-x86_64-darwin)
+    ffi-compiler (1.3.2)
+      ffi (>= 1.15.5)
       rake
     gemoji (4.0.0.rc3)
     geocoder (1.7.3)
@@ -217,12 +217,12 @@ GEM
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       http-parser (~> 1.2.0)
-    http-cookie (1.0.5)
+    http-cookie (1.0.6)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http-parser (1.2.3)
       ffi-compiler (>= 1.0, < 2.0)
-    i18n (1.14.4)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     i18n-tasks (1.0.13)
       activesupport (>= 4.0.2)
@@ -274,8 +274,8 @@ GEM
     method_source (1.1.0)
     mini_magick (4.11.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.6)
-    minitest (5.22.3)
+    mini_portile2 (2.8.7)
+    minitest (5.24.1)
     minitest-reporters (1.6.1)
       ansi
       builder
@@ -287,7 +287,7 @@ GEM
     multipart-post (2.1.1)
     net-http2 (0.18.5)
       http-2 (~> 0.11)
-    net-imap (0.4.10)
+    net-imap (0.4.14)
       date
       net-protocol
     net-pop (0.1.2)
@@ -296,15 +296,14 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    nio4r (2.7.1)
-    nokogiri (1.16.4)
+    nio4r (2.7.3)
+    nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.16.4-x86_64-darwin)
+    nokogiri (1.16.7-x86_64-darwin)
       racc (~> 1.4)
-    noticed (1.5.9)
-      http (>= 4.0.0)
-      rails (>= 5.2.0)
+    noticed (2.4.1)
+      rails (>= 6.1.0)
     orm_adapter (0.5.0)
     packwerk (3.2.0)
       activesupport (>= 6.0)
@@ -348,12 +347,12 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (5.0.4)
+    public_suffix (6.0.1)
     puma (6.4.2)
       nio4r (~> 2.0)
     pundit (2.2.0)
       activesupport (>= 3.0.0)
-    racc (1.7.3)
+    racc (1.8.1)
     rack (2.2.9)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
@@ -483,9 +482,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8.2)
     unicode-display_width (2.5.0)
     view_component (2.83.0)
       activesupport (>= 5.2.0, < 8.0)
@@ -503,7 +499,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.13)
+    zeitwerk (2.6.17)
 
 PLATFORMS
   ruby
