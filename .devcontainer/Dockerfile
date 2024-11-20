@@ -1,5 +1,7 @@
 FROM --platform=linux/amd64 ghcr.io/rails/devcontainer/images/ruby:3.2.2
 
+USER root
+
 RUN set -xe \
     && apt update && apt -y upgrade
 
