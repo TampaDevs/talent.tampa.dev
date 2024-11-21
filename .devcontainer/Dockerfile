@@ -1,5 +1,8 @@
 FROM --platform=linux/amd64 ghcr.io/rails/devcontainer/images/ruby:3.2.2
 
+# Switch to root to install dependencies
+USER root
+
 RUN set -xe \
     && apt update && apt -y upgrade
 
@@ -32,9 +35,10 @@ RUN set -xe \
     && apt update \
     && apt -y install --no-install-recommends google-chrome-stable
 
-# Create a User
+# Create a non-root user
 RUN set -xe \
-    && echo 'ALL ALL = (ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
+    && useradd -m -s /bin/bash appuser \
+    && echo 'appuser ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install NodeJS
 RUN set -xe \ 
@@ -48,3 +52,6 @@ RUN set -xe \
 # Install Application Dependencies
 RUN set -xe \ 
     && apt -y install --no-install-recommends libpq-dev imagemagick libvips-dev libvips-tools libvips42 ruby-chromedriver-helper ruby-foreman
+
+# Switch to non-root user
+USER appuser
