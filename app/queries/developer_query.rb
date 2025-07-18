@@ -11,6 +11,7 @@ class DeveloperQuery
     @sort = options.delete(:sort)
     @specialty_ids = options.delete(:specialty_ids)
     @countries = options.delete(:countries)
+    @cities = options.delete(:cities)
     @utc_offsets = options.delete(:utc_offsets)
     @role_types = options.delete(:role_types)
     @role_levels = options.delete(:role_levels)
@@ -21,7 +22,7 @@ class DeveloperQuery
   end
 
   def filters
-    @filters = {sort:, utc_offsets:, role_types:, role_levels:, include_not_interested:, search_query:, countries:,
+    @filters = {sort:, utc_offsets:, role_types:, role_levels:, include_not_interested:, search_query:, countries:, cities:,
                 badges:}
   end
 
@@ -43,6 +44,10 @@ class DeveloperQuery
 
   def sort
     (@sort.to_s.downcase.to_sym == :recommended) ? :recommended : :newest
+  end
+
+  def cities
+    @cities.to_a.reject(&:blank?)
   end
 
   def countries
@@ -79,6 +84,7 @@ class DeveloperQuery
       sort: @sort,
       specialty_ids: @specialty_ids,
       countries: @countries,
+      cities: @cities,
       search_query:,
       utc_offsets: @utc_offsets,
       role_types: @role_types,
@@ -98,6 +104,7 @@ class DeveloperQuery
       role_levels.empty? &&
       search_query.blank? &&
       countries.blank? &&
+      cities.blank? &&
       badges.blank? &&
       specialty_ids.empty? &&
       !include_not_interested
@@ -109,6 +116,7 @@ class DeveloperQuery
     @_records = Developer.includes(:role_type, :specialties).with_attached_avatar.visible
     sort_records
     country_filter_records
+    city_filter_records
     utc_offset_filter_records
     role_type_filter_records
     role_level_filter_records
@@ -151,6 +159,10 @@ class DeveloperQuery
     else
       @_records.merge!(Developer.newest_first)
     end
+  end
+
+  def city_filter_records
+    @_records.merge!(Developer.filter_by_cities(cities)) if cities.any?
   end
 
   def country_filter_records

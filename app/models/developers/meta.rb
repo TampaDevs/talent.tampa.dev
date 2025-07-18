@@ -54,6 +54,12 @@ module Developers
         !query.role_types.include?(:full_time_employment)
     end
 
+    def city
+      if query.cities.one?
+        query.cities.first
+      end
+    end
+
     def country
       if query.countries.one?
         query.countries.first

@@ -17,7 +17,7 @@ class Developers::QueryPathTest < ActiveSupport::TestCase
   end
 
   def location_combinations
-    Location.top_countries.count
+    Location.top_cities.count
   end
 
   def role_level_by_location_combinations

@@ -26,6 +26,10 @@ module Developers
 
     private
 
+    def top_cities
+      @top_cities ||= Location.top_cities
+    end
+
     def top_countries
       @top_countries ||= Location.top_countries
     end

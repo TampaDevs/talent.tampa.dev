@@ -10,6 +10,18 @@ module Developers
       @form_id = form_id
     end
 
+    def city_selected?(city_pair)
+      query.cities.include?(city_pair.first)
+    end
+
+    def top_cities
+      Location.top_cities.map { |k| [k, k] }
+    end
+
+    def cities
+      Location.not_top_cities.map { |k| [k, k] }
+    end
+
     def country_selected?(country_pair)
       query.countries.include?(country_pair.first)
     end
@@ -83,12 +95,12 @@ module Developers
     end
 
     def collapse_location?
-      query.countries.empty?
+      query.cities.empty?
     end
 
     def collapse_all_locations?
       @collapse_all_locations ||=
-        (Location.not_top_countries & query.countries).none?
+        (Location.not_top_cities & query.cities).none?
     end
 
     def collapse_timezone?
