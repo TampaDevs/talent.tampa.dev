@@ -18,6 +18,23 @@ class Location < ApplicationRecord
       .pluck(:country)
   end
 
+  scope :top_cities, ->(limit = ENV.fetch("TOP_CITIES", 10)) do
+    group(:city)
+      .where.not(city: nil)
+      .order("count_all DESC")
+      .limit(limit)
+      .count
+      .keys
+  end
+
+  scope :not_top_cities, ->(limit = ENV.fetch("TOP_CITIES", 10)) do
+    where.not(city: top_cities(limit))
+      .select(:city)
+      .distinct
+      .order(:city)
+      .pluck(:city)
+  end
+
   validates :time_zone, presence: true
   validates :utc_offset, presence: true
   validate :valid_coordinates

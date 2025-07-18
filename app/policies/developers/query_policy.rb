@@ -19,7 +19,8 @@ module Developers
         role_types: [],
         badges: [],
         utc_offsets: [],
-        countries: []
+        countries: [],
+        cities: []
       ]
     end
 

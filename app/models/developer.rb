@@ -72,6 +72,10 @@ class Developer < ApplicationRecord
     joins(:location).where(locations: {country: countries})
   end
 
+  scope :filter_by_cities, ->(cities) do
+    joins(:location).where(locations: {city: cities})
+  end
+
   scope :actively_looking_or_open, -> { where(search_status: [:actively_looking, :open, nil]) }
   scope :featured, -> { where("featured_at >= ?", FEATURE_LENGTH.ago).order(featured_at: :desc) }
   scope :newest_first, -> { order(created_at: :desc) }

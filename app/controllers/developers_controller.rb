@@ -7,6 +7,7 @@ class DevelopersController < ApplicationController
     @developers_count = SignificantFigure.new(Developer.actively_looking_or_open.count).rounded
     @query = DeveloperQuery.new(permitted_attributes([:developers, :query]).merge(user: current_user))
     @meta = Developers::Meta.new(query: @query, count: @developers_count)
+
     Analytics::SearchQuery.create!(permitted_attributes([:developers, :query]))
 
     if @query.empty_search?

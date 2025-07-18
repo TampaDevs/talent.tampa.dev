@@ -9,29 +9,29 @@ module Developers
       @user = users(:empty)
     end
 
-    test "renders top countries for developers" do
+    test "renders top cities for developers" do
       query = DeveloperQuery.new({})
-      Location.stub :top_countries, ["China", "United States"] do
+      Location.stub :top_cities, ["New York", "Portland"] do
         render_inline QueryComponent.new(query:, user: @user, form_id: nil)
       end
 
-      assert_selector build_input("countries[]", type: "checkbox", value: "United States")
-      assert_selector build_input("countries[]", type: "checkbox", value: "China")
+      assert_selector build_input("cities[]", type: "checkbox", value: "New York")
+      assert_selector build_input("cities[]", type: "checkbox", value: "Portland")
     end
 
-    test "renders unique countries for developers" do
+    test "renders unique cities for developers" do
       query = DeveloperQuery.new({})
       render_inline QueryComponent.new(query:, user: @user, form_id: nil)
 
-      assert_selector build_input("countries[]", type: "checkbox", value: "United States")
-      assert_selector "label[for=countries_united_states]", text: "United States"
+      assert_selector build_input("cities[]", type: "checkbox", value: "Tampa")
+      assert_selector "label[for=cities_tampa]", text: "Tampa"
     end
 
-    test "checks selected countries" do
-      query = DeveloperQuery.new(countries: ["United States"])
+    test "checks selected cities" do
+      query = DeveloperQuery.new(cities: ["Tampa"])
       render_inline QueryComponent.new(query:, user: @user, form_id: nil)
 
-      assert_selector build_input("countries[]", type: "checkbox", value: "United States", checked: true)
+      assert_selector build_input("cities[]", type: "checkbox", value: "Tampa", checked: true)
     end
 
     test "renders unique UTC offset pairs for developers" do
@@ -106,20 +106,20 @@ module Developers
     end
 
     test "collapse location accordion when location is not being queried" do
-      create_developer(location_attributes: {country: "Australia"})
+      create_developer(location_attributes: {city: "Portland"})
 
-      Location.stub :top_countries, ["United States"] do
+      Location.stub :top_cities, ["New York"] do
         query = DeveloperQuery.new
         render_inline QueryComponent.new(query:, user: @user, form_id: nil)
         assert_selector("#location-accordion.hidden")
         assert_selector("#all-locations-accordion.hidden")
 
-        query = DeveloperQuery.new(countries: ["United States"])
+        query = DeveloperQuery.new(cities: ["New York"])
         render_inline QueryComponent.new(query:, user: @user, form_id: nil)
         assert_selector("#location-accordion:not(.hidden)")
         assert_selector("#all-locations-accordion.hidden")
 
-        query = DeveloperQuery.new(countries: ["Australia"])
+        query = DeveloperQuery.new(cities: ["Portland"])
         render_inline QueryComponent.new(query:, user: @user, form_id: nil)
         assert_selector("#location-accordion:not(.hidden)")
         assert_selector("#all-locations-accordion:not(.hidden)")

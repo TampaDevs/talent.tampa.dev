@@ -65,7 +65,9 @@ class DevelopersTest < ActionDispatch::IntegrationTest
 
     get developers_path(countries: [country])
 
-    assert_select "input[checked][type=checkbox][value='#{country}'][name='countries[]']"
+    # Select input has been removed in favor of filtering by city
+    # assert_select "input[checked][type=checkbox][value='#{country}'][name='countries[]']"
+
     assert_text "Hire developers in Tampa Bay in #{country}"
   end
 

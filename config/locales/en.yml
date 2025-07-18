@@ -508,15 +508,15 @@ en:
       add_profile: Add my profile
       edit_profile: Update my profile
     query_component:
-      all_countries:
-        title: All locations
+      all_cities:
+        title: All cities
       apply: Apply
       badge:
         title: Badges
+      city:
+        title: City
       clear: Clear
       close_menu: Close menu
-      country:
-        title: Location
       filters: Filters
       include_not_interested: Include developers not currently interested
       paywalled_search:
