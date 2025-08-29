@@ -63,7 +63,20 @@ class JobPostsController < ApplicationController
       redirect_to job_path(@job_post), alert: "You have already applied to this job." and return
     else
       application = @job_post.job_applications.create(developer: current_user.developer, status: "new_status")
+      puts('current_user', current_user)
+      puts('cookies', cookies)
+      puts('job_post', @job_post)
       if application.persisted?
+        SegmentClient.track(
+          user_id: current_user.analytics_profile[:ap_stable_id],
+          anonymous_id: cookies[:uuid],
+          event: "job_application_submitted",
+          properties: {
+            job_post_id: @job_post.id,
+            job_post_title: @job_post.title,
+            developer_id: current_user.developer.id
+          }
+        )
         redirect_to job_path(@job_post), notice: "Application submitted successfully."
       else
         redirect_to job_path(@job_post), alert: "Failed to submit the application."
