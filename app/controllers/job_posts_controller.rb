@@ -13,6 +13,17 @@ class JobPostsController < ApplicationController
     build_associations
     set_role_level_and_type
     if @job_post.save
+      puts('job post created', @job_post)
+      SegmentClient.track(
+        user_id: current_user.analytics_profile[:ap_stable_id],
+        anonymous_id: cookies[:uuid],
+        event: "job_post_created",
+        properties: {
+          job_post_id: @job_post.id,
+          job_post_title: @job_post.title,
+          business_id: current_user.business.id
+        }
+      )
       redirect_to jobs_path, notice: t(".success")
     else
       render :new, status: :unprocessable_entity
