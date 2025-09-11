@@ -28,6 +28,22 @@ module Businesses
       end
     end
 
+    def active_job_posts_limit
+      return 5 unless active_subscription?
+      
+      # Find the first active subscription and get its plan limit
+      first_subscription = active_subscriptions.first
+      return 5 unless first_subscription
+      
+      begin
+        plan = Plan.with_processor_plan(first_subscription.processor_plan)
+        plan.active_job_posts_limit
+      rescue Plan::UnknownPlan
+        # Fallback to default if plan not found
+        5
+      end
+    end
+
     private
 
     def active_subscriptions(subscription_identifier = nil)

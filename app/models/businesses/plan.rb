@@ -2,13 +2,14 @@ module Businesses
   class Plan
     class UnknownPlan < StandardError; end
 
-    attr_reader :name, :price, :stripe_price_id, :revenue_cat_product_identifier
+    attr_reader :name, :price, :stripe_price_id, :revenue_cat_product_identifier, :active_job_posts_limit
 
-    def initialize(name:, price:, stripe_price_id:, revenue_cat_product_identifier:)
+    def initialize(name:, price:, stripe_price_id:, revenue_cat_product_identifier:, active_job_posts_limit: 5)
       @name = name
       @price = price
       @stripe_price_id = stripe_price_id
       @revenue_cat_product_identifier = revenue_cat_product_identifier
+      @active_job_posts_limit = active_job_posts_limit
     end
 
     def processor_plans
