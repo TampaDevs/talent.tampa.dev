@@ -35,6 +35,22 @@ class Business < ApplicationRecord
     !invisible?
   end
 
+  def active_job_posts_count
+    job_posts.open.count
+  end
+
+  def active_job_posts_limit
+    user.permissions.active_job_posts_limit
+  end
+
+  def can_create_job_post?
+    active_job_posts_count < active_job_posts_limit
+  end
+
+  def remaining_job_posts
+    [active_job_posts_limit - active_job_posts_count, 0].max
+  end
+
   private
 
   def phone_number_present?

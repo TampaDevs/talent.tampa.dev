@@ -22,6 +22,7 @@ module Businesses
 
     validate :validate_salary_range_for_full_time_employment
     validate :validate_fixed_fee_for_contract
+    validate :validate_active_job_posts_limit, on: :create
 
     accepts_nested_attributes_for :role_level
     accepts_nested_attributes_for :role_type
@@ -97,6 +98,16 @@ module Businesses
     def validate_fixed_fee_for_contract
       if role_type&.part_time_contract? || role_type&.full_time_contract?
         errors.add(:fixed_fee, "must be greater than 0") unless fixed_fee.present? && fixed_fee > 0
+      end
+    end
+
+    def validate_active_job_posts_limit
+      return unless business.present?
+      
+      unless business.can_create_job_post?
+        limit = business.active_job_posts_limit
+        current_count = business.active_job_posts_count
+        errors.add(:base, "You have reached the maximum number of active job posts (#{limit}). Please close an existing job post before creating a new one.")
       end
     end
   end

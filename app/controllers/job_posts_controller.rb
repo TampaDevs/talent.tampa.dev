@@ -4,6 +4,11 @@ class JobPostsController < ApplicationController
   before_action :set_job_post, only: [:edit, :update, :show, :apply, :applicants]
 
   def new
+    unless current_user.business.can_create_job_post?
+      redirect_to jobs_path, alert: "You have reached the maximum number of active job posts (#{current_user.business.active_job_posts_limit}). Please close an existing job post before creating a new one."
+      return
+    end
+    
     @job_post = current_user.business.job_posts.new
     build_associations
   end
@@ -49,6 +54,13 @@ class JobPostsController < ApplicationController
       handle_developer_filters
     end
     @no_job_posts = @job_posts.empty?
+    
+    # Add job post limit information for business users
+    if current_user.business.present?
+      @active_job_posts_count = current_user.business.active_job_posts_count
+      @active_job_posts_limit = current_user.business.active_job_posts_limit
+      @remaining_job_posts = current_user.business.remaining_job_posts
+    end
   end
 
   def show
