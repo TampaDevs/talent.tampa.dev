@@ -1,0 +1,19 @@
+Hey <%= @business.first_name %>,
+
+Great news! <%= @developer.name %> has applied to your job posting: "<%= @job_post.title %>".
+
+You can view all applicants for this position here:
+<%= Rails.application.routes.url_helpers.applicants_job_url(@job_post.id, locale: :en) %>
+
+Here's a quick overview of the applicant:
+
+Name: <%= @developer.name %>
+Bio: <%= truncate(@developer.bio, length: 200) %>
+<% if @developer.location&.city.present? %>
+Location: <%= @developer.location.city %>
+<% end %>
+
+Ready to start the conversation? View their profile and contact them:
+<%= developer_url(@developer) %>
+
+<%= render "shared/signature" %>

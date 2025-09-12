@@ -21,12 +21,11 @@ module Developers
     # Validations
     validates :job_post, :developer, presence: true
 
-    # TODO: Notify Business when a developer applies to their job post
+    after_create :send_application_received_notification
 
-    # after_create :send_application_received_notification
-    # def send_application_received_notification
-    #   # Notification logic here
-    # end
+    def send_application_received_notification
+      Businesses::JobApplicationNotification.with(job_application_id: self.id).deliver_later(job_post.business.user)
+    end
 
     # Scopes
     scope :new_status, -> { where(status: :new_status) }

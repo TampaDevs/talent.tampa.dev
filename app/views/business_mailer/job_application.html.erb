@@ -1,0 +1,19 @@
+<p>Hey <%= @business.first_name %>,</p>
+
+<p>Great news! <strong><%= @developer.name %></strong> has applied to your job posting: "<%= @job_post.title %>".</p>
+
+<p>You can <%= link_to "view all applicants", Rails.application.routes.url_helpers.applicants_job_url(@job_post.id, locale: :en) %> for this position.</p>
+
+<p>Here's a quick overview of the applicant:</p>
+
+<ul>
+  <li><strong>Name:</strong> <%= @developer.name %></li>
+  <li><strong>Bio:</strong> <%= truncate(@developer.bio, length: 200) %></li>
+  <% if @developer.location&.city.present? %>
+    <li><strong>Location:</strong> <%= @developer.location.city %></li>
+  <% end %>
+</ul>
+
+<p>Ready to start the conversation? <%= link_to "View their profile and contact them", developer_url(@developer) %>.</p>
+
+<%= render "shared/signature" %>

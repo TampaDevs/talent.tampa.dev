@@ -696,6 +696,9 @@ en:
     businesses:
       invisiblize_notification:
         title: Your profile on Tampa Devs Talent was flagged
+      job_application_notification:
+        email_subject: "%{developer} applied to your job: %{job_post}"
+        title: "%{developer} applied to your job: %{job_post}"
     developers:
       invisiblize_notification:
         title: Your profile on Tampa Devs Talent was flagged
