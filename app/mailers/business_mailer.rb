@@ -56,4 +56,20 @@ class BusinessMailer < ApplicationMailer
 
     mail(to: @business.user.email, subject:, from:, message_stream: :broadcast)
   end
+
+  def job_application
+    @job_application = params[:job_application]
+    @recipient = params[:recipient]
+    @developer = @job_application.developer
+    @job_post = @job_application.job_post
+    @business = @job_post.business
+
+    # Create a notification instance for the email subject
+    @notification = Businesses::JobApplicationNotification.with(job_application_id: @job_application.id)
+
+    mail(
+      to: @recipient.email,
+      subject: @notification.email_subject
+    )
+  end
 end
